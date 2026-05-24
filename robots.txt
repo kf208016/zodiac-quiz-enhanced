@@ -1,0 +1,6 @@
+# Robots.txt for Zodiac Quiz Enhanced
+
+User-agent: *
+Allow: /
+
+Sitemap: https://zodiac-quiz-enhanced.pages.dev/sitemap.xml

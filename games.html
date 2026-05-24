@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <!-- Security Headers -->
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self';">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎮 星座遊戲 — 測驗你的星座實力 | 星座命理平台</title>
+  <meta name="description" content="遊玩多款星座主題小遊戲與測驗，包含幸運轉盤、方塊遊戲與互動挑戰，輕鬆探索你的星座能量與每日好運。">
+  <meta name="keywords" content="星座遊戲,小遊戲,星座休閒,星座放鬆">
+  <meta name="robots" content="index, follow">
+  <meta name="geo.region" content="TW">
+  <meta name="geo.placename" content="Taiwan">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://zodiac-quiz-enhanced.pages.dev/games">
+  
+  <!-- hreflang tags -->
+  <link rel="alternate" hreflang="zh-TW" href="https://zodiac-quiz-enhanced.pages.dev/games">
+  <link rel="alternate" hreflang="zh-HK" href="https://zodiac-quiz-enhanced.pages.dev/games">
+  <link rel="alternate" hreflang="x-default" href="https://zodiac-quiz-enhanced.pages.dev/games">
+  <!-- Open Graph -->
+  <meta property="og:title" content="星座遊戲 — 測驗你的星座實力">
+  <meta property="og:description" content="遊玩多款星座主題小遊戲與測驗，包含幸運轉盤、方塊遊戲與互動挑戰，輕鬆探索你的星座能量與每日好運。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zodiac-quiz-enhanced.pages.dev/games">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:locale:alternate" content="zh_HK">
+  <meta property="og:site_name" content="星座命理平台">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="星座遊戲 — 測驗你的星座實力">
+  <meta name="twitter:description" content="遊玩多款星座主題小遊戲與測驗，包含幸運轉盤、方塊遊戲與互動挑戰，輕鬆探索你的星座能量與每日好運。">
+    <meta property="og:image" content="https://zodiac-quiz-enhanced.pages.dev/og-image.png">
+  <meta name="twitter:image" content="https://zodiac-quiz-enhanced.pages.dev/og-image.png">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "星座遊戲 — 測驗你的星座實力",
+  "description": "遊玩多款星座主題小遊戲與測驗，包含幸運轉盤、方塊遊戲與互動挑戰，輕鬆探索你的星座能量與每日好運。",
+  "url": "https://zodiac-quiz-enhanced.pages.dev/games",
+  "inLanguage": "zh-TW",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "星座命理平台",
+    "url": "https://zodiac-quiz-enhanced.pages.dev/"
+  }
+}
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Noto Sans TC', sans-serif; background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%); color: #fff; min-height: 100vh; }
+    .starfield { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+    .star { position: absolute; width: 2px; height: 2px; background: #fff; border-radius: 50%; animation: twinkle 3s infinite; }
+    @keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; transform: scale(1.5); } }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+    .container { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 20px; }
+    .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; margin-bottom: 20px; }
+    .logo { font-size: 1.3rem; font-weight: 900; background: linear-gradient(135deg, #f093fb, #f5576c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .nav-links a { color: #888; text-decoration: none; padding: 8px 15px; font-size: 0.9rem; border-radius: 20px; transition: all 0.3s; }
+    .nav-links a:hover, .nav-links a.active { color: #fff; background: rgba(255,255,255,0.1); }
+    .page-title { text-align: center; margin-bottom: 25px; }
+    .page-title h1 { font-size: 2rem; font-weight: 900; background: linear-gradient(135deg, #f093fb, #f5576c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
+    .page-title p { color: #888; }
+    
+    /* 遊戲選擇頁 */
+    .game-selector { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 30px; }
+    .game-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 30px; text-align: center; cursor: pointer; transition: all 0.3s; }
+    .game-card:hover { transform: translateY(-5px); border-color: rgba(240,147,251,0.5); box-shadow: 0 15px 40px rgba(240,147,251,0.2); }
+    .game-card .icon { font-size: 4rem; margin-bottom: 15px; display: block; animation: float 3s ease-in-out infinite; }
+    .game-card h3 { font-size: 1.3rem; margin-bottom: 10px; }
+    .game-card p { color: #888; font-size: 0.9rem; margin-bottom: 15px; }
+    .game-card .difficulty { display: inline-block; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; background: rgba(255,255,255,0.1); }
+    .game-card.easy .difficulty { background: rgba(81,207,102,0.2); color: #51cf66; }
+    .game-card.medium .difficulty { background: rgba(255,212,59,0.2); color: #ffd43b; }
+    .game-card.hard .difficulty { background: rgba(255,107,107,0.2); color: #ff6b6b; }
+    
+    /* 遊戲區 */
+    .game-section { display: none; }
+    .game-section.active { display: block; }
+    .game-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding: 15px 20px; background: rgba(255,255,255,0.05); border-radius: 15px; }
+    .game-title { font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+    .game-title .icon { font-size: 1.5rem; }
+    .game-stats { display: flex; gap: 20px; }
+    .stat { text-align: center; }
+    .stat-value { font-size: 1.5rem; font-weight: 900; color: #f093fb; }
+    .stat-label { font-size: 0.8rem; color: #888; }
+    
+    /* 記憶遊戲 */
+    .memory-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; max-width: 500px; margin: 0 auto; }
+    @media (max-width: 500px) { .memory-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; } }
+    .memory-card { aspect-ratio: 1; background: rgba(255,255,255,0.08); border: 2px solid rgba(255,255,255,0.1); border-radius: 15px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; perspective: 1000px; }
+    .memory-card:hover { transform: scale(1.05); border-color: rgba(240,147,251,0.5); }
+    .memory-card.flipped { background: linear-gradient(135deg, rgba(240,147,251,0.2), rgba(79,172,254,0.2)); border-color: #f093fb; }
+    .memory-card.matched { background: linear-gradient(135deg, rgba(81,207,102,0.2), rgba(34,184,207,0.2)); border-color: #51cf66; transform: scale(0.95); }
+    .memory-card .front { display: none; }
+    .memory-card.flipped .front, .memory-card.matched .front { display: flex; }
+    .memory-card .back { display: flex; }
+    .memory-card.flipped .back, .memory-card.matched .back { display: none; }
+    
+    /* 心理測驗 */
+    .quiz-question { background: rgba(255,255,255,0.05); border-radius: 20px; padding: 30px; margin-bottom: 20px; text-align: center; }
+    .quiz-progress { display: flex; gap: 5px; margin-bottom: 20px; justify-content: center; }
+    .progress-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.2); }
+    .progress-dot.active { background: #f093fb; }
+    .progress-dot.completed { background: #51cf66; }
+    .quiz-question h3 { font-size: 1.3rem; margin-bottom: 25px; line-height: 1.6; }
+    .quiz-options { display: grid; gap: 12px; }
+    .quiz-option { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 18px 20px; cursor: pointer; transition: all 0.3s; text-align: left; font-size: 1rem; display: flex; align-items: center; gap: 12px; }
+    .quiz-option:hover { background: rgba(255,255,255,0.1); border-color: rgba(240,147,251,0.5); }
+    .quiz-option.selected { background: linear-gradient(135deg, rgba(240,147,251,0.2), rgba(79,172,254,0.2)); border-color: #f093fb; }
+    .quiz-option .num { width: 30px; height: 30px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
+    .quiz-option.selected .num { background: #f093fb; color: #000; }
+    
+    /* 知識搶答 */
+    .trivia-header { text-align: center; margin-bottom: 25px; }
+    .trivia-category { display: inline-block; background: rgba(255,255,255,0.1); padding: 8px 20px; border-radius: 20px; font-size: 0.9rem; margin-bottom: 15px; }
+    .trivia-question-text { font-size: 1.4rem; line-height: 1.5; margin-bottom: 25px; }
+    .trivia-timer { width: 100%; max-width: 400px; height: 8px; background: rgba(255,255,255,0.1); border-radius: 10px; margin: 0 auto 20px; overflow: hidden; }
+    .trivia-timer-fill { height: 100%; background: linear-gradient(90deg, #51cf66, #ffd43b, #ff6b6b); transition: width 0.1s linear; border-radius: 10px; }
+    .trivia-options { display: grid; gap: 15px; }
+    .trivia-option { background: rgba(255,255,255,0.05); border: 2px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 20px; cursor: pointer; transition: all 0.3s; text-align: center; font-size: 1.1rem; font-weight: 500; }
+    .trivia-option:hover { background: rgba(255,255,255,0.1); border-color: rgba(240,147,251,0.5); transform: scale(1.02); }
+    .trivia-option.correct { background: rgba(81,207,102,0.2); border-color: #51cf66; animation: pulse 0.5s; }
+    .trivia-option.wrong { background: rgba(255,107,107,0.2); border-color: #ff6b6b; }
+    .trivia-feedback { text-align: center; padding: 20px; font-size: 1.1rem; }
+    .trivia-feedback.correct { color: #51cf66; }
+    .trivia-feedback.wrong { color: #ff6b6b; }
+    
+    /* 結果畫面 */
+    .result-screen { text-align: center; padding: 40px 20px; }
+    .result-icon { font-size: 5rem; margin-bottom: 20px; }
+    .result-score { font-size: 4rem; font-weight: 900; background: linear-gradient(135deg, #f093fb, #f5576c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
+    .result-label { color: #888; font-size: 1.1rem; margin-bottom: 20px; }
+    .result-message { font-size: 1.2rem; line-height: 1.6; margin-bottom: 30px; max-width: 400px; margin-left: auto; margin-right: auto; }
+    .result-zodiac { font-size: 3rem; margin-bottom: 15px; }
+    .result-name { font-size: 1.5rem; font-weight: 700; margin-bottom: 5px; }
+    .result-desc { color: #aaa; margin-bottom: 30px; }
+    
+    /* 按鈕 */
+    .btn { padding: 15px 35px; border-radius: 25px; border: none; font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: inherit; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-primary { background: linear-gradient(135deg, #f093fb, #f5576c); color: #fff; }
+    .btn-primary:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(240,147,251,0.3); }
+    .btn-secondary { background: rgba(255,255,255,0.1); color: #fff; border: 2px solid rgba(255,255,255,0.2); }
+    .btn-secondary:hover { background: rgba(255,255,255,0.2); }
+    .game-actions { display: flex; gap: 15px; justify-content: center; margin-top: 25px; flex-wrap: wrap; }
+    
+    /* 返回按鈕 */
+    .back-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; color: #aaa; cursor: pointer; transition: all 0.3s; margin-bottom: 20px; font-size: 0.9rem; font-family: inherit; }
+    .back-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
+    
+    /* 底部 */
+    .footer { text-align: center; padding: 40px 0; color: #666; font-size: 0.9rem; }
+    .footer a { color: #aaa; text-decoration: none; }
+    .footer a:hover { color: #fff; }
+  
+    /* 隱私權橫幅 */
+    .privacy-banner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      background: linear-gradient(135deg, rgba(30,30,60,0.98), rgba(15,15,40,0.98));
+      border-bottom: 1px solid rgba(240,147,251,0.3);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-size: 0.85rem;
+      color: #ccc;
+      backdrop-filter: blur(10px);
+    }
+    .privacy-icon { font-size: 1.1rem; }
+    .privacy-text { flex: 1; max-width: 800px; line-height: 1.5; }
+    .privacy-dismiss {
+      background: linear-gradient(135deg, #f093fb, #f5576c);
+      border: none;
+      color: #fff;
+      padding: 8px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .privacy-dismiss:hover { transform: scale(1.05); box-shadow: 0 5px 20px rgba(240,147,251,0.4); }
+    .privacy-banner.hidden { display: none; }
+    @media (max-width: 768px) {
+      .privacy-banner { flex-wrap: wrap; gap: 8px; padding: 10px 15px; }
+      .privacy-text { font-size: 0.8rem; }
+    }
+
+  </style>
+</head>
+
+  <div class="starfield"
+  
+  <!-- 隱私權宣告橫幅 -->
+  <div class="privacy-banner hidden" id="privacyBanner">
+    <span class="privacy-icon">🔒</span>
+    <span class="privacy-text" data-i18n="privacy_notice_text">本網站為靜態星座命理平台，不會收集、儲存或傳輸任何個人資料。所有占卜計算皆在您的瀏覽器內完成，不會上傳至任何伺服器。</span>
+    <button class="privacy-dismiss" data-action="dismiss-privacy" data-i18n="privacy_dismiss">我知道了</button>
+  </div>
+ id="starfield"></div>
+  
+  <div class="container">
+    <nav class="navbar">
+      <div class="logo">✨ 星座命理</div>
+      <div class="nav-links">
+        <a href="index.html">首頁</a>
+        <a href="natal.html">命盤查詢</a>
+        <a href="compatibility.html">星座配對</a>
+        <a href="horoscope.html">星座運勢</a>
+        <a href="games.html" class="active">遊戲測驗</a>
+        <a href="knowledge.html">星座知識</a>
+      </div>
+    </nav>
+
+    <div class="page-title">
+      <h1>🎮 星座遊戲</h1>
+      <p>測驗你的星座實力！</p>
+    </div>
+
+    <!-- 遊戲選擇 -->
+    <div class="game-selector" id="gameSelector">
+      <div class="game-card easy" onclick="startGame('memory')">
+        <span class="icon">🧠</span>
+        <h3>星座記憶翻牌</h3>
+        <p>翻開星座卡牌，找出相同的配對。測試你的記憶力！</p>
+        <span class="difficulty">簡單</span>
+      </div>
+      
+      <div class="game-card medium" onclick="startGame('quiz')">
+        <span class="icon">🔮</span>
+        <h3>星座心理測驗</h3>
+        <p>回答心理問題，揭開你內心的星座秘密。</p>
+        <span class="difficulty">中等</span>
+      </div>
+      
+      <div class="game-card hard" onclick="startGame('trivia')">
+        <span class="icon">💡</span>
+        <h3>星座知識搶答</h3>
+        <p>限時回答星座知識問題，挑戰你的星座 IQ！</p>
+        <span class="difficulty">困難</span>
+      </div>
+    </div>
+
+    <!-- 記憶翻牌遊戲 -->
+    <div class="game-section" id="memoryGame">
+      <button class="back-btn" onclick="showGameSelector()">← 返回遊戲選擇</button>
+      
+      <div class="game-header">
+        <div class="game-title"><span class="icon">🧠</span> 星座記憶翻牌</div>
+        <div class="game-stats">
+          <div class="stat"><div class="stat-value" id="memoryMoves">0</div><div class="stat-label">步數</div></div>
+          <div class="stat"><div class="stat-value" id="memoryPairs">0/8</div><div class="stat-label">配對</div></div>
+          <div class="stat"><div class="stat-value" id="memoryTime">0:00</div><div class="stat-label">時間</div></div>
+        </div>
+      </div>
+      
+      <div class="memory-grid" id="memoryGrid"></div>
+      
+      <div class="game-actions">
+        <button class="btn btn-secondary" onclick="initMemoryGame()">🔄 重新開始</button>
+      </div>
+    </div>
+
+    <!-- 星座心理測驗 -->
+    <div class="game-section" id="quizGame">
+      <button class="back-btn" onclick="showGameSelector()">← 返回遊戲選擇</button>
+      
+      <div class="game-header">
+        <div class="game-title"><span class="icon">🔮</span> 星座心理測驗</div>
+        <div class="game-stats">
+          <div class="stat"><div class="stat-value" id="quizProgress">1/5</div><div class="stat-label">進度</div></div>
+        </div>
+      </div>
+      
+      <div class="quiz-question" id="quizContainer">
+        <div class="quiz-progress" id="quizProgressDots"></div>
+        <h3 id="quizQuestionText"></h3>
+        <div class="quiz-options" id="quizOptions"></div>
+      </div>
+    </div>
+
+    <!-- 星座知識搶答 -->
+    <div class="game-section" id="triviaGame">
+      <button class="back-btn" onclick="showGameSelector()">← 返回遊戲選擇</button>
+      
+      <div class="game-header">
+        <div class="game-title"><span class="icon">💡</span> 星座知識搶答</div>
+        <div class="game-stats">
+          <div class="stat"><div class="stat-value" id="triviaScore">0</div><div class="stat-label">得分</div></div>
+          <div class="stat"><div class="stat-value" id="triviaQuestionNum">1/10</div><div class="stat-label">題數</div></div>
+        </div>
+      </div>
+      
+      <div class="trivia-header">
+        <div class="trivia-category" id="triviaCategory">基本認識</div>
+        <div class="trivia-timer"><div class="trivia-timer-fill" id="triviaTimerFill" style="width:100%"></div></div>
+      </div>
+      
+      <div class="quiz-question" id="triviaContainer">
+        <p class="trivia-question-text" id="triviaQuestionText"></p>
+        <div class="trivia-options" id="triviaOptions"></div>
+      </div>
+      
+      <div class="trivia-feedback" id="triviaFeedback" style="display:none;"></div>
+      
+      <div class="game-actions">
+        <button class="btn btn-secondary" onclick="initTriviaGame()">🔄 重新開始</button>
+      </div>
+    </div>
+
+    <!-- 結果畫面 -->
+    <div class="game-section" id="resultScreen">
+      <div class="result-screen">
+        <div class="result-icon" id="resultIcon">🎉</div>
+        <div class="result-score" id="resultScore">0</div>
+        <div class="result-label" id="resultLabel">分</div>
+        <div class="result-message" id="resultMessage"></div>
+        <div id="resultZodiac"></div>
+        <div class="game-actions">
+          <button class="btn btn-primary" onclick="showGameSelector()">🔄 再玩一次</button>
+          <button class="btn btn-secondary" onclick="location.href='index.html'">🏠 返回首頁</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>© 2024 <span data-i18n="footer_copyright">SmartLink 星座命理平台</span> | <a href="index.html">返回首頁</a></p>
+    </div>
+  </div>
+
+<script>
+// ====== 通用功能 ======
+function createStarfield() {
+  const container = document.getElementById('starfield');
+  for (let i = 0; i < 100; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.animationDelay = Math.random() * 3 + 's';
+    container.appendChild(star);
+  }
+}
+
+function showGameSelector() {
+  document.querySelectorAll('.game-section').forEach(s => s.classList.remove('active'));
+  document.getElementById('gameSelector').style.display = 'grid';
+}
+
+function startGame(game) {
+  document.getElementById('gameSelector').style.display = 'none';
+  document.querySelectorAll('.game-section').forEach(s => s.classList.remove('active'));
+  
+  if (game === 'memory') {
+    document.getElementById('memoryGame').classList.add('active');
+    initMemoryGame();
+  } else if (game === 'quiz') {
+    document.getElementById('quizGame').classList.add('active');
+    initQuizGame();
+  } else if (game === 'trivia') {
+    document.getElementById('triviaGame').classList.add('active');
+    initTriviaGame();
+  }
+}
+
+function showResult(icon, score, label, message, zodiacHtml) {
+  document.querySelectorAll('.game-section').forEach(s => s.classList.remove('active'));
+  document.getElementById('resultScreen').classList.add('active');
+  document.getElementById('resultIcon').textContent = icon;
+  document.getElementById('resultScore').textContent = score;
+  document.getElementById('resultLabel').textContent = label;
+  document.getElementById('resultMessage').textContent = message;
+  document.getElementById('resultZodiac').innerHTML = zodiacHtml || '';
+}
+
+// ====== 記憶翻牌遊戲 ======
+const zodiacEmojis = ['♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓'];
+let memoryCards = [];
+let flippedCards = [];
+let matchedPairs = 0;
+let moves = 0;
+let memoryTimer = null;
+let memorySeconds = 0;
+
+function initMemoryGame() {
+  memoryCards = [...zodiacEmojis.slice(0,8), ...zodiacEmojis.slice(0,8)];
+  shuffleArray(memoryCards);
+  flippedCards = [];
+  matchedPairs = 0;
+  moves = 0;
+  memorySeconds = 0;
+  
+  if (memoryTimer) clearInterval(memoryTimer);
+  memoryTimer = setInterval(() => {
+    memorySeconds++;
+    document.getElementById('memoryTime').textContent = formatTime(memorySeconds);
+  }, 1000);
+  
+  document.getElementById('memoryMoves').textContent = '0';
+  document.getElementById('memoryPairs').textContent = '0/8';
+  
+  const grid = document.getElementById('memoryGrid');
+  grid.innerHTML = memoryCards.map((emoji, i) => `
+    <div class="memory-card" data-index="${i}" onclick="flipCard(this)">
+      <div class="front">${emoji}</div>
+      <div class="back">✨</div>
+    </div>
+  `).join('');
+}
+
+function shuffleArray(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+}
+
+function formatTime(seconds) {
+  const m = Math.floor(seconds / 60);
+  const s = seconds % 60;
+  return `${m}:${s.toString().padStart(2, '0')}`;
+}
+
+function flipCard(card) {
+  if (flippedCards.length >= 2) return;
+  if (card.classList.contains('flipped') || card.classList.contains('matched')) return;
+  
+  card.classList.add('flipped');
+  flippedCards.push(card);
+  
+  if (flippedCards.length === 2) {
+    moves++;
+    document.getElementById('memoryMoves').textContent = moves;
+    
+    const [c1, c2] = flippedCards;
+    const idx1 = parseInt(c1.dataset.index);
+    const idx2 = parseInt(c2.dataset.index);
+    
+    if (memoryCards[idx1] === memoryCards[idx2]) {
+      setTimeout(() => {
+        c1.classList.add('matched');
+        c2.classList.add('matched');
+        matchedPairs++;
+        document.getElementById('memoryPairs').textContent = `${matchedPairs}/8`;
+        flippedCards = [];
+        
+        if (matchedPairs === 8) {
+          clearInterval(memoryTimer);
+          setTimeout(() => {
+            const timeBonus = Math.max(0, 100 - memorySeconds);
+            const moveBonus = Math.max(0, 50 - moves * 2);
+            const score = timeBonus + moveBonus;
+            showResult('🧠', score, '分', `你以 ${moves} 步完成配對，耗時 ${formatTime(memorySeconds)}！`, '');
+          }, 500);
+        }
+      }, 300);
+    } else {
+      setTimeout(() => {
+        c1.classList.remove('flipped');
+        c2.classList.remove('flipped');
+        flippedCards = [];
+      }, 800);
+    }
+  }
+}
+
+// ====== 星座心理測驗 ======
+const quizQuestions = [
+  {
+    question: '你在派對上通常扮演什麼角色？',
+    options: [
+      { text: '🌟 眾人焦點，帶動氣氛', scores: { fire: 3, air: 2 } },
+      { text: '🤔 安靜觀察，適時發言', scores: { water: 3, earth: 2 } },
+      { text: '👂 倾听朋友的心聲', scores: { water: 3, earth: 2 } },
+      { text: '🎯 確保一切順利進行', scores: { earth: 3, fire: 1 } }
+    ]
+  },
+  {
+    question: '面對困難的決定時，你會？',
+    options: [
+      { text: '⚡ 立刻行動，邊做邊調整', scores: { fire: 3, air: 2 } },
+      { text: '📋 列出所有選項分析', scores: { earth: 3, air: 2 } },
+      { text: '💭 相信直覺，跟著感覺走', scores: { water: 3, fire: 1 } },
+      { text: '🤝 諮詢信任的朋友意見', scores: { water: 3, earth: 2 } }
+    ]
+  },
+  {
+    question: '你的理想休閒活動是？',
+    options: [
+      { text: '🏃 攀岩、跑步等刺激運動', scores: { fire: 3 } },
+      { text: '📚 安靜閱讀或深度思考', scores: { earth: 3, water: 2 } },
+      { text: '🎉 和朋友熱鬧聚會', scores: { air: 3, fire: 2 } },
+      { text: '🌊 海邊散步，親近大自然', scores: { water: 3, earth: 2 } }
+    ]
+  },
+  {
+    question: '在戀愛關係中，你最重視？',
+    options: [
+      { text: '🔥 熱情與興奮感', scores: { fire: 3, air: 2 } },
+      { text: '🤝 穩定與安全感', scores: { earth: 3, water: 2 } },
+      { text: '💬 深度溝通與理解', scores: { air: 3, water: 2 } },
+      { text: '💕 情感連結與默契', scores: { water: 3, earth: 2 } }
+    ]
+  },
+  {
+    question: '當朋友向你訴說煩惱時，你會？',
+    options: [
+      { text: '💪 給予鼓勵和建議', scores: { fire: 3, air: 1 } },
+      { text: '🔍 分析問題原因', scores: { earth: 3, air: 2 } },
+      { text: '❤️ 先表達理解和關心', scores: { water: 3, earth: 1 } },
+      { text: '✨ 分享類似經歷', scores: { air: 3, fire: 1 } }
+    ]
+  }
+];
+
+let currentQuestion = 0;
+let quizScores = { fire: 0, earth: 0, air: 0, water: 0 };
+
+function initQuizGame() {
+  currentQuestion = 0;
+  quizScores = { fire: 0, earth: 0, air: 0, water: 0 };
+  showQuizQuestion();
+}
+
+function showQuizQuestion() {
+  const q = quizQuestions[currentQuestion];
+  
+  // 進度點
+  document.getElementById('quizProgress').textContent = `${currentQuestion + 1}/5`;
+  document.getElementById('quizProgressDots').innerHTML = quizQuestions.map((_, i) => 
+    `<div class="progress-dot ${i < currentQuestion ? 'completed' : i === currentQuestion ? 'active' : ''}"></div>`
+  ).join('');
+  
+  document.getElementById('quizQuestionText').textContent = q.question;
+  document.getElementById('quizOptions').innerHTML = q.options.map((opt, i) => 
+    `<div class="quiz-option" onclick="selectQuizOption(${i})">
+      <span class="num">${String.fromCharCode(65 + i)}</span>
+      <span>${opt.text}</span>
+    </div>`
+  ).join('');
+}
+
+function selectQuizOption(idx) {
+  const options = document.querySelectorAll('.quiz-option');
+  options.forEach((o, i) => {
+    o.classList.toggle('selected', i === idx);
+    o.style.pointerEvents = 'none';
+  });
+  
+  const opt = quizQuestions[currentQuestion].options[idx];
+  for (const [element, score] of Object.entries(opt.scores)) {
+    quizScores[element] += score;
+  }
+  
+  setTimeout(() => {
+    currentQuestion++;
+    if (currentQuestion < quizQuestions.length) {
+      showQuizQuestion();
+    } else {
+      showQuizResult();
+    }
+  }, 800);
+}
+
+function showQuizResult() {
+  const elementOrder = ['fire', 'earth', 'air', 'water'];
+  const elementNames = { fire: '火象', earth: '土象', air: '風象', water: '水象' };
+  const elementEmojis = { fire: '🔥', earth: '🌍', air: '💨', water: '💧' };
+  const zodiacByElement = {
+    fire: ['♈ 牡羊座', '♌ 獅子座', '♐ 射手座'],
+    earth: ['♉ 金牛座', '♍ 處女座', '♑ 摩羯座'],
+    air: ['♊ 雙子座', '♎ 天秤座', '♒ 水瓶座'],
+    water: ['♋ 巨蟹座', '♏ 天蠍座', '♓ 雙魚座']
+  };
+  
+  const maxElement = elementOrder.reduce((a, b) => quizScores[a] > quizScores[b] ? a : b);
+  const total = quizScores.fire + quizScores.earth + quizScores.air + quizScores.water;
+  
+  const messages = {
+    fire: '你是一個充滿熱情與冒險精神的人！勇於追求自己的目標，感染力強。',
+    earth: '你是一個腳踏實地、穩重可靠的人！注重實際，善於創造安穩的生活。',
+    air: '你是一個思想自由、好奇心旺盛的人！喜歡探索新事物，社交能力強。',
+    water: '你是一個情感細膩、直覺敏銳的人！重視深度連結，富有同理心。'
+  };
+  
+  const zodiacHtml = `
+    <div class="result-zodiac">${elementEmojis[maxElement]}</div>
+    <div class="result-name">${elementNames[maxElement]}人格</div>
+    <div class="result-desc">${zodiacByElement[maxElement].join(' / ')}</div>
+  `;
+  
+  showResult(elementEmojis[maxElement], Math.round(total), '總分', messages[maxElement], zodiacHtml);
+}
+
+// ====== 星座知識搶答 ======
+const triviaQuestions = [
+  { category: '基本認識', question: '十二星座中，哪個是火象星座？', options: ['牡羊座', '金牛座', '雙子座', '巨蟹座'], correct: 0 },
+  { category: '守護行星', question: '天蠍座的守護行星是？', options: ['火星', '冥王星', '木星', '海王星'], correct: 1 },
+  { category: '宮位知識', question: '上升星座代表什麼？', options: ['外在形象', '內心世界', '事業成就', '愛情模式'], correct: 0 },
+  { category: '基本認識', question: '哪個星座被稱為「星座之王」？', options: ['牡羊座', '獅子座', '天蠍座', '摩羯座'], correct: 1 },
+  { category: '元素分類', question: '雙子座屬於哪個元素？', options: ['火', '土', '風', '水'], correct: 2 },
+  { category: '愛情配對', question: '哪個組合被認為是「完美一拍即合」？', options: ['牡羊+金牛', '牡羊+獅子', '金牛+巨蟹', '巨蟹+天蠍'], correct: 1 },
+  { category: '守護行星', question: '水瓶座的守護行星是？', options: ['土星', '天王星', '金星', '水星'], correct: 1 },
+  { category: '基本認識', question: '太陽在哪個星座時是夏天（北半球）？', options: ['牡羊-金牛', '雙子-巨蟹', '獅子-處女', '射手-摩羯'], correct: 2 },
+  { category: '宮位知識', question: '月亮星座主要影響什麼？', options: ['行事風格', '情感需求', '溝通方式', '金錢觀'], correct: 1 },
+  { category: '基本認識', question: '哪個星座最重視公平正義？', options: ['處女座', '天秤座', '射手座', '水瓶座'], correct: 1 },
+  { category: '守護行星', question: '金牛座的守護行星是？', options: ['火星', '金星', '水星', '木星'], correct: 1 },
+  { category: '愛情配對', question: '被稱為「靈魂伴侶」組合的是？', options: ['牡羊+射手', '獅子+天秤', '天蠍+巨蟹', '摩羯+金牛'], correct: 2 },
+  { category: '元素分類', question: '哪個元素的人最重視安全感？', options: ['火象', '風象', '水象', '土象'], correct: 3 },
+  { category: '基本認識', question: '「處女座」的正確保護星是？', options: ['水星', '金星', '火星', '土星'], correct: 0 },
+  { category: '宮位知識', question: '第一宮（命宮）代表什麼？', options: ['外貌與表現', '家庭與根源', '溝通與學習', '財產與價值'], correct: 0 }
+];
+
+let triviaIndex = 0;
+let triviaScore = 0;
+let triviaTimer = null;
+let timerWidth = 100;
+
+function initTriviaGame() {
+  triviaIndex = 0;
+  triviaScore = 0;
+  document.getElementById('triviaScore').textContent = '0';
+  showTriviaQuestion();
+}
+
+function showTriviaQuestion() {
+  if (triviaIndex >= triviaQuestions.length) {
+    endTriviaGame();
+    return;
+  }
+  
+  const q = triviaQuestions[triviaIndex];
+  document.getElementById('triviaQuestionNum').textContent = `${triviaIndex + 1}/10`;
+  document.getElementById('triviaCategory').textContent = q.category;
+  document.getElementById('triviaQuestionText').textContent = q.question;
+  
+  const shuffled = [...q.options];
+  // 顯示原選項順序（不改變正確答案索引）
+  
+  document.getElementById('triviaOptions').innerHTML = q.options.map((opt, i) => 
+    `<div class="trivia-option" onclick="selectTriviaOption(${i})">${opt}</div>`
+  ).join('');
+  
+  document.getElementById('triviaFeedback').style.display = 'none';
+  
+  // 開始計時
+  timerWidth = 100;
+  document.getElementById('triviaTimerFill').style.width = '100%';
+  
+  if (triviaTimer) clearInterval(triviaTimer);
+  triviaTimer = setInterval(() => {
+    timerWidth -= 2;
+    document.getElementById('triviaTimerFill').style.width = timerWidth + '%';
+    if (timerWidth <= 0) {
+      clearInterval(triviaTimer);
+      selectTriviaOption(-1); // 超時
+    }
+  }, 200);
+}
+
+function selectTriviaOption(idx) {
+  clearInterval(triviaTimer);
+  
+  const q = triviaQuestions[triviaIndex];
+  const options = document.querySelectorAll('.trivia-option');
+  
+  options.forEach(o => o.style.pointerEvents = 'none');
+  
+  if (idx === q.correct) {
+    options[idx].classList.add('correct');
+    triviaScore += Math.round(timerWidth);
+    document.getElementById('triviaScore').textContent = triviaScore;
+    document.getElementById('triviaFeedback').className = 'trivia-feedback correct';
+    document.getElementById('triviaFeedback').textContent = `✅ 答對了！+${Math.round(timerWidth)} 分`;
+  } else if (idx === -1) {
+    document.getElementById('triviaFeedback').className = 'trivia-feedback wrong';
+    document.getElementById('triviaFeedback').textContent = `⏰ 時間到！正確答案是：${q.options[q.correct]}`;
+    options[q.correct].classList.add('correct');
+  } else {
+    options[idx].classList.add('wrong');
+    options[q.correct].classList.add('correct');
+    document.getElementById('triviaFeedback').className = 'trivia-feedback wrong';
+    document.getElementById('triviaFeedback').textContent = `❌ 答錯了！正確答案是：${q.options[q.correct]}`;
+  }
+  
+  document.getElementById('triviaFeedback').style.display = 'block';
+  
+  setTimeout(() => {
+    triviaIndex++;
+    showTriviaQuestion();
+  }, 1500);
+}
+
+function endTriviaGame() {
+  clearInterval(triviaTimer);
+  
+  const maxScore = triviaQuestions.length * 100;
+  const percentage = Math.round((triviaScore / maxScore) * 100);
+  
+  let icon, message;
+  if (percentage >= 80) {
+    icon = '🏆';
+    message = '太厲害了！你對星座知識瞭若指掌，是真正的星座達人！';
+  } else if (percentage >= 60) {
+    icon = '🌟';
+    message = '表現不錯！你對星座有相當的了解，繼續保持！';
+  } else if (percentage >= 40) {
+    icon = '📚';
+    message = '還有進步空間！建議多看看星座知識庫充實自己。';
+  } else {
+    icon = '🤔';
+    message = '星座知識需要加強喔！快去星座知識頁面學習一下吧。';
+  }
+  
+  showResult(icon, triviaScore, '分', message, '');
+}
+
+// 初始化
+    createStarfield();
+
+    // 隱私權橫幅關閉（事件委派 + 強健 selector）
+document.addEventListener('click', function(e) {
+  if (e.target.closest('[data-action="dismiss-privacy"]')) {
+    var banner = document.querySelector('.privacy-banner, .privacy-notice, #privacyBanner, [data-privacy-banner]');
+    if (banner) {
+      banner.style.display = 'none';
+      banner.classList.add('hidden');
+    }
+    try { localStorage.setItem('privacyDismissed', 'true'); } catch(err) {}
+  }
+});
+
+// 確保全域也可呼叫
+window.dismissPrivacyBanner = function() {
+  var banner = document.querySelector('.privacy-banner, .privacy-notice, #privacyBanner, [data-privacy-banner]');
+  if (banner) {
+    banner.style.display = 'none';
+    banner.classList.add('hidden');
+  }
+  try { localStorage.setItem('privacyDismissed', 'true'); } catch(err) {}
+};
+
+// 頁面載入時檢查是否已關閉過
+document.addEventListener('DOMContentLoaded', function() {
+  if (localStorage.getItem('privacyDismissed') === 'true') {
+    var banner = document.querySelector('.privacy-banner, .privacy-notice, #privacyBanner, [data-privacy-banner]');
+    if (banner) {
+      banner.style.display = 'none';
+      banner.classList.add('hidden');
+    }
+  }
+});
+
+    function sanitizeForHTML(str) {
+      if (str == null) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+  </script>
+</body>
+</html>

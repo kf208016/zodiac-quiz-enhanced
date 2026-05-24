@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <title>📚 星座知識 — 深入了解12星座 | 星座命理平台</title>
+  <!-- Security Headers -->
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self';">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a1a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title data-i18n="knowledge_title">📚 星座知識 — 深入了解12星座 | 星座命理平台</title>
+  <meta name="description" content="深入了解十二星座性格、元素分類、守護星、幸運物與相處方式，建立完整的星座知識入門指南。">
+  <meta name="keywords" content="星座知識,星座性格,星座分析,牡羊座,金牛座,雙子座,巨蟹座,獅子座,處女座,天秤座,天蠍座,射手座,摩羯座,水瓶座,雙魚座,幸運色,幸運物">
+  <meta name="robots" content="index, follow">
+  <meta name="geo.region" content="TW">
+  <meta name="geo.placename" content="Taiwan">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://zodiac-quiz-enhanced.pages.dev/knowledge">
+  
+  <!-- hreflang tags -->
+  <link rel="alternate" hreflang="zh-TW" href="https://zodiac-quiz-enhanced.pages.dev/knowledge">
+  <link rel="alternate" hreflang="zh-HK" href="https://zodiac-quiz-enhanced.pages.dev/knowledge">
+  <link rel="alternate" hreflang="x-default" href="https://zodiac-quiz-enhanced.pages.dev/knowledge">
+  <!-- Open Graph -->
+  <meta property="og:title" content="星座知識 — 深入了解12星座">
+  <meta property="og:description" content="深入了解十二星座性格、元素分類、守護星、幸運物與相處方式，建立完整的星座知識入門指南。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zodiac-quiz-enhanced.pages.dev/knowledge">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:locale:alternate" content="zh_HK">
+  <meta property="og:site_name" content="星座命理平台">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="星座知識 — 深入了解12星座">
+  <meta name="twitter:description" content="深入了解十二星座性格、元素分類、守護星、幸運物與相處方式，建立完整的星座知識入門指南。">
+    <meta property="og:image" content="https://zodiac-quiz-enhanced.pages.dev/og-image.png">
+  <meta name="twitter:image" content="https://zodiac-quiz-enhanced.pages.dev/og-image.png">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "星座知識 — 深入了解12星座",
+  "description": "深入了解十二星座性格、元素分類、守護星、幸運物與相處方式，建立完整的星座知識入門指南。",
+  "url": "https://zodiac-quiz-enhanced.pages.dev/knowledge",
+  "inLanguage": "zh-TW",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "星座命理平台",
+    "url": "https://zodiac-quiz-enhanced.pages.dev/"
+  }
+}
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Noto Sans TC', sans-serif; background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%); color: #fff; min-height: 100vh; padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: rgba(240,147,251,0.2); }
+    .starfield { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+    .star { position: absolute; width: 2px; height: 2px; background: #fff; border-radius: 50%; animation: twinkle 3s infinite; }
+    @keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; transform: scale(1.5); } }
+    .container { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 20px; }
+    .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; margin-bottom: 30px; }
+    .logo { font-size: 1.3rem; font-weight: 900; background: linear-gradient(135deg, #f093fb, #f5576c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .nav-links { display: flex; align-items: center; gap: 10px; }
+    .nav-links a { color: #888; text-decoration: none; padding: 8px 15px; font-size: 0.9rem; border-radius: 20px; transition: all 0.3s; }
+    .nav-links a:hover { color: #fff; }
+    .nav-links a.active { background: rgba(255,255,255,0.1); color: #fff; }
+    .lang-toggle { display: flex; gap: 5px; margin-left: 15px; }
+    .lang-btn { padding: 6px 12px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 15px; color: #888; cursor: pointer; font-size: 0.8rem; transition: all 0.3s; }
+    .lang-btn:hover { color: #fff; border-color: #f093fb; }
+    .lang-btn.active { background: linear-gradient(135deg, rgba(240,147,251,0.3), rgba(245,87,108,0.3)); border-color: #f093fb; color: #fff; }
+    .page-title { text-align: center; margin-bottom: 30px; }
+    .page-title h1 { font-size: 2rem; font-weight: 900; background: linear-gradient(135deg, #f093fb, #f5576c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
+    .page-title p { color: #888; }
+    
+    /* 搜尋列 */
+    .search-box { max-width: 500px; margin: 0 auto 30px; position: relative; }
+    .search-box input { width: 100%; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 25px; padding: 15px 25px; color: #fff; font-size: 1rem; }
+    .search-box input:focus { outline: none; border-color: #f093fb; }
+    .search-box input::placeholder { color: #666; }
+    
+    /* 篩選標籤 */
+    .filter-tags { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
+    .filter-tag { padding: 8px 20px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; cursor: pointer; transition: all 0.3s; font-size: 0.9rem; color: #888; }
+    .filter-tag:hover, .filter-tag.active { background: linear-gradient(135deg, rgba(240,147,251,0.3), rgba(245,87,108,0.3)); border-color: #f093fb; color: #fff; }
+    
+    /* 星座卡片網格 */
+    .zodiac-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+    
+    /* 星座詳細卡片 */
+    .zodiac-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; overflow: hidden; transition: all 0.3s; }
+    .zodiac-card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.3); box-shadow: 0 15px 40px rgba(0,0,0,0.3); }
+    
+    .card-header { padding: 25px; display: flex; align-items: center; gap: 20px; cursor: pointer; }
+    .zodiac-icon { font-size: 3.5rem; }
+    .zodiac-info h3 { font-size: 1.4rem; font-weight: 900; margin-bottom: 5px; }
+    .zodiac-dates { color: #888; font-size: 0.9rem; }
+    
+    .card-body { padding: 0 25px 25px; display: none; }
+    .zodiac-card.expanded .card-body { display: block; }
+    
+    .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+    .detail-item { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; }
+    .detail-item .label { font-size: 0.8rem; color: #888; margin-bottom: 5px; }
+    .detail-item .value { font-size: 1rem; font-weight: 700; }
+    
+    .traits { margin-bottom: 20px; }
+    .traits h4 { font-size: 1rem; margin-bottom: 12px; color: #f093fb; }
+    .trait-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .trait-tag { background: rgba(255,255,255,0.1); padding: 5px 12px; border-radius: 15px; font-size: 0.85rem; }
+    
+    .description { color: #ccc; line-height: 1.8; font-size: 0.95rem; margin-bottom: 20px; }
+    
+    .career-section h4 { font-size: 1rem; margin-bottom: 12px; color: #f093fb; }
+    .career-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .career-tag { background: rgba(255,255,255,0.1); padding: 5px 12px; border-radius: 15px; font-size: 0.85rem; }
+    
+    .expand-icon { margin-left: auto; font-size: 1.5rem; color: #888; transition: transform 0.3s; }
+    .zodiac-card.expanded .expand-icon { transform: rotate(180deg); }
+    
+    /* 底部 */
+    .footer { text-align: center; padding: 40px 0; color: #666; font-size: 0.9rem; }
+    
+    @media (max-width: 768px) {
+      .detail-grid { grid-template-columns: 1fr; }
+      .zodiac-grid { grid-template-columns: 1fr; }
+      .lang-toggle { margin-left: 10px; }
+      .lang-btn { min-height: 44px; min-width: 44px; padding: 10px 16px; font-size: 0.95rem; }
+    }
+  
+    /* 隱私權橫幅 */
+    .privacy-banner {
+      position: fixed;
+      top: 0;
+      left: env(safe-area-inset-left);
+      right: env(safe-area-inset-right);
+      z-index: 9999;
+      background: linear-gradient(135deg, rgba(30,30,60,0.98), rgba(15,15,40,0.98));
+      border-bottom: 1px solid rgba(240,147,251,0.3);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-size: 0.85rem;
+      color: #ccc;
+      backdrop-filter: blur(10px);
+    }
+    .privacy-icon { font-size: 1.1rem; }
+    .privacy-text { flex: 1; max-width: 800px; line-height: 1.5; }
+    .privacy-dismiss {
+      background: linear-gradient(135deg, #f093fb, #f5576c);
+      border: none;
+      color: #fff;
+      padding: 8px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .privacy-dismiss:hover { transform: scale(1.05); box-shadow: 0 5px 20px rgba(240,147,251,0.4); }
+    .privacy-banner.hidden { display: none; }
+    @media (max-width: 768px) {
+      .privacy-banner { flex-wrap: wrap; gap: 8px; padding: 10px 15px; }
+      .privacy-text { font-size: 0.8rem; }
+    }
+
+    a:focus-visible, button:focus-visible, .lucky-zodiac-btn:focus-visible, .zodiac-item:focus-visible {
+      outline: 2px solid #f093fb;
+      outline-offset: 3px;
+      border-radius: 8px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="starfield" id="starfield"></div>
+
+  <!-- 隱私權宣告橫幅 -->
+  <div class="privacy-banner hidden" id="privacyBanner">
+    <span class="privacy-icon">🔒</span>
+    <span class="privacy-text" data-i18n="privacy_notice_text">本網站為靜態星座命理平台，不會收集、儲存或傳輸任何個人資料。所有占卜計算皆在您的瀏覽器內完成，不會上傳至任何伺服器。</span>
+    <button class="privacy-dismiss" data-action="dismiss-privacy" data-i18n="privacy_dismiss">我知道了</button>
+  </div>
+  
+  <div class="container">
+    <nav class="navbar">
+      <div class="logo">✨ 星座命理</div>
+      <div class="nav-links">
+        <a href="index.html" data-i18n="nav_home">首頁</a>
+        <a href="natal.html" data-i18n="nav_natal">命盤查詢</a>
+        <a href="compatibility.html" data-i18n="nav_compat">星座配對</a>
+        <a href="horoscope.html" data-i18n="nav_horo">星座運勢</a>
+        <a href="quiz.html" data-i18n="nav_quiz">遊戲測驗</a>
+        <a href="knowledge.html" class="active" data-i18n="nav_knowledge">星座知識</a>
+        <div class="lang-toggle" id="langToggle"></div>
+      </div>
+    </nav>
+
+    <div class="page-title">
+      <h1 data-i18n="knowledge_title">📚 星座知識庫</h1>
+      <p data-i18n="knowledge_subtitle">深入了解12星座的性格特質、幸運物與適合職業</p>
+    </div>
+
+    <!-- 搜尋框 -->
+    <div class="search-box">
+      <input type="text" id="searchInput" data-i18n-placeholder="search_placeholder" placeholder="搜尋星座名稱..." oninput="filterZodiac()">
+    </div>
+
+    <!-- 元素篩選 -->
+    <div class="filter-tags" id="filterTags">
+      <div class="filter-tag active" data-filter="all" onclick="filterByElement('all')" data-i18n="filter_all">全部</div>
+      <div class="filter-tag" data-filter="火" onclick="filterByElement('火')"><span data-i18n="element_fire">🔥 火象</span></div>
+      <div class="filter-tag" data-filter="土" onclick="filterByElement('土')"><span data-i18n="element_earth">🌍 土象</span></div>
+      <div class="filter-tag" data-filter="風" onclick="filterByElement('風')"><span data-i18n="element_air">💨 風象</span></div>
+      <div class="filter-tag" data-filter="水" onclick="filterByElement('水')"><span data-i18n="element_water">💧 水象</span></div>
+    </div>
+
+    <!-- 星座網格 -->
+    <div class="zodiac-grid" id="zodiacGrid"></div>
+    
+    <div class="footer">
+      <p>© 2024 <span data-i18n="footer_copyright">SmartLink 星座命理平台</span> | <span data-i18n="footer_lang">使用繁體中文與英文</span></p>
+    </div>
+  </div>
+
+<script src="translation.js"></script>
+  <script>
+    function sanitizeForHTML(str) {
+  if (str == null) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+</script>
+<script>
+const zodiacData = [
+  {
+    symbol: 'aries', icon: '♈', 
+    name: { 'zh-TW': '牡羊座', 'en': 'Aries' }, 
+    dates: { 'zh-TW': '3/21 - 4/19', 'en': 'Mar 21 - Apr 19' },
+    element: '火', elementLabel: { 'zh-TW': '火象星座', 'en': 'Fire Sign' },
+    ruler: { 'zh-TW': '火星', 'en': 'Mars' },
+    traits: { 
+      'zh-TW': ['勇敢', '積極', '熱情', '直接', '冒險', '領導'], 
+      'en': ['Brave', 'Active', 'Passionate', 'Direct', 'Adventurous', 'Leader'] 
+    },
+    career: { 
+      'zh-TW': ['創業', '運動員', '業務', '軍警', '領袖'], 
+      'en': ['Entrepreneur', 'Athlete', 'Sales', 'Military', 'Leader'] 
+    },
+    desc: { 
+      'zh-TW': '牡羊座是黃道第一個星座，代表的新的開始。他們充滿活力與衝勁，喜歡擔任領導者，不喜歡被別人支配。牡羊座的人直率、誠實，但有時可能顯得過於急躁或缺乏耐心。',
+      'en': 'Aries is the first sign of the zodiac, representing new beginnings. They are full of energy and drive, love being leaders, and dislike being controlled. Arians are straightforward and honest, but sometimes can be too impatient or lack patience.'
+    }
+  },
+  {
+    symbol: 'taurus', icon: '♉', 
+    name: { 'zh-TW': '金牛座', 'en': 'Taurus' }, 
+    dates: { 'zh-TW': '4/20 - 5/20', 'en': 'Apr 20 - May 20' },
+    element: '土', elementLabel: { 'zh-TW': '土象星座', 'en': 'Earth Sign' },
+    ruler: { 'zh-TW': '金星', 'en': 'Venus' },
+    traits: { 
+      'zh-TW': ['穩重', '務實', '忠誠', '耐心', '固執', '藝術'], 
+      'en': ['Stable', 'Practical', 'Loyal', 'Patient', 'Stubborn', 'Artistic'] 
+    },
+    career: { 
+      'zh-TW': ['金融', '建築', '藝術', '珠寶', '農業'], 
+      'en': ['Finance', 'Architecture', 'Art', 'Jewelry', 'Agriculture'] 
+    },
+    desc: { 
+      'zh-TW': '金牛座的人腳踏實地，重視安全感和穩定。他們對美學和藝術有獨特的欣賞能力，喜歡美食和舒適的環境。金牛座的人很有耐心，但有時可能過於固執。',
+      'en': 'Taurans are down-to-earth, valuing security and stability. They have a unique appreciation for aesthetics and art, love good food and comfortable environments. Taurans are very patient, but sometimes can be overly stubborn.'
+    }
+  },
+  {
+    symbol: 'gemini', icon: '♊', 
+    name: { 'zh-TW': '雙子座', 'en': 'Gemini' }, 
+    dates: { 'zh-TW': '5/21 - 6/21', 'en': 'May 21 - Jun 21' },
+    element: '風', elementLabel: { 'zh-TW': '風象星座', 'en': 'Air Sign' },
+    ruler: { 'zh-TW': '水星', 'en': 'Mercury' },
+    traits: { 
+      'zh-TW': ['靈活', '好奇', '多變', '機智', '社交', '適應'], 
+      'en': ['Flexible', 'Curious', 'Versatile', 'Witty', 'Social', 'Adaptable'] 
+    },
+    career: { 
+      'zh-TW': ['寫作', '媒體', '業務', '教育', '交通'], 
+      'en': ['Writing', 'Media', 'Sales', 'Education', 'Transportation'] 
+    },
+    desc: { 
+      'zh-TW': '雙子座的人思維敏捷，好奇心旺盛，喜歡接觸新事物。他們善於溝通，表達能力強，但有時可能顯得有些不夠專一或容易分心。',
+      'en': 'Geminis have quick minds and abundant curiosity, love encountering new things. They are good at communication and expressing themselves, but sometimes may seem not devoted enough or easily distracted.'
+    }
+  },
+  {
+    symbol: 'cancer', icon: '♋', 
+    name: { 'zh-TW': '巨蟹座', 'en': 'Cancer' }, 
+    dates: { 'zh-TW': '6/22 - 7/22', 'en': 'Jun 22 - Jul 22' },
+    element: '水', elementLabel: { 'zh-TW': '水象星座', 'en': 'Water Sign' },
+    ruler: { 'zh-TW': '月亮', 'en': 'Moon' },
+    traits: { 
+      'zh-TW': ['溫柔', '敏感', '體貼', '保護', '戀家', '直覺'], 
+      'en': ['Gentle', 'Sensitive', 'Caring', 'Protective', 'Home-loving', 'Intuitive'] 
+    },
+    career: { 
+      'zh-TW': ['醫療', '教育', '餐飲', '社會工作', '服務業'], 
+      'en': ['Medical', 'Education', 'Catering', 'Social Work', 'Service Industry'] 
+    },
+    desc: { 
+      'zh-TW': '巨蟹座的人情感豐富，非常重視家庭和親情。他們直覺敏銳，善於照顧他人，但有時可能過於情緒化或過度保護自己在意的人。',
+      'en': 'Cancerians are emotionally rich and deeply value family and kinship. They have keen intuition and are good at caring for others, but sometimes can be overly emotional or overprotective of loved ones.'
+    }
+  },
+  {
+    symbol: 'leo', icon: '♌', 
+    name: { 'zh-TW': '獅子座', 'en': 'Leo' }, 
+    dates: { 'zh-TW': '7/23 - 8/22', 'en': 'Jul 23 - Aug 22' },
+    element: '火', elementLabel: { 'zh-TW': '火象星座', 'en': 'Fire Sign' },
+    ruler: { 'zh-TW': '太陽', 'en': 'Sun' },
+    traits: { 
+      'zh-TW': ['自信', '熱情', '慷慨', '戲劇', '創造', '領導'], 
+      'en': ['Confident', 'Passionate', 'Generous', 'Dramatic', 'Creative', 'Leadership'] 
+    },
+    career: { 
+      'zh-TW': ['表演', '娛樂', '管理', '創意', '行銷'], 
+      'en': ['Performance', 'Entertainment', 'Management', 'Creative', 'Marketing'] 
+    },
+    desc: { 
+      'zh-TW': '獅子座的人天生具有領導魅力，喜歡成為注意力的中心。他們慷慨大方，喜歡照顧朋友，但有時可能顯得有些傲慢或需要過多的讚美。',
+      'en': 'Leos naturally have leadership charm and love being the center of attention. They are generous and like taking care of friends, but sometimes may seem arrogant or need excessive praise.'
+    }
+  },
+  {
+    symbol: 'virgo', icon: '♍', 
+    name: { 'zh-TW': '處女座', 'en': 'Virgo' }, 
+    dates: { 'zh-TW': '8/23 - 9/22', 'en': 'Aug 23 - Sep 22' },
+    element: '土', elementLabel: { 'zh-TW': '土象星座', 'en': 'Earth Sign' },
+    ruler: { 'zh-TW': '水星', 'en': 'Mercury' },
+    traits: { 
+      'zh-TW': ['完美', '分析', '務實', '謙虛', '細心', '效率'], 
+      'en': ['Perfectionist', 'Analytical', 'Practical', 'Humble', 'Detail-oriented', 'Efficient'] 
+    },
+    career: { 
+      'zh-TW': ['醫療', '教育', '會計', '程式', '編輯'], 
+      'en': ['Medical', 'Education', 'Accounting', 'Programming', 'Editing'] 
+    },
+    desc: { 
+      'zh-TW': '處女座的人注重細節，善於分析和解決問題。他們追求完美，工作態度嚴謹，但有時可能過度批判或過度擔憂。',
+      'en': 'Virgos pay attention to details and are good at analyzing and solving problems. They pursue perfection and have a rigorous work attitude, but sometimes can be overly critical or worried.'
+    }
+  },
+  {
+    symbol: 'libra', icon: '♎', 
+    name: { 'zh-TW': '天秤座', 'en': 'Libra' }, 
+    dates: { 'zh-TW': '9/23 - 10/23', 'en': 'Sep 23 - Oct 23' },
+    element: '風', elementLabel: { 'zh-TW': '風象星座', 'en': 'Air Sign' },
+    ruler: { 'zh-TW': '金星', 'en': 'Venus' },
+    traits: { 
+      'zh-TW': ['和諧', '優雅', '公平', '外交', '審美', '猶豫'], 
+      'en': ['Harmonious', 'Elegant', 'Fair', 'Diplomatic', 'Aesthetic', 'Indecisive'] 
+    },
+    career: { 
+      'zh-TW': ['法律', '外交', '藝術', '設計', '調解'], 
+      'en': ['Law', 'Diplomacy', 'Art', 'Design', 'Mediation'] 
+    },
+    desc: { 
+      'zh-TW': '天秤座的人重視和諧與平衡，善於社交和協調。他們有高度的美學意識，喜歡美麗的事物，但有時可能過於猶豫不決或在意他人的看法。',
+      'en': 'Libras value harmony and balance, and are good at socializing and coordinating. They have a high sense of aesthetics and love beautiful things, but sometimes can be overly indecisive or care too much about others\' opinions.'
+    }
+  },
+  {
+    symbol: 'scorpio', icon: '♏', 
+    name: { 'zh-TW': '天蠍座', 'en': 'Scorpio' }, 
+    dates: { 'zh-TW': '10/24 - 11/22', 'en': 'Oct 24 - Nov 22' },
+    element: '水', elementLabel: { 'zh-TW': '水象星座', 'en': 'Water Sign' },
+    ruler: { 'zh-TW': '冥王星', 'en': 'Pluto' },
+    traits: { 
+      'zh-TW': ['神秘', '熱情', '執著', '洞察', '保護', '深沉'], 
+      'en': ['Mysterious', 'Passionate', 'Determined', 'Perceptive', 'Protective', 'Deep'] 
+    },
+    career: { 
+      'zh-TW': ['研究', '心理', '偵探', '醫療', '金融'], 
+      'en': ['Research', 'Psychology', 'Detective', 'Medical', 'Finance'] 
+    },
+    desc: { 
+      'zh-TW': '天蠍座的人深沉神秘，情感強烈而深刻。他們洞察力強，意志堅定，對目標執著追求，但有時可能顯得過度控制或報復心強。',
+      'en': 'Scorpios are deep and mysterious with intense, profound emotions. They have strong perception and firm will, pursuing their goals with determination, but sometimes may seem overly controlling or vengeful.'
+    }
+  },
+  {
+    symbol: 'sagittarius', icon: '♐', 
+    name: { 'zh-TW': '射手座', 'en': 'Sagittarius' }, 
+    dates: { 'zh-TW': '11/23 - 12/21', 'en': 'Nov 23 - Dec 21' },
+    element: '火', elementLabel: { 'zh-TW': '火象星座', 'en': 'Fire Sign' },
+    ruler: { 'zh-TW': '木星', 'en': 'Jupiter' },
+    traits: { 
+      'zh-TW': ['自由', '樂觀', '冒險', '誠實', '直率', '好奇'], 
+      'en': ['Freedom', 'Optimistic', 'Adventurous', 'Honest', 'Direct', 'Curious'] 
+    },
+    career: { 
+      'zh-TW': ['旅遊', '教育', '出版', '探險', '運動'], 
+      'en': ['Tourism', 'Education', 'Publishing', 'Exploration', 'Sports'] 
+    },
+    desc: { 
+      'zh-TW': '射手座的人熱愛自由，喜歡探索未知的世界。他們樂觀開朗，誠實直率，對生活充滿熱情，但有時可能顯得過於直言不諱或缺乏耐心。',
+      'en': 'Sagittarians love freedom and enjoy exploring the unknown world. They are optimistic and cheerful, honest and direct, full of passion for life, but sometimes may seem too frank or lack patience.'
+    }
+  },
+  {
+    symbol: 'capricorn', icon: '♑', 
+    name: { 'zh-TW': '摩羯座', 'en': 'Capricorn' }, 
+    dates: { 'zh-TW': '12/22 - 1/19', 'en': 'Dec 22 - Jan 19' },
+    element: '土', elementLabel: { 'zh-TW': '土象星座', 'en': 'Earth Sign' },
+    ruler: { 'zh-TW': '土星', 'en': 'Saturn' },
+    traits: { 
+      'zh-TW': ['野心', '務實', '紀律', '責任', '耐心', '傳統'], 
+      'en': ['Ambitious', 'Practical', 'Disciplined', 'Responsible', 'Patient', 'Traditional'] 
+    },
+    career: { 
+      'zh-TW': ['政治', '企業', '工程', '管理', '法律'], 
+      'en': ['Politics', 'Business', 'Engineering', 'Management', 'Law'] 
+    },
+    desc: { 
+      'zh-TW': '摩羯座的人有著強烈的責任感和野心，願意通過努力工作來達成目標。他們腳踏實地，有耐心，但有時可能顯得過於嚴肅或保守。',
+      'en': 'Capricorns have a strong sense of responsibility and ambition, willing to achieve goals through hard work. They are down-to-earth and patient, but sometimes may seem too serious or conservative.'
+    }
+  },
+  {
+    symbol: 'aquarius', icon: '♒', 
+    name: { 'zh-TW': '水瓶座', 'en': 'Aquarius' }, 
+    dates: { 'zh-TW': '1/20 - 2/18', 'en': 'Jan 20 - Feb 18' },
+    element: '風', elementLabel: { 'zh-TW': '風象星座', 'en': 'Air Sign' },
+    ruler: { 'zh-TW': '天王星', 'en': 'Uranus' },
+    traits: { 
+      'zh-TW': ['獨立', '創新', '人道', '自由', '理性', '獨特'], 
+      'en': ['Independent', 'Innovative', 'Humanitarian', 'Freedom', 'Rational', 'Unique'] 
+    },
+    career: { 
+      'zh-TW': ['科技', '發明', '社會運動', '人道', '航空'], 
+      'en': ['Technology', 'Invention', 'Social Movement', 'Humanitarian', 'Aviation'] 
+    },
+    desc: { 
+      'zh-TW': '水瓶座的人思想前衛，重視個人自由和獨立。他們富有創造力和人道主義精神，喜歡挑戰傳統，但有時可能顯得過於特立獨行或情感疏離。',
+      'en': 'Aquarians are progressive thinkers who value personal freedom and independence. They are creative and humanitarian, likes challenging traditions, but sometimes may seem too unconventional or emotionally detached.'
+    }
+  },
+  {
+    symbol: 'pisces', icon: '♓', 
+    name: { 'zh-TW': '雙魚座', 'en': 'Pisces' }, 
+    dates: { 'zh-TW': '2/19 - 3/20', 'en': 'Feb 19 - Mar 20' },
+    element: '水', elementLabel: { 'zh-TW': '水象星座', 'en': 'Water Sign' },
+    ruler: { 'zh-TW': '海王星', 'en': 'Neptune' },
+    traits: { 
+      'zh-TW': ['浪漫', '直覺', '敏感', '藝術', '同理', '夢想'], 
+      'en': ['Romantic', 'Intuitive', 'Sensitive', 'Artistic', 'Empathetic', 'Dreamy'] 
+    },
+    career: { 
+      'zh-TW': ['藝術', '音樂', '電影', '心理', '靈性'], 
+      'en': ['Art', 'Music', 'Film', 'Psychology', 'Spiritual'] 
+    },
+    desc: { 
+      'zh-TW': '雙魚座的人富有想像力和同理心，對藝術和靈性有著深厚的興趣。他們敏感而浪漫，但有時可能過於逃避現實或過度理想主義。',
+      'en': 'Pisceans are imaginative and empathetic, with deep interest in art and spirituality. They are sensitive and romantic, but sometimes can be too escapist or overly idealistic.'
+    }
+  }
+];
+
+let currentFilter = 'all';
+let currentLangData = null;
+
+function createStarfield() {
+  const container = document.getElementById('starfield');
+  for (let i = 0; i < 100; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.animationDelay = Math.random() * 3 + 's';
+    container.appendChild(star);
+  }
+}
+
+function getZodiacLangData(z) {
+  const lang = currentLang || 'zh-TW';
+  return {
+    name: z.name[lang] || z.name['zh-TW'],
+    dates: z.dates[lang] || z.dates['zh-TW'],
+    elementLabel: z.elementLabel[lang] || z.elementLabel['zh-TW'],
+    ruler: z.ruler[lang] || z.ruler['zh-TW'],
+    traits: z.traits[lang] || z.traits['zh-TW'],
+    career: z.career[lang] || z.career['zh-TW'],
+    desc: z.desc[lang] || z.desc['zh-TW']
+  };
+}
+
+function renderZodiac(data) {
+  const grid = document.getElementById('zodiacGrid');
+  grid.innerHTML = '';
+  
+  data.forEach(z => {
+    const ld = getZodiacLangData(z);
+    const card = document.createElement('div');
+    card.className = 'zodiac-card';
+    card.dataset.element = z.element;
+    card.dataset.name = ld.name;
+    
+    const traitTags = ld.traits.map(t => `<span class="trait-tag">${t}</span>`).join('');
+    const careerTags = ld.career.map(c => `<span class="career-tag">${c}</span>`).join('');
+    
+    card.innerHTML = `
+      <div class="card-header" onclick="toggleCard(this.parentElement)">
+        <div class="zodiac-icon">${z.icon}</div>
+        <div class="zodiac-info">
+          <h3>${ld.name}</h3>
+          <div class="zodiac-dates">${ld.dates}</div>
+        </div>
+        <div class="expand-icon">▼</div>
+      </div>
+      <div class="card-body">
+        <div class="detail-grid">
+          <div class="detail-item">
+            <div class="label" data-i18n="label_ruler">守護星</div>
+            <div class="value">${ld.ruler}</div>
+          </div>
+          <div class="detail-item">
+            <div class="label" data-i18n="label_element">元素</div>
+            <div class="value">${ld.elementLabel}</div>
+          </div>
+        </div>
+        
+        <div class="traits">
+          <h4 data-i18n="trait_personality">✨ 性格特質</h4>
+          <div class="trait-tags">
+            ${traitTags}
+          </div>
+        </div>
+        
+        <p class="description">${ld.desc}</p>
+        
+        <div class="career-section">
+          <h4 data-i18n="career_suitable">💼 適合職業</h4>
+          <div class="career-tags">
+            ${careerTags}
+          </div>
+        </div>
+      </div>
+    `;
+    
+    grid.appendChild(card);
+  });
+}
+
+function toggleCard(card) {
+  card.classList.toggle('expanded');
+}
+
+function filterByElement(element) {
+  currentFilter = element;
+  document.querySelectorAll('.filter-tag').forEach(tag => {
+    const filterValue = tag.getAttribute('data-filter');
+    tag.classList.toggle('active', filterValue === element);
+  });
+  
+  let filtered = zodiacData;
+  if (element !== 'all') {
+    filtered = zodiacData.filter(z => z.element === element);
+  }
+  
+  const searchText = document.getElementById('searchInput').value.toLowerCase();
+  if (searchText) {
+    filtered = filtered.filter(z => {
+      const ld = getZodiacLangData(z);
+      return ld.name.toLowerCase().includes(searchText);
+    });
+  }
+  
+  renderZodiac(filtered);
+}
+
+function filterZodiac() {
+  const searchText = document.getElementById('searchInput').value.toLowerCase();
+  let filtered = zodiacData;
+  
+  if (currentFilter !== 'all') {
+    filtered = filtered.filter(z => z.element === currentFilter);
+  }
+  
+  if (searchText) {
+    filtered = filtered.filter(z => {
+      const ld = getZodiacLangData(z);
+      return ld.name.toLowerCase().includes(searchText);
+    });
+  }
+  
+  renderZodiac(filtered);
+}
+
+// Listen for language changes
+window.addEventListener('languageChanged', function(e) {
+  renderZodiac(zodiacData.filter(z => {
+    if (currentFilter !== 'all' && z.element !== currentFilter) return false;
+    const ld = getZodiacLangData(z);
+    const searchText = document.getElementById('searchInput').value.toLowerCase();
+    if (searchText && !ld.name.toLowerCase().includes(searchText)) return false;
+    return true;
+  }));
+});
+
+// Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+      initLanguage();
+      document.getElementById('langToggle').innerHTML = getLangToggleHTML();
+      createStarfield();
+      renderZodiac(zodiacData);
+      if (localStorage.getItem('privacyDismissed') === 'true') {
+        const banner = document.getElementById('privacyBanner');
+        if (banner) banner.classList.add('hidden');
+      }
+    });
+
+    // 隱私權橫幅關閉（事件委派 + 強健 selector）
+document.addEventListener('click', function(e) {
+  if (e.target.closest('[data-action="dismiss-privacy"]')) {
+    var banner = document.querySelector('.privacy-banner, .privacy-notice, #privacyBanner, [data-privacy-banner]');
+    if (banner) {
+      banner.style.display = 'none';
+      banner.classList.add('hidden');
+    }
+    try { localStorage.setItem('privacyDismissed', 'true'); } catch(err) {}
+  }
+});
+
+// 確保全域也可呼叫
+window.dismissPrivacyBanner = function() {
+  var banner = document.querySelector('.privacy-banner, .privacy-notice, #privacyBanner, [data-privacy-banner]');
+  if (banner) {
+    banner.style.display = 'none';
+    banner.classList.add('hidden');
+  }
+  try { localStorage.setItem('privacyDismissed', 'true'); } catch(err) {}
+};
+
+    function sanitizeForHTML(str) {
+      if (str == null) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <!-- Security Headers -->
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self';">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎡 星座幸運轉盤 — 命運之輪</title>
+    <meta name="description" content="轉動星座幸運轉盤，抽出今日幸運提示、開運顏色與星座靈感，適合每日占卜、休閒娛樂與朋友分享。">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://zodiac-quiz-enhanced.pages.dev/wheel">
+
+  <link rel="alternate" hreflang="zh-TW" href="https://zodiac-quiz-enhanced.pages.dev/wheel">
+  <link rel="alternate" hreflang="zh-HK" href="https://zodiac-quiz-enhanced.pages.dev/wheel">
+  <link rel="alternate" hreflang="x-default" href="https://zodiac-quiz-enhanced.pages.dev/wheel">
+    <meta property="og:title" content="星座幸運轉盤 — 命運之輪">
+  <meta property="og:description" content="轉動星座幸運轉盤，抽出今日幸運提示、開運顏色與星座靈感，適合每日占卜、休閒娛樂與朋友分享。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zodiac-quiz-enhanced.pages.dev/wheel">
+  <meta property="og:image" content="https://zodiac-quiz-enhanced.pages.dev/og-image.png">
+  <meta property="og:locale" content="zh_TW">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="星座幸運轉盤 — 命運之輪">
+  <meta name="twitter:description" content="轉動星座幸運轉盤，抽出今日幸運提示、開運顏色與星座靈感，適合每日占卜、休閒娛樂與朋友分享。">
+  <meta name="twitter:image" content="https://zodiac-quiz-enhanced.pages.dev/og-image.png">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "星座幸運轉盤 — 命運之輪",
+  "description": "轉動星座幸運轉盤，抽出今日幸運提示、開運顏色與星座靈感，適合每日占卜、休閒娛樂與朋友分享。",
+  "url": "https://zodiac-quiz-enhanced.pages.dev/wheel",
+  "inLanguage": "zh-TW",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "星座命理平台",
+    "url": "https://zodiac-quiz-enhanced.pages.dev/"
+  }
+}
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      min-height: 100vh;
+      color: #fff;
+      overflow-x: hidden;
+    }
+    
+    /* 星空背景 */
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    /* Header */
+    header {
+      text-align: center;
+      padding: 30px 0;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      background: linear-gradient(135deg, #ffd700, #ff6b6b, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
+      margin-bottom: 10px;
+    }
+    
+    .subtitle {
+      color: rgba(255,255,255,0.7);
+      font-size: 1.1rem;
+    }
+    
+    /* 主內容 */
+    .main-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      align-items: flex-start;
+      margin-top: 20px;
+    }
+    
+    /* 轉盤區 */
+    .wheel-section {
+      flex: 1;
+      min-width: 320px;
+      max-width: 450px;
+      text-align: center;
+    }
+    
+    .wheel-container {
+      position: relative;
+      width: 350px;
+      height: 350px;
+      margin: 0 auto;
+    }
+    
+    /* 轉盤 */
+    .wheel {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      position: relative;
+      transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+      box-shadow: 
+        0 0 0 8px rgba(255, 215, 0, 0.3),
+        0 0 0 12px rgba(168, 85, 247, 0.2),
+        0 0 60px rgba(168, 85, 247, 0.4),
+        inset 0 0 30px rgba(0,0,0,0.3);
+    }
+    
+    .wheel-segment {
+      position: absolute;
+      width: 50%;
+      height: 50%;
+      left: 50%;
+      top: 0;
+      transform-origin: 0% 100%;
+      clip-path: polygon(0% 100%, 100% 0%, 0% 0%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .wheel-segment .icon {
+      position: absolute;
+      font-size: 1.8rem;
+      transform: rotate(15deg) translateY(-15px);
+    }
+    
+    .wheel-segment .text {
+      position: absolute;
+      font-size: 0.7rem;
+      color: #fff;
+      transform: rotate(15deg) translateY(-35px);
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+      white-space: nowrap;
+    }
+    
+    /* 轉盤中心 */
+    .wheel-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #ffd700, #ff6b6b);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+      z-index: 10;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .wheel-center:hover {
+      transform: translate(-50%, -50%) scale(1.1);
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+    }
+    
+    /* 指針 */
+    .pointer {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 30px;
+      height: 40px;
+      z-index: 20;
+    }
+    
+    .pointer::before {
+      content: '▼';
+      font-size: 2rem;
+      color: #ffd700;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+    }
+    
+    /* 點讚裝飾線 */
+    .sparkle {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, #ffd700, transparent);
+      border-radius: 50%;
+      animation: sparkle 1.5s ease-in-out infinite;
+    }
+    
+    @keyframes sparkle {
+      0%, 100% { opacity: 0; transform: scale(0); }
+      50% { opacity: 1; transform: scale(1); }
+    }
+    
+    /* 控制區 */
+    .controls {
+      margin-top: 25px;
+    }
+    
+    .zodiac-select {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .zodiac-btn {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.05);
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    
+    .zodiac-btn span {
+      font-size: 0.6rem;
+      margin-top: 2px;
+      color: rgba(255,255,255,0.7);
+    }
+    
+    .zodiac-btn:hover {
+      border-color: #ffd700;
+      background: rgba(255, 215, 0, 0.1);
+      transform: translateY(-3px);
+    }
+    
+    .zodiac-btn.selected {
+      border-color: #ffd700;
+      background: rgba(255, 215, 0, 0.2);
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+      transform: scale(1.1);
+    }
+    
+    .spin-btn {
+      padding: 15px 50px;
+      font-size: 1.3rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #ffd700, #ff6b6b);
+      border: none;
+      border-radius: 50px;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 5px 20px rgba(255, 107, 107, 0.4);
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
+    
+    .spin-btn:hover:not(:disabled) {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(255, 107, 107, 0.6);
+    }
+    
+    .spin-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      animation: pulse 1s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    /* 結果區 */
+    .result-section {
+      flex: 1;
+      min-width: 300px;
+      max-width: 400px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 20px;
+      padding: 25px;
+      border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      text-align: center;
+      display: none;
+    }
+    
+    .result-section.show {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .result-icon {
+      font-size: 4rem;
+      margin-bottom: 15px;
+      animation: bounce 1s ease infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .result-zodiac {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffd700;
+      margin-bottom: 15px;
+    }
+    
+    .fortune-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 20px;
+      padding: 15px;
+      background: rgba(0,0,0,0.2);
+      border-radius: 10px;
+    }
+    
+    .fortune-details {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 15px;
+    }
+    
+    .fortune-item {
+      background: rgba(255,255,255,0.05);
+      padding: 10px;
+      border-radius: 10px;
+    }
+    
+    .fortune-item .label {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 5px;
+    }
+    
+    .fortune-item .value {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+    
+    .share-btn {
+      margin-top: 20px;
+      padding: 10px 30px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 25px;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .share-btn:hover {
+      background: rgba(255,255,255,0.2);
+    }
+    
+    /* 底部 */
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.9rem;
+    }
+    
+    footer a {
+      color: #ffd700;
+      text-decoration: none;
+    }
+    
+    /* 燈光效果 */
+    .light-effect {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(168, 85, 247, 0.15), transparent 50%);
+    }
+    
+    /* 幸運裝飾 */
+    .lucky-burst {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 100;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .lucky-burst.show {
+      opacity: 1;
+    }
+    
+    .lucky-burst .particle {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #ffd700;
+      border-radius: 50%;
+      animation: burst 1s ease-out forwards;
+    }
+    
+    @keyframes burst {
+      0% { transform: scale(0) translate(0, 0); opacity: 1; }
+      100% { transform: scale(1) translate(var(--tx), var(--ty)); opacity: 0; }
+    }
+    
+    /* 手機響應 */
+    @media (max-width: 768px) {
+      h1 { font-size: 1.8rem; }
+      .wheel-container { width: 280px; height: 280px; }
+      .zodiac-btn { width: 48px; height: 48px; font-size: 1.3rem; }
+      .zodiac-btn span { font-size: 0.5rem; }
+      .main-content { flex-direction: column; align-items: center; }
+      .result-section { width: 100%; }
+    }
+  
+    /* 隱私權橫幅 */
+    .privacy-banner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      background: linear-gradient(135deg, rgba(30,30,60,0.98), rgba(15,15,40,0.98));
+      border-bottom: 1px solid rgba(240,147,251,0.3);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-size: 0.85rem;
+      color: #ccc;
+      backdrop-filter: blur(10px);
+    }
+    .privacy-icon { font-size: 1.1rem; }
+    .privacy-text { flex: 1; max-width: 800px; line-height: 1.5; }
+    .privacy-dismiss {
+      background: linear-gradient(135deg, #f093fb, #f5576c);
+      border: none;
+      color: #fff;
+      padding: 8px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .privacy-dismiss:hover { transform: scale(1.05); box-shadow: 0 5px 20px rgba(240,147,251,0.4); }
+    .privacy-banner.hidden { display: none; }
+    @media (max-width: 768px) {
+      .privacy-banner { flex-wrap: wrap; gap: 8px; padding: 10px 15px; }
+      .privacy-text { font-size: 0.8rem; }
+    }
+
+  </style>
+</head>
+<body>
+  
+  <!-- 隱私權宣告橫幅 -->
+  <div class="privacy-banner hidden" id="privacyBanner">
+    <span class="privacy-icon">🔒</span>
+    <span class="privacy-text" data-i18n="privacy_notice_text">本網站為靜態星座命理平台，不會收集、儲存或傳輸任何個人資料。所有占卜計算皆在您的瀏覽器內完成，不會上傳至任何伺服器。</span>
+    <button class="privacy-dismiss" data-action="dismiss-privacy" data-i18n="privacy_dismiss">我知道了</button>
+  </div>
+
+  <div class="stars" id="stars"></div>
+  <div class="light-effect"></div>
+  <div class="lucky-burst" id="luckyBurst"></div>
+  
+  <div class="container">
+    <header>
+      <h1>🎡 星座幸運轉盤</h1>
+      <p class="subtitle">旋轉命運之輪，揭開今日的神秘指引 ✨</p>
+    </header>
+    
+    <div class="main-content">
+      <!-- 轉盤區 -->
+      <div class="wheel-section">
+        <div class="wheel-container">
+          <div class="pointer"></div>
+          <div class="wheel" id="wheel"></div>
+          <div class="wheel-center" id="wheelCenter">🎯</div>
+        </div>
+        
+        <div class="controls">
+          <p style="color: rgba(255,255,255,0.7); margin-bottom: 15px;">選擇你的星座：</p>
+          <div class="zodiac-select" id="zodiacSelect"></div>
+          <button class="spin-btn" id="spinBtn" disabled>🎡 開始轉動</button>
+        </div>
+      </div>
+      
+      <!-- 結果區 -->
+      <div class="result-section" id="resultSection">
+        <div class="result-icon" id="resultIcon">♈</div>
+        <div class="result-zodiac" id="resultZodiac">牡羊座</div>
+        <div class="fortune-text" id="fortuneText">
+          今天的你充滿活力與勇氣！火星帶給你滿滿的正能量，適合大胆嘗試新事物。
+        </div>
+        <div class="fortune-details">
+          <div class="fortune-item">
+            <div class="label">💕 愛情</div>
+            <div class="value" id="loveFortune">單身者有機會遇到心動的人</div>
+          </div>
+          <div class="fortune-item">
+            <div class="label">💼 事業</div>
+            <div class="value" id="careerFortune">工作上將有突破性進展</div>
+          </div>
+          <div class="fortune-item">
+            <div class="label">💰 財運</div>
+            <div class="value" id="moneyFortune">有意外之財的機會</div>
+          </div>
+          <div class="fortune-item">
+            <div class="label">🌟 幸運數字</div>
+            <div class="value" id="luckyNum">3, 7, 15</div>
+          </div>
+        </div>
+        <button class="share-btn" id="shareBtn">📤 分享結果</button>
+      </div>
+    </div>
+  </div>
+  
+  <footer>
+    <p>© 2024 <span data-i18n="footer_copyright">星座命理平台</span> | <a href="index.html" data-i18n="nav_home">返回首頁</a> | <a href="wheel.html" style="color:#aaa;text-decoration:none;">星座幸運轉盤</a></p>
+  </footer>
+  
+  <script>
+    // 星座資料
+    const zodiacData = [
+      { name: '牡羊座', icon: '♈', element: '火', ruler: '火星', color: '#ff6b6b', 
+        fortunes: [
+          '今天的你衝勁十足！火星的力量讓你充滿勇氣，大膽追求你的目標吧！',
+          '行動力滿分的一天，把計畫付諸實行吧！幸運站在你這邊。',
+          '挑戰極限！今天的你無所畏懼，適合開始新計畫或新戀情。'
+        ] },
+      { name: '金牛座', icon: '♉', element: '土', ruler: '金星', color: '#51cf66',
+        fortunes: [
+          '金星帶來豐收的能量，穩扎穩打就能有好的收穫。',
+          '今天的你有著敏銳的直覺，信任自己的判斷吧！',
+          '享受生活中的小確幸，一頓美食或舒適的時光都會讓你感到滿足。'
+        ] },
+      { name: '雙子座', icon: '♊', element: '風', ruler: '水星', color: '#ffd43b',
+        fortunes: [
+          '思維活跃的一天，適合與人交流、學習新知識。',
+          '水星加持，讓你的溝通能力大爆發，洽談順利！',
+          '今天的好奇心特別強烈，聽從內心的聲音去探索吧！'
+        ] },
+      { name: '巨蟹座', icon: '♋', element: '水', ruler: '月亮', color: '#74c0fc',
+        fortunes: [
+          '月亮守護著你，今天適合花時間陪伴家人或想念久未聯繫的朋友。',
+          '內心敏感纖細，但也因此能感受到更多美好的事物。',
+          '照顧好自己的情緒，給自己一個溫柔的拥抱吧！'
+        ] },
+      { name: '獅子座', icon: '♌', element: '火', ruler: '太陽', color: '#ffa94d',
+        fortunes: [
+          '太陽的光芒照耀你！今天的你自信滿滿，魅力無法擋。',
+          '適合在眾人面前展現才華，大家都在注意你呢！',
+          '享受被讚美包圍的感覺吧，但別忘了也欣賞身邊的人。'
+        ] },
+      { name: '處女座', icon: '♍', element: '土', ruler: '水星', color: '#9775fa',
+        fortunes: [
+          '今天的你分析能力特別強，適合處理需要細節的工作。',
+          '把混亂整理得井然有序會讓你感到特别有成就感。',
+          '注意身體健康，適時休息才能保持最佳狀態。'
+        ] },
+      { name: '天秤座', icon: '♎', element: '風', ruler: '金星', color: '#f783ac',
+        fortunes: [
+          '金星帶來和諧與美，今天在關係中能感受到滿满的愛意。',
+          '適合處理協調性質的工作，你能輕鬆化解糾紛。',
+          '給自己買點小禮物吧，你值得擁有美好的一切！'
+        ] },
+      { name: '天蠍座', icon: '♏', element: '水', ruler: '冥王星', color: '#be4bdb',
+        fortunes: [
+          '冥王星賦予你深刻的洞察力，今天適合探索內心真正的渴望。',
+          '直覺超準！相信自己的第六感，它會引導你。',
+          '熱情與神秘感並存，吸引著週遭的人想要靠近你。'
+        ] },
+      { name: '射手座', icon: '♐', element: '火', ruler: '木星', color: '#ff8787',
+        fortunes: [
+          '木星帶來好運與擴張的能量！今天適合訂定旅行計畫或學習新事物。',
+          '冒險精神高漲，勇敢踏出舒適圈吧！',
+          '保持樂觀的心態，宇宙正在回應你的願望。'
+        ] },
+      { name: '摩羯座', icon: '♑', element: '土', ruler: '土星', color: '#adb5bd',
+        fortunes: [
+          '土星賦予你踏實與耐心，今天的付出會在未來獲得回報。',
+          '事業上有重要的進展機會，保持專注和努力。',
+          '設立長遠目標並一步步前進，成功就在不遠處等著你。'
+        ] },
+      { name: '水瓶座', icon: '♒', element: '風', ruler: '天王星', color: '#91a7ff',
+        fortunes: [
+          '天王星帶來創新與靈感！今天會有特別的想法閃過腦海。',
+          '與朋友的交流會給你帶來新的啟發，踴躍表達吧！',
+          '做獨特的自己，不跟随他人腳步走出自己的路。'
+        ] },
+      { name: '雙魚座', icon: '♓', element: '水', ruler: '海王星', color: '#63e6be',
+        fortunes: [
+          '海王星啟發你的想像力與創造力，適合藝術創作或冥想。',
+          '直覺特別敏銳，聆听內在的聲音會得到答案。',
+          '今天容易感受到宇宙的愛與支持，世界以你為中心運轉。'
+        ] }
+    ];
+    
+    // 幸運提示庫
+    const fortuneBank = {
+      love: [
+        '單身者今天人氣飆升，可能在社交場合遇到心動的對象',
+        '有伴者與另一半的互動更加甜蜜，彼此更能理解對方',
+        '今天是告白的好日子，勇氣會帶來好消息',
+        '注意沟通方式，表達感受能讓關係更加和諧',
+        '舊愛可能會突然聯繫，想清楚再回應'
+      ],
+      career: [
+        '工作上出現新機會，勇敢抓住它吧',
+        '團隊合作順利，與同事的配合度極高',
+        '有貴人運，有人默默在幫助你',
+        '適合處理談判或簡報，表現會獲得賞識',
+        '創意大爆發，想法受到上司讚賞'
+      ],
+      money: [
+        '有意外之財的機會，可能是紅包或獎金',
+        '今天的消費直覺很準，買東西特別划算',
+        '適合開始儲蓄或投資，長期眼光會帶來回報',
+        '有借錢給人的機會，想清楚再決定',
+        '偏財運不錯，可以試試手氣'
+      ]
+    };
+    
+    // 全域變數
+    let selectedZodiac = null;
+    let isSpinning = false;
+    let currentRotation = 0;
+    
+    // 初始化
+    function init() {
+      createStars();
+      createWheel();
+      createZodiacButtons();
+      setupEventListeners();
+    }
+    
+    // 建立星空背景
+    function createStars() {
+      const starsContainer = document.getElementById('stars');
+      for (let i = 0; i < 100; i++) {
+        const star = document.createElement('div');
+        star.style.cssText = `
+          position: absolute;
+          left: ${Math.random() * 100}%;
+          top: ${Math.random() * 100}%;
+          width: ${Math.random() * 3 + 1}px;
+          height: ${Math.random() * 3 + 1}px;
+          background: rgba(255,255,255,${Math.random() * 0.8 + 0.2});
+          border-radius: 50%;
+          animation: twinkle ${Math.random() * 3 + 2}s ease-in-out infinite;
+          animation-delay: ${Math.random() * 2}s;
+        `;
+        starsContainer.appendChild(star);
+      }
+    }
+    
+    // 建立轉盤
+    function createWheel() {
+      const wheel = document.getElementById('wheel');
+      const segmentAngle = 360 / 12;
+      
+      for (let i = 0; i < 12; i++) {
+        const segment = document.createElement('div');
+        segment.className = 'wheel-segment';
+        segment.style.background = `linear-gradient(${i * 30}deg, ${zodiacData[i].color}44, ${zodiacData[i].color}22)`;
+        segment.style.transform = `rotate(${i * segmentAngle - 90}deg)`;
+        segment.style.clipPath = 'polygon(0% 100%, 100% 0%, 0% 0%)';
+        
+        // 圖示
+        const icon = document.createElement('div');
+        icon.className = 'icon';
+        icon.textContent = zodiacData[i].icon;
+        segment.appendChild(icon);
+        
+        // 名稱
+        const text = document.createElement('div');
+        text.className = 'text';
+        text.textContent = zodiacData[i].name;
+        segment.appendChild(text);
+        
+        wheel.appendChild(segment);
+      }
+    }
+    
+    // 建立星座選擇按鈕
+    function createZodiacButtons() {
+      const container = document.getElementById('zodiacSelect');
+      zodiacData.forEach((zodiac, index) => {
+        const btn = document.createElement('button');
+        btn.className = 'zodiac-btn';
+        btn.innerHTML = `${zodiac.icon}<span>${zodiac.name.replace('座','')}</span>`;
+        btn.dataset.index = index;
+        btn.style.borderColor = zodiac.color + '66';
+        btn.addEventListener('click', () => selectZodiac(index));
+        container.appendChild(btn);
+      });
+    }
+    
+    // 選擇星座
+    function selectZodiac(index) {
+      selectedZodiac = index;
+      
+      // 更新 UI
+      document.querySelectorAll('.zodiac-btn').forEach((btn, i) => {
+        btn.classList.toggle('selected', i === index);
+      });
+      
+      document.getElementById('spinBtn').disabled = false;
+      document.getElementById('wheelCenter').textContent = zodiacData[index].icon;
+    }
+    
+    // 設定事件監聽
+    function setupEventListeners() {
+      document.getElementById('spinBtn').addEventListener('click', spinWheel);
+      document.getElementById('wheelCenter').addEventListener('click', () => {
+        if (!isSpinning && selectedZodiac !== null) {
+          spinWheel();
+        }
+      });
+      document.getElementById('shareBtn').addEventListener('click', shareResult);
+    }
+    
+    // 轉動轉盤
+    function spinWheel() {
+      if (isSpinning || selectedZodiac === null) return;
+      
+      isSpinning = true;
+      const spinBtn = document.getElementById('spinBtn');
+      spinBtn.disabled = true;
+      spinBtn.textContent = '✨ 轉動中...';
+      
+      // 計算轉動角度
+      // 轉 5-8 圈 + 隨機偏移讓結果隨機
+      const extraSpins = 5 + Math.floor(Math.random() * 4);
+      const randomOffset = Math.random() * 360;
+      const targetAngle = extraSpins * 360 + randomOffset;
+      
+      currentRotation += targetAngle;
+      
+      // 套用轉動動畫
+      const wheel = document.getElementById('wheel');
+      wheel.style.transform = `rotate(${currentRotation}deg)`;
+      
+      // 等待動畫結束
+      setTimeout(() => {
+        isSpinning = false;
+        spinBtn.textContent = '🎡 再次轉動';
+        spinBtn.disabled = false;
+        showResult();
+      }, 4000);
+    }
+    
+    // 顯示結果
+    function showResult() {
+      const zodiac = zodiacData[selectedZodiac];
+      
+      // 根據今天日期产生确定性的随机索引
+      const today = new Date();
+      const dateSeed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+      const fortuneIdx = (dateSeed + selectedZodiac) % 3;
+      
+      // 幸運數字
+      const luckyNumbers = [
+        [(dateSeed % 9) + 1, (dateSeed % 9) + 4, (dateSeed % 9) + 7],
+        [(dateSeed % 8) + 2, (dateSeed % 8) + 5, (dateSeed % 8) + 9],
+        [(dateSeed % 7) + 1, (dateSeed % 7) + 3, (dateSeed % 7) + 8]
+      ][selectedZodiac % 3];
+      
+      // 更新結果 UI
+      document.getElementById('resultIcon').textContent = zodiac.icon;
+      document.getElementById('resultZodiac').textContent = zodiac.name;
+      document.getElementById('fortuneText').textContent = zodiac.fortunes[fortuneIdx];
+      document.getElementById('loveFortune').textContent = fortuneBank.love[(dateSeed + selectedZodiac) % fortuneBank.love.length];
+      document.getElementById('careerFortune').textContent = fortuneBank.career[(dateSeed + selectedZodiac) % fortuneBank.career.length];
+      document.getElementById('moneyFortune').textContent = fortuneBank.money[(dateSeed + selectedZodiac) % fortuneBank.money.length];
+      document.getElementById('luckyNum').textContent = luckyNumbers.join(', ');
+      
+      // 顯示結果區
+      const resultSection = document.getElementById('resultSection');
+      resultSection.classList.add('show');
+      
+      // 幸運爆發效果
+      createLuckyBurst();
+    }
+    
+    // 幸運爆發效果
+    function createLuckyBurst() {
+      const burst = document.getElementById('luckyBurst');
+      burst.innerHTML = '';
+      burst.classList.add('show');
+      
+      for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        const angle = (i / 30) * Math.PI * 2;
+        const distance = 100 + Math.random() * 200;
+        particle.style.cssText = `
+          left: 50%;
+          top: 40%;
+          background: ${['#ffd700', '#ff6b6b', '#a855f7', '#51cf66'][i % 4]};
+          --tx: ${Math.cos(angle) * distance}px;
+          --ty: ${Math.sin(angle) * distance}px;
+          animation-delay: ${Math.random() * 0.3}s;
+        `;
+        burst.appendChild(particle);
+      }
+      
+      setTimeout(() => {
+        burst.classList.remove('show');
+      }, 1500);
+    }
+    
+    // 分享結果
+    function shareResult() {
+      const zodiac = zodiacData[selectedZodiac];
+      const text = `🎡 星座幸運轉盤\n\n我的今日星座：${zodiac.icon} ${zodiac.name}\n${document.getElementById('fortuneText').textContent}\n\n✨ 玩玩看：`;
+      
+      if (navigator.share) {
+        navigator.share({
+          title: '星座幸運轉盤',
+          text: text,
+          url: window.location.href
+        });
+      } else {
+        // 複製到剪貼簿
+        navigator.clipboard.writeText(text + window.location.href).then(() => {
+          alert('已複製到剪貼簿！');
+        });
+      }
+    }
+    
+    // 啟動
+    init();
+
+    // 隱私權橫幅關閉（事件委派 + 強健 selector）
+document.addEventListener('click', function(e) {
+  if (e.target.closest('[data-action="dismiss-privacy"]')) {
+    var banner = document.querySelector('.privacy-banner, .privacy-notice, #privacyBanner, [data-privacy-banner]');
+    if (banner) {
+      banner.style.display = 'none';
+      banner.classList.add('hidden');
+    }
+    try { localStorage.setItem('privacyDismissed', 'true'); } catch(err) {}
+  }
+});
+
+// 確保全域也可呼叫
+window.dismissPrivacyBanner = function() {
+  var banner = document.querySelector('.privacy-banner, .privacy-notice, #privacyBanner, [data-privacy-banner]');
+  if (banner) {
+    banner.style.display = 'none';
+    banner.classList.add('hidden');
+  }
+  try { localStorage.setItem('privacyDismissed', 'true'); } catch(err) {}
+};
+
+// 頁面載入時檢查是否已關閉過
+document.addEventListener('DOMContentLoaded', function() {
+  if (localStorage.getItem('privacyDismissed') === 'true') {
+    var banner = document.querySelector('.privacy-banner, .privacy-notice, #privacyBanner, [data-privacy-banner]');
+    if (banner) {
+      banner.style.display = 'none';
+      banner.classList.add('hidden');
+    }
+  }
+});
+
+    function sanitizeForHTML(str) {
+      if (str == null) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+  </script>
+</body>
+</html>

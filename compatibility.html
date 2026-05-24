@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <!-- Security Headers -->
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self';">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a1a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>💕 星座配對 — 愛情合盤分析 | 星座命理平台</title>
+  <meta name="description" content="輸入兩人的星座與出生資料，查看愛情、溝通、事業合作與整體契合度，快速分析十二星座配對關係與相處建議。">
+  <meta name="keywords" content="星座配對,星座合盤,愛情合盤,星座契合度,配對分析,星座命理,牡羊座,金牛座,雙子座,巨蟹座,獅子座,處女座,天秤座,天蠍座,射手座,摩羯座,水瓶座,雙魚座">
+  <meta name="robots" content="index, follow">
+  <meta name="geo.region" content="TW">
+  <meta name="geo.placename" content="Taiwan">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://zodiac-quiz-enhanced.pages.dev/compatibility">
+  
+  <!-- hreflang tags -->
+  <link rel="alternate" hreflang="zh-TW" href="https://zodiac-quiz-enhanced.pages.dev/compatibility">
+  <link rel="alternate" hreflang="zh-HK" href="https://zodiac-quiz-enhanced.pages.dev/compatibility">
+  <link rel="alternate" hreflang="x-default" href="https://zodiac-quiz-enhanced.pages.dev/compatibility">
+  <!-- Open Graph -->
+  <meta property="og:title" content="星座配對 — 愛情合盤分析">
+  <meta property="og:description" content="輸入兩人的星座與出生資料，查看愛情、溝通、事業合作與整體契合度，快速分析十二星座配對關係與相處建議。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zodiac-quiz-enhanced.pages.dev/compatibility">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:locale:alternate" content="zh_HK">
+  <meta property="og:site_name" content="星座命理平台">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="星座配對 — 愛情合盤分析">
+  <meta name="twitter:description" content="輸入兩人的星座與出生資料，查看愛情、溝通、事業合作與整體契合度，快速分析十二星座配對關係與相處建議。">
+  
+  <!-- Structured Data -->
+  <script type="application/ld+json" id="faq-schema">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "星座配對的準確率如何？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "星座配對是基於星座學理的統計分析，結合太陽星座、月亮星座等要素，提供性格契合度的參考。準確率視乎輸入資料的完整度。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "需要什麼資料才能進行星座合盤？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "建議提供雙方的出生年月日與出生時間（精確到時辰），即可獲得更精準的星座配對分析。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "星座配對分數代表什麼意義？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "配對分數是根據星座元素屬性、宮位互動等綜合計算得出的契合度指標，100分為最高，表示極度契合。"
+        }
+      }
+    ]
+  }
+</script>
+    <meta property="og:image" content="https://zodiac-quiz-enhanced.pages.dev/og-image.png">
+  <meta name="twitter:image" content="https://zodiac-quiz-enhanced.pages.dev/og-image.png">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Noto Sans TC', sans-serif; background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%); color: #fff; min-height: 100vh; padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: rgba(240,147,251,0.2); }
+    .starfield { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+    .star { position: absolute; width: 2px; height: 2px; background: #fff; border-radius: 50%; animation: twinkle 3s infinite; }
+    @keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; transform: scale(1.5); } }
+    .container { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 20px; }
+    .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; margin-bottom: 30px; }
+    .logo { font-size: 1.3rem; font-weight: 900; background: linear-gradient(135deg, #f093fb, #f5576c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .nav-links a { color: #888; text-decoration: none; padding: 8px 15px; font-size: 0.9rem; border-radius: 20px; transition: all 0.3s; }
+    .nav-links a:hover, .nav-links a.active { color: #fff; background: rgba(255,255,255,0.1); }
+    .page-title { text-align: center; margin-bottom: 30px; }
+    .page-title h1 { font-size: 2.2rem; font-weight: 900; background: linear-gradient(135deg, #f093fb, #f5576c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
+    .page-title p { color: #888; font-size: 1.1rem; }
+    
+    .card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 30px; backdrop-filter: blur(10px); margin-bottom: 25px; }
+    
+    /* 輸入區 */
+    .input-section { display: grid; grid-template-columns: 1fr auto 1fr; gap: 30px; align-items: start; }
+    @media (max-width: 768px) { .input-section { grid-template-columns: 1fr; } }
+    .person-input h3 { font-size: 1.2rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+    .person-input h3 .avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #f093fb, #4facfe); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+    .form-group { margin-bottom: 15px; }
+    .form-group label { display: block; font-size: 0.85rem; color: #aaa; margin-bottom: 8px; }
+    .form-group input, .form-group select { width: 100%; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2); border-radius: 10px; padding: 12px 15px; color: #fff; font-size: 1rem; font-family: inherit; }
+    .form-group select option { background: #1a1a3a; color: #fff; }
+    .form-group input:focus, .form-group select:focus { outline: none; border-color: #f093fb; }
+    .vs-icon { font-size: 3rem; text-align: center; padding-top: 60px; }
+    @media (max-width: 768px) { .vs-icon { padding-top: 20px; text-align: center; } }
+    
+    .btn { padding: 15px 40px; border-radius: 25px; border: none; font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-primary { background: linear-gradient(135deg, #f093fb, #f5576c); color: #fff; width: 100%; justify-content: center; }
+    .btn-primary:hover { transform: scale(1.02); box-shadow: 0 10px 30px rgba(240,147,251,0.3); }
+    .btn-secondary { background: rgba(255,255,255,0.1); color: #fff; border: 2px solid rgba(255,255,255,0.2); }
+    .btn-secondary:hover { background: rgba(255,255,255,0.2); }
+    
+    /* 結果區 */
+    #resultSection { display: none; }
+    #resultSection.active { display: block; }
+    
+    .result-header { text-align: center; margin-bottom: 30px; position: relative; }
+    .compatibility-ring { position: relative; width: 200px; height: 200px; margin: 0 auto 20px; }
+    .ring-svg { width: 200px; height: 200px; transform: rotate(-90deg); }
+    .ring-bg { fill: none; stroke: rgba(255,255,255,0.1); stroke-width: 12; }
+    .ring-fill { fill: none; stroke: url(#ringGradient); stroke-width: 12; stroke-linecap: round; stroke-dasharray: 565.48; stroke-dashoffset: 565.48; transition: stroke-dashoffset 1s ease; }
+    .score-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+    .compatibility-score { font-size: 3.5rem; font-weight: 900; background: linear-gradient(135deg, #f093fb, #f5576c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; }
+    .score-label { color: #888; font-size: 0.9rem; }
+    .score-grade { font-size: 1.1rem; font-weight: 700; margin-top: 5px; }
+    
+    .result-zodiac { display: flex; justify-content: center; gap: 50px; margin: 25px 0; flex-wrap: wrap; }
+    .zodiac-item { text-align: center; }
+    .zodiac-icon { font-size: 3.5rem; margin-bottom: 10px; }
+    .zodiac-name { font-size: 1.1rem; font-weight: 700; }
+    .zodiac-element { font-size: 0.85rem; color: #888; }
+    .vs-badge { background: linear-gradient(135deg, #f093fb, #f5576c); padding: 10px 20px; border-radius: 25px; font-weight: 700; }
+    
+    /* 互動式星盤 */
+    .synastry-section { margin-bottom: 30px; }
+    .synastry-chart { width: 100%; max-width: 350px; margin: 0 auto; }
+    
+    /* 分析卡片 */
+    .analysis-tabs { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; justify-content: center; }
+    .tab-btn { padding: 10px 25px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 25px; color: #aaa; cursor: pointer; transition: all 0.3s; font-family: inherit; font-size: 0.95rem; }
+    .tab-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
+    .tab-btn.active { background: linear-gradient(135deg, #f093fb, #f5576c); color: #fff; border-color: transparent; }
+    
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    
+    .analysis-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .analysis-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 25px; }
+    .analysis-card h4 { font-size: 1.1rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+    .analysis-card p { color: #bbb; line-height: 1.8; font-size: 0.95rem; }
+    
+    /* 行星相位展示 */
+    .aspect-list { list-style: none; padding: 0; }
+    .aspect-item { display: flex; align-items: center; gap: 15px; padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .aspect-item:last-child { border-bottom: none; }
+    .aspect-symbol { font-size: 2rem; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border-radius: 10px; }
+    .aspect-info { flex: 1; }
+    .aspect-name { font-weight: 700; font-size: 1rem; margin-bottom: 5px; }
+    .aspect-desc { color: #888; font-size: 0.85rem; }
+    
+    /* 深度報告 */
+    .deep-report h3 { font-size: 1.3rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+    .deep-report p { color: #bbb; line-height: 1.8; margin-bottom: 20px; }
+    .report-section { margin-bottom: 25px; }
+    .report-section h4 { color: #f093fb; font-size: 1rem; margin-bottom: 10px; }
+    
+    /* 建議列表 */
+    .tips-section h3 { font-size: 1.2rem; margin-bottom: 20px; }
+    .tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+    .tip-card { background: rgba(255,255,255,0.05); border-radius: 15px; padding: 20px; text-align: center; transition: all 0.3s; }
+    .tip-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-3px); }
+    .tip-icon { font-size: 2rem; margin-bottom: 10px; }
+    .tip-title { font-weight: 700; margin-bottom: 5px; }
+    .tip-desc { color: #888; font-size: 0.85rem; }
+    
+    /* 操作按鈕 */
+    .result-actions { display: flex; gap: 15px; justify-content: center; margin-top: 30px; flex-wrap: wrap; }
+    .share-btn { padding: 12px 25px; border-radius: 25px; border: none; cursor: pointer; font-size: 0.95rem; font-weight: 600; transition: all 0.3s; display: flex; align-items: center; gap: 8px; font-family: inherit; }
+    .share-btn.line { background: #00B900; color: #fff; }
+    .share-btn.fb { background: #1877F6; color: #fff; }
+    .share-btn.copy { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); }
+    .share-btn:hover { transform: scale(1.05); }
+    
+    /* 比較表格 */
+    .compare-table { width: 100%; border-collapse: collapse; }
+    .compare-table th, .compare-table td { padding: 12px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .compare-table th { color: #888; font-weight: 500; }
+    .compare-table td { color: #fff; }
+    
+    /* 底部 */
+    .footer { text-align: center; padding: 40px 0; color: #666; font-size: 0.9rem; }
+    .footer a { color: #aaa; text-decoration: none; }
+    .footer a:hover { color: #fff; }
+
+    /* CSS 變數 - 響應式斷點 */
+    :root {
+      --bp-xs: 480px;
+      --bp-sm: 768px;
+      --bp-md: 1024px;
+      --bp-lg: 1280px;
+    }
+
+    /* 隱私權橃幅 */
+    .privacy-banner {
+      position: fixed;
+      top: 0;
+      left: env(safe-area-inset-left);
+      right: env(safe-area-inset-right);
+      z-index: 1000;
+      background: linear-gradient(135deg, rgba(30,30,60,0.98), rgba(50,50,80,0.98));
+      border-bottom: 1px solid rgba(240,147,251,0.3);
+      padding: clamp(8px, 2vw, 12px) clamp(10px, 3vw, 20px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .privacy-banner.hidden { display: none; }
+    .privacy-content { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center; }
+    .privacy-icon { font-size: clamp(1.2rem, 3vw, 1.5rem); }
+    .privacy-text { font-size: clamp(0.8rem, 2vw, 0.9rem); color: #ccc; text-align: center; }
+    .privacy-dismiss {
+      padding: 8px 20px;
+      background: linear-gradient(135deg, #f093fb, #f5576c);
+      border: none;
+      border-radius: 20px;
+      color: #fff;
+      font-weight: 700;
+      font-size: clamp(0.8rem, 2vw, 0.85rem);
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: inherit;
+      white-space: nowrap;
+    }
+    .privacy-dismiss:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(240,147,251,0.4); }
+
+    /* 漢堡選單 */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+      padding: 10px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      transition: all 0.3s;
+    }
+    .hamburger:hover { background: rgba(255,255,255,0.1); }
+    .hamburger span { display: block; width: 100%; height: 2px; background: #fff; border-radius: 2px; transition: all 0.3s; }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    /* 響應式 */
+    @media (max-width: 1280px) {
+      .container { max-width: 95%; }
+    }
+
+    @media (max-width: 1024px) {
+      .page-title h1 { font-size: clamp(1.5rem, 3vw, 2rem); }
+      .nav-links { gap: 8px; }
+      .nav-links a { padding: 8px 12px; font-size: 0.85rem; }
+    }
+
+    @media (max-width: 768px) {
+      .privacy-banner { flex-direction: column; gap: 10px; padding: 12px 15px; }
+      .navbar { flex-wrap: wrap; gap: 10px; }
+      .hamburger { display: flex; }
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 5px;
+        padding: 10px 0;
+      }
+      .nav-links.active { display: flex; }
+      .nav-links a {
+        padding: 12px 15px;
+        font-size: 1rem;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        border-radius: 10px;
+      }
+      .lang-btn { min-height: 44px; min-width: 44px; padding: 10px 16px; font-size: 0.95rem; }
+      .input-section { grid-template-columns: 1fr; gap: 15px; }
+      .vs-icon { padding-top: 10px; text-align: center; }
+      .form-grid { grid-template-columns: 1fr; }
+      .analysis-grid { grid-template-columns: 1fr; }
+      .compatibility-score { font-size: clamp(2.5rem, 8vw, 3.5rem); }
+    }
+
+    @media (max-width: 480px) {
+      body { font-size: 14px; }
+      .container { padding: 10px; }
+      .page-title h1 { font-size: clamp(1.25rem, 5vw, 1.5rem); }
+      .card { padding: 20px 15px; }
+      .btn { width: 100%; }
+      .result-zodiac { gap: 20px; }
+      .tips-grid { grid-template-columns: 1fr; }
+      .share-btn { width: 100%; min-height: 48px; padding: 14px 18px; justify-content: center; }
+    }
+
+    a:focus-visible, button:focus-visible, .lucky-zodiac-btn:focus-visible, .zodiac-item:focus-visible {
+      outline: 2px solid #f093fb;
+      outline-offset: 3px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 隱私權宣告橫幅 -->
+  <div class="privacy-banner hidden" id="privacyBanner">
+    <div class="privacy-content">
+      <span class="privacy-icon">🔒</span>
+      <span class="privacy-text" data-i18n="privacy_notice_text">本網站為靜態星座命理平台，不會收集、儲存或傳輸任何個人資料。所有占卜計算皆在您的瀏覽器內完成，不會上傳至任何伺服器。</span>
+    </div>
+    <button class="privacy-dismiss" data-action="dismiss-privacy" data-i18n="privacy_dismiss">我知道了</button>
+  </div>
+
+  <div class="starfield" id="starfield"></div>
+  
+  <div class="container">
+    <nav class="navbar">
+      <div class="logo">✨ 星座命理</div>
+      <div class="hamburger" id="hamburgerBtn" onclick="toggleHamburger()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">首頁</a>
+        <a href="natal.html">命盤查詢</a>
+        <a href="compatibility.html" class="active">星座配對</a>
+        <a href="horoscope.html">星座運勢</a>
+        <a href="quiz.html">遊戲測驗</a>
+        <a href="knowledge.html">星座知識</a>
+      </div>
+    </nav>
+
+    <div class="page-title">
+      <h1>💕 愛情合盤分析</h1>
+      <p>輸入雙方星座，獲取專業的契合度分析報告</p>
+    </div>
+
+    <div class="card">
+      <div class="input-section">
+        <div class="person-input">
+          <h3><span class="avatar">👤</span> 第一位</h3>
+          <div class="form-group">
+            <label>星座</label>
+            <select id="zodiac1">
+              <option value="aries">♈ 牡羊座</option>
+              <option value="taurus">♉ 金牛座</option>
+              <option value="gemini">♊ 雙子座</option>
+              <option value="cancer">♋ 巨蟹座</option>
+              <option value="leo">♌ 獅子座</option>
+              <option value="virgo">♍ 處女座</option>
+              <option value="libra">♎ 天秤座</option>
+              <option value="scorpio">♏ 天蠍座</option>
+              <option value="sagittarius">♐ 射手座</option>
+              <option value="capricorn">♑ 摩羯座</option>
+              <option value="aquarius">♒ 水瓶座</option>
+              <option value="pisces">♓ 雙魚座</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>性別（可選）</label>
+            <select id="gender1">
+              <option value="">未指定</option>
+              <option value="male">男</option>
+              <option value="female">女</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="vs-icon">💕</div>
+        
+        <div class="person-input">
+          <h3><span class="avatar">👤</span> 第二位</h3>
+          <div class="form-group">
+            <label>星座</label>
+            <select id="zodiac2">
+              <option value="leo">♌ 獅子座</option>
+              <option value="sagittarius">♐ 射手座</option>
+              <option value="aries">♈ 牡羊座</option>
+              <option value="gemini">♊ 雙子座</option>
+              <option value="libra">♎ 天秤座</option>
+              <option value="aquarius">♒ 水瓶座</option>
+              <option value="taurus">♉ 金牛座</option>
+              <option value="virgo">♍ 處女座</option>
+              <option value="capricorn">♑ 摩羯座</option>
+              <option value="cancer">♋ 巨蟹座</option>
+              <option value="scorpio">♏ 天蠍座</option>
+              <option value="pisces">♓ 雙魚座</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>性別（可選）</label>
+            <select id="gender2">
+              <option value="">未指定</option>
+              <option value="male">男</option>
+              <option value="female">女</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      
+      <div style="margin-top: 25px;">
+        <button class="btn btn-primary" onclick="analyzeCompatibility()">
+          🔮 開始深度分析
+        </button>
+      </div>
+    </div>
+
+    <div id="resultSection">
+      <!-- 主要分數顯示 -->
+      <div class="result-header">
+        <div class="compatibility-ring">
+          <svg class="ring-svg" viewBox="0 0 200 200">
+            <defs>
+              <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#f093fb"/>
+                <stop offset="100%" stop-color="#f5576c"/>
+              </linearGradient>
+            </defs>
+            <circle class="ring-bg" cx="100" cy="100" r="90"/>
+            <circle class="ring-fill" id="ringProgress" cx="100" cy="100" r="90"/>
+          </svg>
+          <div class="score-center">
+            <div class="compatibility-score" id="score">85%</div>
+            <div class="score-label">契合度</div>
+            <div class="score-grade" id="grade">⭐ 極佳匹配</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="result-zodiac">
+        <div class="zodiac-item">
+          <div class="zodiac-icon" id="icon1">♈</div>
+          <div class="zodiac-name" id="name1">牡羊座</div>
+          <div class="zodiac-element" id="element1">火象星座</div>
+        </div>
+        <div class="vs-badge">💕</div>
+        <div class="zodiac-item">
+          <div class="zodiac-icon" id="icon2">♌</div>
+          <div class="zodiac-name" id="name2">獅子座</div>
+          <div class="zodiac-element" id="element2">火象星座</div>
+        </div>
+      </div>
+      
+      <!-- 互動式星盤 -->
+      <div class="synastry-section">
+        <div class="card">
+          <h3 style="text-align:center;margin-bottom:20px;">🌀 行星相位圖</h3>
+          <div class="synastry-chart" id="synastryChart"></div>
+        </div>
+      </div>
+      
+      <!-- 分析分頁 -->
+      <div class="analysis-tabs">
+        <button class="tab-btn active" onclick="switchTab('love')">💕 愛情分析</button>
+        <button class="tab-btn" onclick="switchTab('communication')">💬 溝通模式</button>
+        <button class="tab-btn" onclick="switchTab('values')">🎯 價值觀</button>
+        <button class="tab-btn" onclick="switchTab('challenge')">💪 挑戰與成長</button>
+        <button class="tab-btn" onclick="switchTab('aspects')">🪐 行星相位</button>
+      </div>
+      
+      <div class="card deep-report">
+        <!-- 愛情分析 -->
+        <div class="tab-content active" id="tab-love">
+          <h3>💕 愛情火花分析</h3>
+          <p id="loveDesc">你們之間有著強烈的吸引力，容易一拍即合！兩個火象星座的組合，充滿熱情與活力。</p>
+          
+          <div class="analysis-grid" style="margin-top:20px;">
+            <div class="analysis-card">
+              <h4>🔥 吸引力</h4>
+              <p id="attractionDesc">你們之間有著天然的情感連結。第一次見面就可能感受到強烈的磁場。</p>
+            </div>
+            <div class="analysis-card">
+              <h4>💋 親密感</h4>
+              <p id="intimacyDesc">在身體和情感上都渴望緊密的連結，這讓你們的關係充滿熱情。</p>
+            </div>
+            <div class="analysis-card">
+              <h4>🤝 承諾意願</h4>
+              <p id="commitmentDesc">你們對於穩定的關係有著共同期望，願意為彼此付出。</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 溝通模式 -->
+        <div class="tab-content" id="tab-communication">
+          <h3>💬 溝通模式分析</h3>
+          <p id="commDesc">你們可以輕鬆地交流想法，理性討論能幫助你們解決問題。</p>
+          
+          <div class="report-section">
+            <h4>溝通風格</h4>
+            <p id="commStyleDesc">兩人都是直來直往的類型，有什麼就說什麼。這種溝通方式避免了很多誤會，但有時也需要注意語氣。</p>
+          </div>
+          
+          <div class="report-section">
+            <h4>表達愛意的方式</h4>
+            <p id="loveLangDesc">你們都傾向於用行動而非言語來表達感情。高品質的相處時光比甜言蜜語更能讓你們感受到被愛。</p>
+          </div>
+        </div>
+        
+        <!-- 價值觀 -->
+        <div class="tab-content" id="tab-values">
+          <h3>🎯 價值觀分析</h3>
+          <p id="valueDesc">在重要的人生目標上，你們有著相似的追求方向。</p>
+          
+          <table class="compare-table" id="valuesTable">
+            <tr><th>面向</th><th id="th1">牡羊座</th><th id="th2">獅子座</th></tr>
+            <tr><td>🎯 人生目標</td><td>成功與成就感</td><td>自我實現與認可</td></tr>
+            <tr><td>💰 金錢觀</td><td>敢於冒險</td><td>願意為品質花費</td></tr>
+            <tr><td>👨‍👩‍👧 家庭觀</td><td>獨立自主</td><td>忠誠護衛</td></tr>
+            <tr><td>🎉 休閒方式</td><td>刺激新奇</td><td>社交娛樂</td></tr>
+          </table>
+        </div>
+        
+        <!-- 挑戰與成長 -->
+        <div class="tab-content" id="tab-challenge">
+          <h3>💪 挑戰與成長建議</h3>
+          <p id="challengeDesc">需要學習如何更好地理解和包容彼此的差異。</p>
+          
+          <div class="tips-section">
+            <h3>🌱 成長建議</h3>
+            <div class="tips-grid" id="growthTips"></div>
+          </div>
+        </div>
+        
+        <!-- 行星相位 -->
+        <div class="tab-content" id="tab-aspects">
+          <h3>🪐 行星相位分析</h3>
+          <p>以下是兩人星盤中行星的主要相位影響</p>
+          
+          <ul class="aspect-list" id="aspectList"></ul>
+        </div>
+      </div>
+      
+      <!-- 相處建議 -->
+      <div class="card">
+        <h3 style="margin-bottom:20px;">💡 相處建議</h3>
+        <div class="tips-grid" id="tipsList"></div>
+      </div>
+      
+      <!-- 操作按鈕 -->
+      <div class="result-actions">
+        <button class="share-btn line" onclick="shareToLine()">💬 LINE</button>
+        <button class="share-btn fb" onclick="shareToFacebook()">📘 Facebook</button>
+        <button class="share-btn copy" onclick="copyResult()">📋 複製連結</button>
+        <button class="share-btn copy" onclick="saveResult()">💾 儲存結果</button>
+      </div>
+      
+      <div style="text-align:center;margin-top:20px;">
+        <button class="btn btn-secondary" onclick="resetAnalysis()">🔄 重新分析</button>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>© 2024 <span data-i18n="footer_copyright">SmartLink 星座命理平台</span> | <a href="index.html">返回首頁</a></p>
+    </div>
+  </div>
+
+<script>
+const zodiacData = {
+  aries: { icon: '♈', name: '牡羊座', element: '火', sign: 'fire', traits: '衝動、自信、領導力', compatible: ['leo', 'sagittarius', 'gemini', 'aquarius'] },
+  taurus: { icon: '♉', name: '金牛座', element: '土', sign: 'earth', traits: '穩重、務實、忠誠', compatible: ['virgo', 'capricorn', 'cancer', 'scorpio'] },
+  gemini: { icon: '♊', name: '雙子座', element: '風', sign: 'air', traits: '好奇、彈性、溝通力', compatible: ['libra', 'aquarius', 'aries', 'leo'] },
+  cancer: { icon: '♋', name: '巨蟹座', element: '水', sign: 'water', traits: '敏感、照顧、情感丰富', compatible: ['scorpio', 'pisces', 'taurus', 'virgo'] },
+  leo: { icon: '♌', name: '獅子座', element: '火', sign: 'fire', traits: '自信、慷慨、戲劇性', compatible: ['aries', 'sagittarius', 'gemini', 'libra'] },
+  virgo: { icon: '♍', name: '處女座', element: '土', sign: 'earth', traits: '分析、實際、有條理', compatible: ['taurus', 'capricorn', 'cancer', 'scorpio'] },
+  libra: { icon: '♎', name: '天秤座', element: '風', sign: 'air', traits: '和諧、公正、社交力', compatible: ['gemini', 'aquarius', 'leo', 'sagittarius'] },
+  scorpio: { icon: '♏', name: '天蠍座', element: '水', sign: 'water', traits: '深沉、專一、洞察力', compatible: ['cancer', 'pisces', 'virgo', 'capricorn'] },
+  sagittarius: { icon: '♐', name: '射手座', element: '火', sign: 'fire', traits: '樂觀、自由、探險精神', compatible: ['aries', 'leo', 'libra', 'aquarius'] },
+  capricorn: { icon: '♑', name: '摩羯座', element: '土', sign: 'earth', traits: '野心、紀律、責任感', compatible: ['taurus', 'virgo', 'scorpio', 'pisces'] },
+  aquarius: { icon: '♒', name: '水瓶座', element: '風', sign: 'air', traits: '創新、獨立、人道主義', compatible: ['gemini', 'libra', 'aries', 'sagittarius'] },
+  pisces: { icon: '♓', name: '雙魚座', element: '水', sign: 'water', traits: '浪漫、敏感、直覺力', compatible: ['cancer', 'scorpio', 'taurus', 'capricorn'] }
+};
+
+const elementDescriptions = {
+  fire_fire: { love: '兩個火象星座相遇，簡直是場火焰派對！你們充滿熱情、活力四射，在一起時總是歡笑不斷。', challenge: '需要學習在激烈時降溫，避免不必要的衝突。', comm: '溝通直來直往，有什麼說什麼，但有時要注意對方的自尊心。', value: '都渴望成功和認可，在事業上可以互相激勵。' },
+  earth_earth: { love: '穩定務實的組合，你們能一起建立安穩的生活基礎。', challenge: '有時過於保守，需要多點冒險精神。', comm: '不善言辭但默契十足，一個眼神就能理解對方。', value: '都重視實際成果，在理財和生活規劃上想法一致。' },
+  air_air: { love: '思想交流順暢，你們能一起暢聊各種話題，分享彼此的想法。', challenge: '情感表達可能不足，需要更注重內心感受。', comm: '理性溝通，適合討論哲學和抽象話題，但要注意情感連結。', value: '都重視自由和獨立，需要給彼此足夠的空間。' },
+  water_water: { love: '情感深度共鳴，你們能真正理解彼此的內心世界。', challenge: '容易過度依賴，需要保持適當空間。', comm: '敏感而細膩的溝通，能察覺對方情緒的細微變化。', value: '都渴望深刻的情感連結，在感情上非常契合。' },
+  fire_earth: { love: '互補型組合，一個熱情如火，一個穩重如土。', challenge: '步伐不同，需要多加協調。', comm: '需要學習欣賞對方的做事方式，火花的熱情可以帶動土的穩重。', value: '土傾向務實，火傾向理想，兩者結合可以成就大事。' },
+  fire_air: { love: '活力十足的組合，總是充滿歡樂和創意！', challenge: '有點飄忽，需要更多腳踏實地。', comm: '輕鬆愉快的溝通氛圍，適合一起規劃未來藍圖。', value: '都重視個人自由，但在表達方式上需要磨合。' },
+  fire_water: { love: '吸引力強烈，但需要克服情緒波動。', challenge: '感受差異大，溝通是關鍵。', comm: '火的水直接，水的火敏感，需要多站在對方角度思考。', value: '一個重理性，一個重情感，需要找到平衡點。' },
+  earth_air: { love: '互補組合，理性與感性可以平衡。', challenge: '生活態度不同，需要磨合。', comm: '思考方式不同，但可以互補學習。', value: '一個重視實際，一個重視創意，可以共同成長。' },
+  earth_water: { love: '情感穩定，能互相支持關懷。', challenge: '表達方式保守，需要多開放。', comm: '低調而溫暖的溝通方式，需要更多表達愛意。', value: '都傾向穩定，對家庭和傳統有共同理念。' },
+  air_water: { love: '理性與感性的碰撞，需要學習尊重差異。', challenge: '情緒處理方式不同。', comm: '需要多溝通感受，避免誤解。', value: '都重視精神層面，可以一起探索生命的意義。' }
+};
+
+const compatibilityScores = {
+  'aries-leo': { score: 95, grade: '⭐⭐⭐ 完美一拍即合', desc: '火象雙雄，激情四射！' },
+  'aries-sagittarius': { score: 93, grade: '⭐⭐⭐ 默契十足', desc: '探險搭檔，歡笑不斷！' },
+  'aries-gemini': { score: 88, grade: '⭐⭐ 極佳匹配', desc: '活力組合，創意無限！' },
+  'leo-gemini': { score: 90, grade: '⭐⭐⭐ 歡樂搭檔', desc: '社交王者，人氣爆棚！' },
+  'leo-libra': { score: 85, grade: '⭐⭐ 極佳匹配', desc: '華麗組合，光彩奪目！' },
+  'scorpio-cancer': { score: 96, grade: '⭐⭐⭐ 靈魂伴侶', desc: '情感深度羈絆，彼此了解！' },
+  'scorpio-pisces': { score: 94, grade: '⭐⭐⭐ 夢幻組合', desc: '直覺共鳴，心靈相通！' },
+  'virgo-capricorn': { score: 92, grade: '⭐⭐⭐ 穩定發展', desc: '務實搭档，共同打拚！' },
+  'libra-gemini': { score: 90, grade: '⭐⭐⭐ 思想交流', desc: '知性伴侶，話題不斷！' },
+  'aquarius-gemini': { score: 88, grade: '⭐⭐ 極佳匹配', desc: '創意雙胞胎，改變世界！' }
+};
+
+function createStarfield() {
+  const container = document.getElementById('starfield');
+  for (let i = 0; i < 120; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.animationDelay = Math.random() * 3 + 's';
+    container.appendChild(star);
+  }
+}
+
+function switchTab(tabName) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.querySelector(`[onclick="switchTab('${tabName}')"]`).classList.add('active');
+  document.getElementById('tab-' + tabName).classList.add('active');
+}
+
+function analyzeCompatibility() {
+  const z1 = document.getElementById('zodiac1').value;
+  const z2 = document.getElementById('zodiac2').value;
+  const gender1 = document.getElementById('gender1').value;
+  const gender2 = document.getElementById('gender2').value;
+  
+  const data1 = zodiacData[z1];
+  const data2 = zodiacData[z2];
+  
+  // 檢查是否為知名組合
+  const key1 = `${z1}-${z2}`;
+  const key2 = `${z2}-${z1}`;
+  const knownScore = compatibilityScores[key1] || compatibilityScores[key2];
+  
+  // 計算契合度（deterministic，無隨機值）
+  let score = 50;
+  if (data1.compatible.includes(z2)) score += 30;
+  if (data1.element === data2.element) score += 20;
+  if (data1.sign === data2.sign) score += 10;
+  
+  // 知名組合分數
+  if (knownScore) {
+    score = knownScore.score;
+  } else {
+    // 性別因素調整（可選）
+    if (gender1 && gender2) {
+      //同性組合通常和諧度略低，異性組合略高
+      if (gender1 !== gender2) score = Math.min(98, score + 5);
+      else score = Math.max(45, score - 3);
+    }
+    score = Math.min(98, Math.max(45, score));
+  }
+  
+  // 更新分數環
+  const ring = document.getElementById('ringProgress');
+  const circumference = 565.48;
+  const offset = circumference - (score / 100) * circumference;
+  setTimeout(() => { ring.style.strokeDashoffset = offset; }, 100);
+  
+  document.getElementById('score').textContent = score + '%';
+  
+  // 等級
+  let grade = '⭐ 普通匹配';
+  if (score >= 90) grade = '⭐⭐⭐ 靈魂伴侶';
+  else if (score >= 80) grade = '⭐⭐ 極佳匹配';
+  else if (score >= 70) grade = '⭐ 不錯匹配';
+  if (knownScore) grade = knownScore.grade;
+  document.getElementById('grade').textContent = grade;
+  
+  // 更新星座資訊
+  document.getElementById('icon1').textContent = data1.icon;
+  document.getElementById('name1').textContent = data1.name;
+  document.getElementById('element1').textContent = data1.element + '象星座';
+  document.getElementById('icon2').textContent = data2.icon;
+  document.getElementById('name2').textContent = data2.name;
+  document.getElementById('element2').textContent = data2.element + '象星座';
+  
+  // 描述
+  const elemKey = `${data1.element}_${data2.element}`;
+  const altKey = `${data2.element}_${data1.element}`;
+  const desc = elementDescriptions[elemKey] || elementDescriptions[altKey] || elementDescriptions.fire_air;
+  
+  document.getElementById('loveDesc').textContent = desc.love;
+  document.getElementById('challengeDesc').textContent = desc.challenge;
+  document.getElementById('commDesc').textContent = desc.comm;
+  document.getElementById('valueDesc').textContent = desc.value;
+  
+  // 吸引力描述
+  document.getElementById('attractionDesc').textContent = 
+    `${data1.name}和${data2.name}之間存在強烈的吸引力。${data1.traits}的特質深深吸引著${data2.name}。`;
+  document.getElementById('intimacyDesc').textContent = 
+    `${data1.element}象和${data2.element}象的組合，在情感和身體親密上都渴望深度連結。`;
+  document.getElementById('commitmentDesc').textContent = 
+    `兩人對於穩定的關係有共識，願意為彼此的未來共同規劃和努力。`;
+  
+  document.getElementById('commStyleDesc').textContent = 
+    `${data1.name}傾向${data1.element === '火' || data1.element === '風' ? '直接表達' : '含蓄內斂'}的方式，而${data2.name}則是${data2.element === '火' || data2.element === '風' ? '坦率溝通' : '細膩體貼'}的風格。`;
+  document.getElementById('loveLangDesc').textContent = 
+    `${data1.name}喜歡${data1.element === '火' ? '被讚美和崇拜' : data1.element === '土' ? '實際的照顧和穩定' : data1.element === '風' ? '心靈交流和自由' : '深情的陪伴和理解'}；${data2.name}則偏愛${data2.element === '火' ? '被讚美和崇拜' : data2.element === '土' ? '實際的照顧和穩定' : data2.element === '風' ? '心靈交流和自由' : '深情的陪伴和理解'}。`;
+  
+  // 更新表格
+  document.getElementById('th1').textContent = data1.name;
+  document.getElementById('th2').textContent = data2.name;
+  
+  // 生長建議
+  const growthTips = [
+    { icon: '🌱', title: '學習傾聽', desc: '多聆聽對方的想法' },
+    { icon: '⏰', title: '給予空間', desc: '尊重彼此的獨立性' },
+    { icon: '💬', title: '開放溝通', desc: '勇敢表達真實感受' },
+    { icon: '🙏', title: '包容差異', desc: '接受不同的生活方式' }
+  ];
+  document.getElementById('growthTips').innerHTML = growthTips.map(t => `
+    <div class="tip-card">
+      <div class="tip-icon">${t.icon}</div>
+      <div class="tip-title">${t.title}</div>
+      <div class="tip-desc">${t.desc}</div>
+    </div>
+  `).join('');
+  
+  // 行星相位
+  const aspects = [
+    { symbol: '☿', name: '水星相位', desc: '思維方式的協調程度影響溝通品質', type: 'good' },
+    { symbol: '♀', name: '金星相位', desc: '愛情和美感的共鳴讓關係更加甜蜜', type: 'good' },
+    { symbol: '♂', name: '火星相位', desc: '行動力和決心的互補影響相處節奏', type: 'neutral' },
+    { symbol: '⚶', name: '土星相位', desc: '責任感和承諾的深度決定關係穩定性', type: 'good' }
+  ];
+  document.getElementById('aspectList').innerHTML = aspects.map(a => `
+    <li class="aspect-item">
+      <div class="aspect-symbol">${a.symbol}</div>
+      <div class="aspect-info">
+        <div class="aspect-name">${a.name}</div>
+        <div class="aspect-desc">${a.desc}</div>
+      </div>
+    </li>
+  `).join('');
+  
+  // 相處建議
+  const tips = [
+    { icon: '✨', title: '創造共同回憶', desc: '一起體驗新事物' },
+    { icon: '💝', title: '定期約會', desc: '保持戀愛的感覺' },
+    { icon: '🗣️', title: '深度對話', desc: '分享內心想法' },
+    { icon: '🎯', title: '設定目標', desc: '共同規劃未來' }
+  ];
+  document.getElementById('tipsList').innerHTML = tips.map(t => `
+    <div class="tip-card">
+      <div class="tip-icon">${t.icon}</div>
+      <div class="tip-title">${t.title}</div>
+      <div class="tip-desc">${t.desc}</div>
+    </div>
+  `).join('');
+  
+  // 建立星盤圖
+  createSynastryChart(z1, z2);
+  
+  // 顯示結果
+  document.getElementById('resultSection').classList.add('active');
+  
+  // 滾動到結果
+  setTimeout(() => {
+    document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth' });
+  }, 200);
+}
+
+function createSynastryChart(z1, z2) {
+  const chart = document.getElementById('synastryChart');
+  const data1 = zodiacData[z1];
+  const data2 = zodiacData[z2];
+  
+  const colors = {
+    fire: '#ff6b6b',
+    earth: '#51cf66',
+    air: '#74c0fc',
+    water: '#9775fa'
+  };
+  
+  chart.innerHTML = `
+    <svg viewBox="0 0 300 300" style="width:100%;max-width:300px;margin:0 auto;display:block;">
+      <!-- 外圈 -->
+      <circle cx="150" cy="150" r="140" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/>
+      <circle cx="150" cy="150" r="110" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+      
+      <!-- 星座符號 -->
+      ${[0,1,2,3,4,5,6,7,8,9,10,11].map(i => {
+        const angle = (i * 30 - 90) * Math.PI / 180;
+        const x = 150 + 140 * Math.cos(angle);
+        const y = 150 + 140 * Math.sin(angle);
+        const icons = ['♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓'];
+        return `<text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="middle" font-size="20" fill="${i === ['aries','taurus','gemini','cancer','leo','virgo','libra','scorpio','sagittarius','capricorn','aquarius','pisces'].indexOf(z1) || i === ['aries','taurus','gemini','cancer','leo','virgo','libra','scorpio','sagittarius','capricorn','aquarius','pisces'].indexOf(z2) ? colors[data1.sign] : '#888'}">${icons[i]}</text>`;
+      }).join('')}
+      
+      <!-- 中心連線 -->
+      <line x1="150" y1="150" x2="${150 + 100 * Math.cos((['aries','taurus','gemini','cancer','leo','virgo','libra','scorpio','sagittarius','capricorn','aquarius','pisces'].indexOf(z1) * 30 - 90) * Math.PI / 180)}" y2="${150 + 100 * Math.sin((['aries','taurus','gemini','cancer','leo','virgo','libra','scorpio','sagittarius','capricorn','aquarius','pisces'].indexOf(z1) * 30 - 90) * Math.PI / 180)}" stroke="${colors[data1.sign]}" stroke-width="4" stroke-linecap="round"/>
+      <line x1="150" y1="150" x2="${150 + 100 * Math.cos((['aries','taurus','gemini','cancer','leo','virgo','libra','scorpio','sagittarius','capricorn','aquarius','pisces'].indexOf(z2) * 30 - 90) * Math.PI / 180)}" y2="${150 + 100 * Math.sin((['aries','taurus','gemini','cancer','leo','virgo','libra','scorpio','sagittarius','capricorn','aquarius','pisces'].indexOf(z2) * 30 - 90) * Math.PI / 180)}" stroke="${colors[data2.sign]}" stroke-width="4" stroke-linecap="round"/>
+      
+      <!-- 中心標記 -->
+      <circle cx="150" cy="150" r="30" fill="rgba(240,147,251,0.2)" stroke="#f093fb" stroke-width="2"/>
+      <text x="150" y="145" text-anchor="middle" font-size="24">💕</text>
+      <text x="150" y="165" text-anchor="middle" font-size="12" fill="#aaa">合盤</text>
+    </svg>
+  `;
+}
+
+function resetAnalysis() {
+  document.getElementById('resultSection').classList.remove('active');
+  document.getElementById('ringProgress').style.strokeDashoffset = 565.48;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function shareToLine() {
+  const score = document.getElementById('score').textContent;
+  const name1 = document.getElementById('name1').textContent;
+  const name2 = document.getElementById('name2').textContent;
+  const text = encodeURIComponent(`我在星座命理平台做了愛情合盤分析！\n${name1} + ${name2}\n契合度：${score}\n快來試試！`);
+  window.open(`https://social-plugins.line.me/msg/share?text=${text}`, '_blank');
+}
+
+function shareToFacebook() {
+  const score = document.getElementById('score').textContent;
+  const text = encodeURIComponent(`我的星座契合度：${score}！`);
+  window.open(`https://www.facebook.com/sharer/sharer.php?quote=${text}`, '_blank');
+}
+
+function copyResult() {
+  const score = document.getElementById('score').textContent;
+  const name1 = document.getElementById('name1').textContent;
+  const name2 = document.getElementById('name2').textContent;
+  const text = `${name1} + ${name2} 合盤分析 - 契合度：${score}`;
+  navigator.clipboard.writeText(text).then(() => alert('已複製到剪貼簿！'));
+}
+
+function saveResult() {
+  const score = document.getElementById('score').textContent;
+  const name1 = document.getElementById('name1').textContent;
+  const name2 = document.getElementById('name2').textContent;
+  const z1 = document.getElementById('zodiac1').value;
+  const z2 = document.getElementById('zodiac2').value;
+  
+  let saved = [];
+  try {
+    saved = JSON.parse(localStorage.getItem('zodiacCompatibilitySaved') || '[]');
+  } catch(e) {
+    saved = [];
+  }
+  saved.push({ z1, z2, score, name1, name2, date: new Date().toISOString() });
+  try { localStorage.setItem('zodiacCompatibilitySaved', JSON.stringify(saved.slice(-10))); } catch(e) {}
+  alert('已儲存！可以在會員專區查看記錄。');
+}
+
+createStarfield();
+
+// 漢堡選單切換
+function toggleHamburger() {
+  const hamburger = document.getElementById('hamburgerBtn');
+  const navLinks = document.getElementById('navLinks');
+  hamburger.classList.toggle('active');
+  navLinks.classList.toggle('active');
+}
+
+// 關閉漢堡選單當點擊連結後
+document.addEventListener('click', function(e) {
+  if (e.target.tagName === 'A' && window.innerWidth <= 768) {
+    const hamburger = document.getElementById('hamburgerBtn');
+    const navLinks = document.getElementById('navLinks');
+    if (hamburger && hamburger.classList.contains('active')) {
+      hamburger.classList.remove('active');
+      navLinks.classList.remove('active');
+    }
+  }
+});
+
+// 隱私權橫幅關閉（事件委派 + 強健 selector）
+document.addEventListener('click', function(e) {
+  if (e.target.closest('[data-action="dismiss-privacy"]')) {
+    var banner = document.querySelector('.privacy-banner, .privacy-notice, #privacyBanner, [data-privacy-banner]');
+    if (banner) {
+      banner.style.display = 'none';
+      banner.classList.add('hidden');
+    }
+    try { localStorage.setItem('privacyDismissed', 'true'); } catch(err) {}
+  }
+});
+
+// 確保全域也可呼叫
+window.dismissPrivacyBanner = function() {
+  var banner = document.querySelector('.privacy-banner, .privacy-notice, #privacyBanner, [data-privacy-banner]');
+  if (banner) {
+    banner.style.display = 'none';
+    banner.classList.add('hidden');
+  }
+  try { localStorage.setItem('privacyDismissed', 'true'); } catch(err) {}
+};
+
+// 頁面載入時檢查是否已關閉過
+document.addEventListener('DOMContentLoaded', function() {
+  if (localStorage.getItem('privacyDismissed') === 'true') {
+    var banner = document.querySelector('.privacy-banner, .privacy-notice, #privacyBanner, [data-privacy-banner]');
+    if (banner) {
+      banner.style.display = 'none';
+      banner.classList.add('hidden');
+    }
+  }
+});
+
+function sanitizeForHTML(str) {
+  if (str == null) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+</script>
+</body>
+</html>

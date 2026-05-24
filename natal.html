@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <!-- Security Headers -->
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self';">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a1a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>🪐 專業命盤查詢 — 探索你的本命星盤 | 星座命理平台</title>
+  <meta name="description" content="輸入出生日期、時間與地點，產生本命星盤與星座命盤分析，查看太陽星座、月亮星座、上升星座與個人性格特質。">
+  <meta name="keywords" content="命盤查詢,本命盤,星盤分析,出生圖,太陽星座,月亮星座,上升星座,行星位置,星座命理">
+  <meta name="robots" content="index, follow">
+  <meta name="geo.region" content="TW">
+  <meta name="geo.placename" content="Taiwan">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://zodiac-quiz-enhanced.pages.dev/natal">
+  
+  <!-- hreflang tags -->
+  <link rel="alternate" hreflang="zh-TW" href="https://zodiac-quiz-enhanced.pages.dev/natal">
+  <link rel="alternate" hreflang="zh-HK" href="https://zodiac-quiz-enhanced.pages.dev/natal">
+  <link rel="alternate" hreflang="x-default" href="https://zodiac-quiz-enhanced.pages.dev/natal">
+  <!-- Open Graph -->
+  <meta property="og:title" content="專業命盤查詢 — 探索你的本命星盤">
+  <meta property="og:description" content="輸入出生日期、時間與地點，產生本命星盤與星座命盤分析，查看太陽星座、月亮星座、上升星座與個人性格特質。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zodiac-quiz-enhanced.pages.dev/natal">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:locale:alternate" content="zh_HK">
+  <meta property="og:site_name" content="星座命理平台">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="專業命盤查詢 — 探索你的本命星盤">
+  <meta name="twitter:description" content="輸入出生日期、時間與地點，產生本命星盤與星座命盤分析，查看太陽星座、月亮星座、上升星座與個人性格特質。">
+    <meta property="og:image" content="https://zodiac-quiz-enhanced.pages.dev/og-image.png">
+  <meta name="twitter:image" content="https://zodiac-quiz-enhanced.pages.dev/og-image.png">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "專業命盤查詢 — 探索你的本命星盤",
+  "description": "輸入出生日期、時間與地點，產生本命星盤與星座命盤分析，查看太陽星座、月亮星座、上升星座與個人性格特質。",
+  "url": "https://zodiac-quiz-enhanced.pages.dev/natal",
+  "inLanguage": "zh-TW",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "星座命理平台",
+    "url": "https://zodiac-quiz-enhanced.pages.dev/"
+  }
+}
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%);
+      color: #fff;
+      min-height: 100vh;
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+      -webkit-text-size-adjust: 100%;
+      -webkit-tap-highlight-color: rgba(240,147,251,0.2);
+    }
+    .starfield { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+    .star { position: absolute; width: 2px; height: 2px; background: #fff; border-radius: 50%; animation: twinkle 3s infinite; }
+    @keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; transform: scale(1.5); } }
+    .container { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 20px; }
+    
+    .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; margin-bottom: 30px; }
+    .logo { font-size: 1.3rem; font-weight: 900; background: linear-gradient(135deg, #f093fb, #f5576c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .nav-links a { color: #888; text-decoration: none; padding: 8px 15px; font-size: 0.9rem; border-radius: 20px; transition: all 0.3s; }
+    .nav-links a:hover { color: #fff; }
+    
+    .page-title { text-align: center; margin-bottom: 30px; }
+    .page-title h1 { font-size: 2rem; font-weight: 900; background: linear-gradient(135deg, #f093fb, #f5576c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
+    .page-title p { color: #888; }
+    
+    .card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 30px; backdrop-filter: blur(10px); margin-bottom: 25px; }
+    
+    .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+    .form-group { display: flex; flex-direction: column; gap: 8px; }
+    .form-group label { font-size: 0.9rem; color: #aaa; }
+    .form-group input, .form-group select { background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2); border-radius: 10px; padding: 12px 15px; color: #fff; font-size: 1rem; font-family: inherit; }
+    .form-group select option { background: #1a1a3a; color: #fff; }
+    input[type="date"], input[type="time"] { background: rgba(0,0,0,0.5) !important; color: #fff; }
+    input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); }
+    .form-group input:focus, .form-group select:focus { outline: none; border-color: #f093fb; }
+    
+    .btn { padding: 15px 40px; border-radius: 25px; border: none; font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; }
+    .btn-primary { background: linear-gradient(135deg, #f093fb, #f5576c); color: #fff; }
+    .btn-primary:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(240,147,251,0.3); }
+    .btn-group { display: flex; gap: 15px; justify-content: center; margin-top: 25px; }
+    
+    /* 結果區 */
+    #resultSection { display: none; }
+    #resultSection.active { display: block; }
+    
+    /* 星盤視覺化 */
+    .chart-section { display: grid; grid-template-columns: 350px 1fr; gap: 30px; }
+    @media (max-width: 900px) { .chart-section { grid-template-columns: 1fr; } }
+    
+    .chart-wheel-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 25px; text-align: center; }
+    .chart-wheel { position: relative; width: 300px; height: 300px; margin: 0 auto; }
+    .chart-wheel svg { width: 100%; height: 100%; }
+    
+    .wheel-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+    .wheel-center .sun-icon { font-size: 2rem; }
+    .wheel-center .sun-sign { font-size: 1.2rem; font-weight: 700; }
+    .wheel-center .sun-deg { font-size: 0.85rem; color: #888; }
+    
+    /* 主要星座標示 */
+    .main-signs-display { display: flex; justify-content: center; gap: 30px; margin-top: 20px; flex-wrap: wrap; }
+    .main-sign-item { text-align: center; padding: 15px 20px; background: rgba(255,255,255,0.05); border-radius: 15px; min-width: 100px; }
+    .main-sign-item .icon { font-size: 2rem; }
+    .main-sign-item .name { font-size: 1rem; font-weight: 700; margin-top: 5px; }
+    .main-sign-item .label { font-size: 0.8rem; color: #888; }
+    
+    /* 詳細數據區 */
+    .data-section { display: flex; flex-direction: column; gap: 20px; }
+    
+    .data-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 20px; }
+    .data-card h3 { font-size: 1.1rem; margin-bottom: 15px; color: #f093fb; display: flex; align-items: center; gap: 8px; }
+    
+    /* 行星表格 */
+    .planet-table { width: 100%; border-collapse: collapse; }
+    .planet-table th, .planet-table td { padding: 12px 10px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .planet-table th { color: #888; font-size: 0.85rem; font-weight: 500; }
+    .planet-table td { font-size: 0.95rem; }
+    .planet-table tr:hover { background: rgba(255,255,255,0.03); }
+    .planet-icon-cell { font-size: 1.3rem; width: 40px; }
+    .sign-icon-cell { font-size: 1.2rem; }
+    
+    /* 宮位表格 */
+    .house-table { width: 100%; border-collapse: collapse; }
+    .house-table th, .house-table td { padding: 10px 12px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .house-table th { color: #888; font-size: 0.85rem; }
+    .house-table td { font-size: 0.95rem; }
+    .house-table tr:hover { background: rgba(255,255,255,0.03); }
+    
+    /* 相位區 */
+    .aspects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+    .aspect-item { background: rgba(255,255,255,0.05); border-radius: 12px; padding: 15px; display: flex; align-items: center; gap: 12px; }
+    .aspect-item .planets { font-size: 1.2rem; font-weight: 700; }
+    .aspect-item .aspect-type { padding: 4px 10px; border-radius: 15px; font-size: 0.8rem; font-weight: 700; }
+    .aspect-item .aspect-type.conj { background: #f093fb; }
+    .aspect-item .aspect-type.opp { background: #ff6b6b; }
+    .aspect-item .aspect-type.sqr { background: #ffd43b; color: #000; }
+    .aspect-item .aspect-type.trine { background: #51cf66; }
+    .aspect-item .aspect-type.sext { background: #74c0fc; }
+    .aspect-item .desc { color: #888; font-size: 0.85rem; }
+    
+    /* 元素統計 */
+    .element-stats { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; padding: 15px 0; }
+    .element-item { text-align: center; }
+    .element-icon { font-size: 2rem; }
+    .element-name { font-size: 0.9rem; color: #888; }
+    .element-count { font-size: 1.5rem; font-weight: 900; }
+    .element-bar { width: 50px; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; margin: 8px auto 0; overflow: hidden; }
+    .element-bar-fill { height: 100%; border-radius: 3px; }
+    
+    /* 幸運條件 */
+    .lucky-grid { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+    .lucky-item { background: rgba(255,255,255,0.1); padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
+    
+    /* 計算狀態 */
+    .calc-status { text-align: center; padding: 20px; color: #888; }
+    .calc-status.active { color: #51cf66; }
+
+    /* 語言切換 */
+    .lang-toggle { display: flex; gap: 5px; margin-left: 15px; }
+    .lang-btn { padding: 5px 12px; border: 1px solid rgba(255,255,255,0.3); border-radius: 15px; background: transparent; color: #aaa; cursor: pointer; font-size: 0.85rem; font-family: inherit; transition: all 0.3s; }
+    .lang-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
+    .lang-btn.active { background: linear-gradient(135deg, #f093fb, #f5576c); color: #fff; border-color: transparent; }
+
+    /* CSS 變數 - 響應式斷點 */
+    :root {
+      --bp-xs: 480px;
+      --bp-sm: 768px;
+      --bp-md: 1024px;
+      --bp-lg: 1280px;
+    }
+
+    /* 隱私權橃幅 */
+    .privacy-banner {
+      position: fixed;
+      top: 0;
+      left: env(safe-area-inset-left);
+      right: env(safe-area-inset-right);
+      z-index: 1000;
+      background: linear-gradient(135deg, rgba(30,30,60,0.98), rgba(50,50,80,0.98));
+      border-bottom: 1px solid rgba(240,147,251,0.3);
+      padding: clamp(8px, 2vw, 12px) clamp(10px, 3vw, 20px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .privacy-banner.hidden { display: none; }
+    .privacy-content { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center; }
+    .privacy-icon { font-size: clamp(1.2rem, 3vw, 1.5rem); }
+    .privacy-text { font-size: clamp(0.8rem, 2vw, 0.9rem); color: #ccc; text-align: center; }
+    .privacy-dismiss {
+      padding: 8px 20px;
+      background: linear-gradient(135deg, #f093fb, #f5576c);
+      border: none;
+      border-radius: 20px;
+      color: #fff;
+      font-weight: 700;
+      font-size: clamp(0.8rem, 2vw, 0.85rem);
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: inherit;
+      white-space: nowrap;
+    }
+    .privacy-dismiss:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(240,147,251,0.4); }
+
+    /* 漢堡選單 */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+      padding: 10px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      transition: all 0.3s;
+    }
+    .hamburger:hover { background: rgba(255,255,255,0.1); }
+    .hamburger span { display: block; width: 100%; height: 2px; background: #fff; border-radius: 2px; transition: all 0.3s; }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    /* 響應式 */
+    @media (max-width: 1280px) {
+      .container { max-width: 95%; }
+      .form-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+    }
+
+    @media (max-width: 1024px) {
+      .page-title h1 { font-size: clamp(1.5rem, 3vw, 2rem); }
+      .nav-links { gap: 8px; }
+      .nav-links a { padding: 8px 12px; font-size: 0.85rem; }
+    }
+
+    @media (max-width: 768px) {
+      .privacy-banner { flex-direction: column; gap: 10px; padding: 12px 15px; }
+      .navbar { flex-wrap: wrap; gap: 10px; }
+      .hamburger { display: flex; }
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 5px;
+        padding: 10px 0;
+      }
+      .nav-links.active { display: flex; }
+      .nav-links a {
+        padding: 12px 15px;
+        font-size: 1rem;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        border-radius: 10px;
+      }
+      .lang-btn { min-height: 44px; min-width: 44px; padding: 10px 16px; font-size: 0.95rem; }
+      .form-grid { grid-template-columns: 1fr; gap: 15px; }
+      .form-group { margin-bottom: 0; }
+      .planet-table { font-size: 0.85rem; }
+      .planet-table th, .planet-table td { padding: 10px 8px; }
+      .chart-container { width: 100%; max-width: 350px; margin: 0 auto; }
+      .result-section { padding: 20px 15px; }
+    }
+
+    @media (max-width: 480px) {
+      body { font-size: 14px; }
+      .container { padding: 10px; }
+      .page-title h1 { font-size: clamp(1.25rem, 5vw, 1.5rem); }
+      .card { padding: 20px 15px; }
+      .btn-calculate { width: 100%; font-size: 1rem; padding: 15px; }
+      .planet-table { display: block; overflow-x: auto; }
+      .planet-table thead { display: block; }
+      .planet-table tbody { display: block; width: 100%; overflow-x: auto; }
+    }
+
+    a:focus-visible, button:focus-visible, .lucky-zodiac-btn:focus-visible, .zodiac-item:focus-visible {
+      outline: 2px solid #f093fb;
+      outline-offset: 3px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 隱私權宣告橫幅 -->
+  <div class="privacy-banner hidden" id="privacyBanner">
+    <div class="privacy-content">
+      <span class="privacy-icon">🔒</span>
+      <span class="privacy-text" data-i18n="privacy_notice_text">本網站為靜態星座命理平台，不會收集、儲存或傳輸任何個人資料。所有占卜計算皆在您的瀏覽器內完成，不會上傳至任何伺服器。</span>
+    </div>
+    <button class="privacy-dismiss" data-action="dismiss-privacy" data-i18n="privacy_dismiss">我知道了</button>
+  </div>
+
+  <div class="starfield" id="starfield"></div>
+  
+  <div class="container">
+    <nav class="navbar">
+      <div class="logo">✨ <span data-i18n="nav_home_brand">星座命理</span></div>
+      <div class="hamburger" id="hamburgerBtn" onclick="toggleHamburger()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html" data-i18n="nav_home">首頁</a>
+        <a href="natal.html" class="active" data-i18n="nav_natal">命盤查詢</a>
+        <a href="compatibility.html" data-i18n="nav_compat">星座配對</a>
+        <a href="horoscope.html" data-i18n="nav_horo">星座運勢</a>
+        <a href="quiz.html" data-i18n="nav_quiz">遊戲測驗</a>
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh-TW" onclick="setLanguage('zh-TW')">繁</button>
+          <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="page-title">
+      <h1 data-i18n="natal_title">🪐 專業命盤查詢</h1>
+      <p data-i18n="natal_subtitle">輸入出生資料，生成專業星盤 | 含行星相位、宮位、元素分析</p>
+    </div>
+
+    <!-- 輸入表單 -->
+    <div class="card">
+      <div class="form-grid">
+        <div class="form-group">
+          <label data-i18n="label_year">出生年份</label>
+          <select id="birthYear">
+          </select>
+        </div>
+        <div class="form-group">
+          <label data-i18n="label_month">出生月份</label>
+          <select id="birthMonth"></select>
+        </div>
+        <div class="form-group">
+          <label data-i18n="label_day">出生日期</label>
+          <select id="birthDay"></select>
+        </div>
+        <div class="form-group">
+          <label data-i18n="label_hour">出生時分</label>
+          <select id="birthHour">
+            <option value="00:00">00:00</option>
+            <option value="00:15">00:15</option>
+            <option value="00:30">00:30</option>
+            <option value="00:45">00:45</option>
+            <option value="01:00">01:00</option>
+            <option value="01:15">01:15</option>
+            <option value="01:30">01:30</option>
+            <option value="01:45">01:45</option>
+            <option value="02:00">02:00</option>
+            <option value="02:15">02:15</option>
+            <option value="02:30">02:30</option>
+            <option value="02:45">02:45</option>
+            <option value="03:00">03:00</option>
+            <option value="03:15">03:15</option>
+            <option value="03:30">03:30</option>
+            <option value="03:45">03:45</option>
+            <option value="04:00">04:00</option>
+            <option value="04:15">04:15</option>
+            <option value="04:30">04:30</option>
+            <option value="04:45">04:45</option>
+            <option value="05:00">05:00</option>
+            <option value="05:15">05:15</option>
+            <option value="05:30">05:30</option>
+            <option value="05:45">05:45</option>
+            <option value="06:00">06:00</option>
+            <option value="06:15">06:15</option>
+            <option value="06:30">06:30</option>
+            <option value="06:45">06:45</option>
+            <option value="07:00">07:00</option>
+            <option value="07:15">07:15</option>
+            <option value="07:30">07:30</option>
+            <option value="07:45">07:45</option>
+            <option value="08:00">08:00</option>
+            <option value="08:15">08:15</option>
+            <option value="08:30">08:30</option>
+            <option value="08:45">08:45</option>
+            <option value="09:00">09:00</option>
+            <option value="09:15">09:15</option>
+            <option value="09:30">09:30</option>
+            <option value="09:45">09:45</option>
+            <option value="10:00">10:00</option>
+            <option value="10:15">10:15</option>
+            <option value="10:30">10:30</option>
+            <option value="10:45">10:45</option>
+            <option value="11:00">11:00</option>
+            <option value="11:15">11:15</option>
+            <option value="11:30">11:30</option>
+            <option value="11:45">11:45</option>
+            <option value="12:00">12:00</option>
+            <option value="12:15">12:15</option>
+            <option value="12:30">12:30</option>
+            <option value="12:45">12:45</option>
+            <option value="13:00">13:00</option>
+            <option value="13:15">13:15</option>
+            <option value="13:30" selected>13:30</option>
+            <option value="13:45">13:45</option>
+            <option value="14:00">14:00</option>
+            <option value="14:15">14:15</option>
+            <option value="14:30">14:30</option>
+            <option value="14:45">14:45</option>
+            <option value="15:00">15:00</option>
+            <option value="15:15">15:15</option>
+            <option value="15:30">15:30</option>
+            <option value="15:45">15:45</option>
+            <option value="16:00">16:00</option>
+            <option value="16:15">16:15</option>
+            <option value="16:30">16:30</option>
+            <option value="16:45">16:45</option>
+            <option value="17:00">17:00</option>
+            <option value="17:15">17:15</option>
+            <option value="17:30">17:30</option>
+            <option value="17:45">17:45</option>
+            <option value="18:00">18:00</option>
+            <option value="18:15">18:15</option>
+            <option value="18:30">18:30</option>
+            <option value="18:45">18:45</option>
+            <option value="19:00">19:00</option>
+            <option value="19:15">19:15</option>
+            <option value="19:30">19:30</option>
+            <option value="19:45">19:45</option>
+            <option value="20:00">20:00</option>
+            <option value="20:15">20:15</option>
+            <option value="20:30">20:30</option>
+            <option value="20:45">20:45</option>
+            <option value="21:00">21:00</option>
+            <option value="21:15">21:15</option>
+            <option value="21:30">21:30</option>
+            <option value="21:45">21:45</option>
+            <option value="22:00">22:00</option>
+            <option value="22:15">22:15</option>
+            <option value="22:30">22:30</option>
+            <option value="22:45">22:45</option>
+            <option value="23:00">23:00</option>
+            <option value="23:15">23:15</option>
+            <option value="23:30">23:30</option>
+            <option value="23:45">23:45</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label data-i18n="label_place">出生地點</label>
+          <select id="birthPlace">
+            <option value=" Taipei,25.05,121.52">台北市</option>
+            <option value=" New Taipei,25.01,121.44">新北市</option>
+            <option value=" Taichung,24.14,120.68">台中市</option>
+            <option value=" Tainan,22.99,120.22">台南市</option>
+            <option value=" Kaohsiung,22.63,120.30">高雄市</option>
+            <option value=" Taoyuan,24.99,121.32">桃園市</option>
+            <option value=" Hsinchu,24.80,120.97">新竹市</option>
+            <option value=" Keelung,25.13,121.74">基隆市</option>
+            <option value=" Taoyuan City,24.99,121.32">桃園國際機場</option>
+            <option value=" Hsinchu County,24.84,121.00">新竹縣</option>
+            <option value=" Miaoli County,24.56,120.82">苗栗縣</option>
+            <option value=" Changhua County,24.08,120.53">彰化縣</option>
+            <option value=" Nantou County,23.96,120.97">南投縣</option>
+            <option value=" Yunlin County,23.71,120.43">雲林縣</option>
+            <option value=" Chiayi County,23.45,120.66">嘉義縣</option>
+            <option value=" Chiayi,23.48,120.44">嘉義市</option>
+            <option value=" Pingtung County,22.55,120.58">屏東縣</option>
+            <option value=" Yilan County,24.76,121.75">宜蘭縣</option>
+            <option value=" Hualien County,23.99,121.61">花蓮縣</option>
+            <option value=" Taitung County,22.80,121.07">台東縣</option>
+            <option value=" Penghu County,23.57,119.58">澎湖縣</option>
+            <option value=" Kinmen County,24.45,118.38">金門縣</option>
+            <option value=" Lienchiang County,26.16,119.94">連江縣</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-grid" style="margin-top:15px;">
+        <div class="form-group">
+          <label data-i18n="label_house">宮位系統</label>
+          <select id="houseSystem">
+            <option value="P">Placidus（最常用）</option>
+            <option value="W">Whole Sign（整宮制）</option>
+            <option value="E">Equal House（等宮制）</option>
+            <option value="K">Koch（柯赫制）</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label data-i18n="label_dst">是否使用日光節約時間</label>
+          <select id="dst">
+            <option value="auto">自動偵測</option>
+            <option value="1">是（+1小時）</option>
+            <option value="0">否</option>
+          </select>
+        </div>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-primary" onclick="generateNatalChart()" data-i18n="btn_calculate">✨ 產生命盤</button>
+        <button class="btn" style="background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,255,255,0.2);" onclick="resetForm()" data-i18n="btn_reset">清除</button>
+      </div>
+    </div>
+
+    <!-- 命盤結果 -->
+    <div id="resultSection">
+      <!-- 星盤視覺化 -->
+      <div class="chart-section">
+        <div class="chart-wheel-card">
+          <h3 style="margin-bottom:15px;" data-i18n="chart_title">🌀 星盤圖</h3>
+          <div class="chart-wheel" id="chartWheel"></div>
+          <div class="main-signs-display" id="mainSignsDisplay"></div>
+        </div>
+        
+        <div class="data-section">
+          <!-- 行星位置 -->
+          <div class="data-card">
+            <h3>🪐 <span data-i18n="result_planet">行星位置</span></h3>
+            <table class="planet-table" id="planetTable">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th data-i18n="th_planet">行星</th>
+                  <th data-i18n="th_sign">星座</th>
+                  <th data-i18n="th_degree">度數</th>
+                  <th data-i18n="th_motion">順逆行</th>
+                </tr>
+              </thead>
+              <tbody id="planetBody"></tbody>
+            </table>
+          </div>
+          
+          <!-- 宮位 -->
+          <div class="data-card">
+            <h3>🏠 <span data-i18n="result_house">宮位分布</span></h3>
+            <table class="house-table" id="houseTable">
+              <thead>
+                <tr>
+                  <th data-i18n="th_house">宮位</th>
+                  <th data-i18n="th_sign">星座</th>
+                  <th data-i18n="th_ruler">守護星</th>
+                </tr>
+              </thead>
+              <tbody id="houseBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 行星相位 -->
+      <div class="data-card" style="margin-top:25px;">
+        <h3>🔗 <span data-i18n="result_aspect">行星相位</span></h3>
+        <div class="aspects-grid" id="aspectsGrid"></div>
+      </div>
+      
+      <!-- 元素分布 -->
+      <div class="data-card" style="margin-top:25px;">
+        <h3>📊 <span data-i18n="result_element">元素分布</span></h3>
+        <div class="element-stats" id="elementStats"></div>
+      </div>
+      
+      <!-- 幸運條件 -->
+      <div class="data-card" style="margin-top:25px;">
+        <h3>🍀 <span data-i18n="result_lucky">幸運條件</span></h3>
+        <div class="lucky-grid" id="luckyGrid"></div>
+      </div>
+    </div>
+  </div>
+
+<script src="translation.js"></script>
+  <script>
+    function sanitizeForHTML(str) {
+  if (str == null) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+// Input validation
+function validateBirthDate(year, month, day) {
+  const y = parseInt(year), m = parseInt(month), d = parseInt(day);
+  if (isNaN(y) || y < 1900 || y > 2030) return false;
+  if (isNaN(m) || m < 1 || m > 12) return false;
+  if (isNaN(d) || d < 1 || d > 31) return false;
+  return true;
+}
+
+function validateCoordinates(coordStr) {
+  const parts = coordStr.split(',');
+  if (parts.length !== 3) return false;
+  const lat = parseFloat(parts[1]), lon = parseFloat(parts[2]);
+  if (isNaN(lat) || lat < -90 || lat > 90) return false;
+  if (isNaN(lon) || lon < -180 || lon > 180) return false;
+  return true;
+}
+
+function validateTime(timeStr) {
+  return /^([01]d|2[0-3]):([0-5]d)$/.test(timeStr);
+}
+
+function sanitizeInput(str) {
+  if (str == null) return '';
+  return String(str).replace(/[<>"'&]/g, '').trim().slice(0, 200);
+}
+</script>
+<script>
+// === 星座資料 ===
+const zodiacSigns = [
+  { name: '牡羊座', symbol: 'aries', icon: '♈', element: '火', ruler: '火星', deg: 0 },
+  { name: '金牛座', symbol: 'taurus', icon: '♉', element: '土', ruler: '金星', deg: 30 },
+  { name: '雙子座', symbol: 'gemini', icon: '♊', element: '風', ruler: '水星', deg: 60 },
+  { name: '巨蟹座', symbol: 'cancer', icon: '♋', element: '水', ruler: '月亮', deg: 90 },
+  { name: '獅子座', symbol: 'leo', icon: '♌', element: '火', ruler: '太陽', deg: 120 },
+  { name: '處女座', symbol: 'virgo', icon: '♍', element: '土', ruler: '水星', deg: 150 },
+  { name: '天秤座', symbol: 'libra', icon: '♎', element: '風', ruler: '金星', deg: 180 },
+  { name: '天蠍座', symbol: 'scorpio', icon: '♏', element: '水', ruler: '冥王星', deg: 210 },
+  { name: '射手座', symbol: 'sagittarius', icon: '♐', element: '火', ruler: '木星', deg: 240 },
+  { name: '摩羯座', symbol: 'capricorn', icon: '♑', element: '土', ruler: '土星', deg: 270 },
+  { name: '水瓶座', symbol: 'aquarius', icon: '♒', element: '風', ruler: '天王星', deg: 300 },
+  { name: '雙魚座', symbol: 'pisces', icon: '♓', element: '水', ruler: '海王星', deg: 330 }
+];
+
+const planets = [
+  { name: '太陽', icon: '☀️', key: 'sun' },
+  { name: '月亮', icon: '🌙', key: 'moon' },
+  { name: '水星', icon: '☿️', key: 'mercury' },
+  { name: '金星', icon: '♀️', key: 'venus' },
+  { name: '火星', icon: '♂️', key: 'mars' },
+  { name: '木星', icon: '♃', key: 'jupiter' },
+  { name: '土星', icon: '♄', key: 'saturn' },
+  { name: '天王星', icon: '⛢', key: 'uranus' },
+  { name: '海王星', icon: '♆', key: 'neptune' },
+  { name: '冥王星', icon: '♇', key: 'pluto' }
+];
+
+const aspects = [
+  { name: '合相', symbol: '☌', deg: 0, orb: 10, type: 'conj' },
+  { name: '六分', symbol: '⚹', deg: 60, orb: 6, type: 'sext' },
+  { name: '四分', symbol: '□', deg: 90, orb: 8, type: 'sqr' },
+  { name: '三分', symbol: '△', deg: 120, orb: 8, type: 'trine' },
+  { name: '對分', symbol: '☍', deg: 180, orb: 10, type: 'opp' }
+];
+
+const elementColors = { 火: '#ff6b6b', 土: '#51cf66', 風: '#ffd43b', 水: '#74c0fc' };
+
+// === 星座計算 ===
+function getZodiacIndex(degree) {
+  const d = ((degree % 360) + 360) % 360; // 標準化到 0-360
+  return Math.floor(d / 30) % 12;
+}
+
+function getZodiacSign(degree) {
+  return zodiacSigns[getZodiacIndex(degree)];
+}
+
+function degreeToDMS(degree) {
+  // 標準化到 0-359 範圍
+  const normalized = ((degree % 360) + 360) % 360;
+  const deg = Math.floor(normalized % 30); // 取 30 度內的度數
+  const minFloat = (normalized % 1) * 60;
+  const min = Math.floor(minFloat);
+  const sec = Math.round((minFloat - min) * 60);
+  return { deg, min, sec };
+}
+
+// === 簡化天文計算（演示用）===
+function calculatePlanets(jd, lat, lon) {
+  // 基於簡化的黃道帶計算
+  // 實際應用中應使用 ephemeris 數據
+  const positions = {};
+  
+  // 使用傳入的 jd（儒略日期）計算，而不是 new Date()
+  // jd 是自出生日期計算的天文時間
+  const daysSinceJ2000 = jd - 2451545.0;
+  const sunMean = daysSinceJ2000 / 36525.0; // 儒略世紀
+  const sunLong = (280.46646 + sunMean * 36000.76983 + sunMean * sunMean * 0.000033) % 360;
+  
+  // 根據儒略日期計算當天的位置
+  // 一天的 fraction = (jd % 1) 代表當天的時間
+  const dayFraction = jd % 1;
+  const dayOfYear = ((jd - Math.floor(jd)) * 365.25 + daysSinceJ2000) % 365.25;
+  
+  // 太陽位置（根據出生日期的儒略日計算）
+  const sunBase = (sunLong + dayFraction * 360) % 360;
+  positions.sun = { sign: zodiacSigns[getZodiacIndex(sunBase)], degree: sunBase % 30, retrograde: false };
+  
+  // 月亮（大約27.3天繞一圈）
+  const moonPhase = ((daysSinceJ2000 / 27.3) * 360 + 180) % 360;
+  positions.moon = { sign: zodiacSigns[getZodiacIndex(moonPhase)], degree: moonPhase % 30, retrograde: false };
+  
+  // 其他行星（根據儒略日期的簡化計算）
+  const planetOffsets = {
+    mercury: 50,
+    venus: 90,
+    mars: 150,
+    jupiter: 200,
+    saturn: 250,
+    uranus: 280,
+    neptune: 310,
+    pluto: 330
+  };
+  
+  planets.slice(2).forEach((p, i) => {
+    const baseOffset = planetOffsets[p.key] || i * 40;
+    // 使用儒略日期而非 dayOfYear，確保每次輸入相同日期產生相同結果
+    const variation = (daysSinceJ2000 * 0.01 * (i + 1)) % 30;
+    const long = (baseOffset + variation) % 360;
+    // 逆行基於行星特性，不使用隨機值
+    const isRetrograde = (p.key === 'uranus' || p.key === 'neptune' || p.key === 'pluto') && 
+                         Math.sin(daysSinceJ2000 * 0.01 + i) > 0.5;
+    positions[p.key] = { sign: zodiacSigns[getZodiacIndex(long)], degree: long % 30, retrograde: isRetrograde };
+  });
+
+  return positions;
+}
+
+// === 計算宮位（deterministic）===
+function calculateHouses(lat, houseSystem) {
+  const houses = [];
+  // 使用固定的數學公式，確保相同輸入產生相同輸出
+  for (let i = 1; i <= 12; i++) {
+    // Placidus 公式簡化版
+    const baseHouse = (i - 1) * 30;
+    const latFactor = Math.sin(lat * Math.PI / 180) * (i * 15);
+    const houseDeg = (baseHouse + latFactor) % 360;
+    houses.push({
+      house: i,
+      sign: zodiacSigns[getZodiacIndex(houseDeg)],
+      degree: Math.abs(houseDeg % 30)
+    });
+  }
+  return houses;
+}
+
+// === 計算相位 ===
+function calculateAspects(positions) {
+  const foundAspects = [];
+  const planetKeys = Object.keys(positions);
+  
+  for (let i = 0; i < planetKeys.length; i++) {
+    for (let j = i + 1; j < planetKeys.length; j++) {
+      const p1 = planetKeys[i];
+      const p2 = planetKeys[j];
+      
+      // 計算相位（簡化）
+      const pos1 = (positions[p1].sign.deg + positions[p1].degree) % 360;
+      const pos2 = (positions[p2].sign.deg + positions[p2].degree) % 360;
+      let diff = Math.abs(pos1 - pos2);
+      if (diff > 180) diff = 360 - diff;
+      
+      // 檢查各個相位
+      for (const aspect of aspects) {
+        if (Math.abs(diff - aspect.deg) <= aspect.orb) {
+          foundAspects.push({
+            planet1: p1,
+            planet2: p2,
+            aspect: aspect,
+            orb: Math.abs(diff - aspect.deg)
+          });
+        }
+      }
+    }
+  }
+  
+  return foundAspects.slice(0, 12); // 最多12個相位
+}
+
+// === 建立星空背景 ===
+function createStarfield() {
+  const container = document.getElementById('starfield');
+  for (let i = 0; i < 120; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.animationDelay = Math.random() * 3 + 's';
+    container.appendChild(star);
+  }
+}
+
+// === 產生命盤 ===
+function generateNatalChart() {
+  const year = parseInt(document.getElementById('birthYear').value);
+  const month = parseInt(document.getElementById('birthMonth').value);
+  const day = parseInt(document.getElementById('birthDay').value);
+  const timeStr = document.getElementById('birthHour').value;
+  const placeStr = document.getElementById('birthPlace').value;
+  
+  if (!year || !month || !day || !timeStr) {
+    alert('請填寫完整出生日期和時間');
+    return;
+  }
+  
+  // 驗證日期有效性
+  const maxDay = new Date(year, month, 0).getDate();
+  if (day > maxDay) {
+    // 清空舊結果
+    document.getElementById('resultSection').classList.remove('active');
+    document.getElementById('mainSignsDisplay').innerHTML = '';
+    document.getElementById('planetBody').innerHTML = '';
+    document.getElementById('houseBody').innerHTML = '';
+    document.getElementById('aspectsGrid').innerHTML = '';
+    document.getElementById('elementStats').innerHTML = '';
+    document.getElementById('luckyGrid').innerHTML = '';
+    alert(`錯誤：${year}年${month}月只有${maxDay}天，請重新選擇日期`);
+    return;
+  }
+  
+  const dateStr = `${year}-${String(month).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+  
+  // 解析地點
+  let lat = 25.05, lon = 121.52; // 預設台北
+  if (placeStr) {
+    const parts = placeStr.split(',');
+    if (parts.length >= 2) {
+      lat = parseFloat(parts[1]) || lat;
+      lon = parseFloat(parts[2]) || lon;
+    }
+  }
+  
+  // 計算儒略日期
+  const birthDate = new Date(dateStr + 'T' + timeStr);
+  const jd = birthDate.getTime() / 86400000 + 2440587.5;
+  
+  // 計算行星位置
+  const positions = calculatePlanets(jd, lat, lon);
+  
+  // 計算宮位
+  const houseSystem = document.getElementById('houseSystem').value;
+  const houses = calculateHouses(lat, houseSystem);
+  
+  // 計算相位
+  const chartAspects = calculateAspects(positions);
+  
+  // === 渲染星盤圖 ===
+  renderChartWheel(positions, houses);
+  
+  // === 渲染主要星座 ===
+  const mainSignsDisplay = document.getElementById('mainSignsDisplay');
+  mainSignsDisplay.innerHTML = `
+    <div class="main-sign-item">
+      <div class="icon">☀️</div>
+      <div class="name">${positions.sun.sign.name}</div>
+      <div class="label">太陽星座</div>
+    </div>
+    <div class="main-sign-item">
+      <div class="icon">🌙</div>
+      <div class="name">${positions.moon.sign.name}</div>
+      <div class="label">月亮星座</div>
+    </div>
+    <div class="main-sign-item">
+      <div class="icon">⬆️</div>
+      <div class="name">${houses[0].sign.name}</div>
+      <div class="label">上升星座</div>
+    </div>
+  `;
+  
+  // === 渲染行星表格 ===
+  const planetBody = document.getElementById('planetBody');
+  planetBody.innerHTML = planets.map(p => {
+    const pos = positions[p.key];
+    const dms = degreeToDMS(pos.degree);
+    return `
+      <tr>
+        <td class="planet-icon-cell">${p.icon}</td>
+        <td>${p.name}</td>
+        <td><span class="sign-icon-cell">${pos.sign.icon}</span> ${pos.sign.name}</td>
+        <td>${dms.deg}°${dms.min}'${dms.sec}"</td>
+        <td style="color:${pos.retrograde ? '#ff6b6b' : '#51cf66'}">${pos.retrograde ? '逆行' : '順行'}</td>
+      </tr>
+    `;
+  }).join('');
+  
+  // === 渲染宮位表格 ===
+  const houseBody = document.getElementById('houseBody');
+  houseBody.innerHTML = houses.map(h => `
+    <tr>
+      <td>第${h.house}宮</td>
+      <td><span class="sign-icon-cell">${h.sign.icon}</span> ${h.sign.name}</td>
+      <td>${h.sign.ruler}</td>
+    </tr>
+  `).join('');
+  
+  // === 渲染相位 ===
+  const aspectsGrid = document.getElementById('aspectsGrid');
+  aspectsGrid.innerHTML = chartAspects.map(a => `
+    <div class="aspect-item">
+      <span class="planets">${planets.find(p => p.key === a.planet1).icon} ${planets.find(p => p.key === a.planet2).icon}</span>
+      <span class="aspect-type ${a.aspect.type}">${a.aspect.name} ${a.aspect.symbol}</span>
+      <span class="desc">容許度 ${a.orb.toFixed(1)}°</span>
+    </div>
+  `).join('') || '<div style="color:#888;text-align:center;padding:20px;">沒有主要相位</div>';
+  
+  // === 渲染元素統計 ===
+  const elements = { 火: 0, 土: 0, 風: 0, 水: 0 };
+  Object.values(positions).forEach(pos => {
+    elements[pos.sign.element]++;
+  });
+  
+  const elementStats = document.getElementById('elementStats');
+  const maxElement = Math.max(...Object.values(elements));
+  elementStats.innerHTML = Object.entries(elements).map(([el, count]) => `
+    <div class="element-item">
+      <div class="element-icon">${el === '火' ? '🔥' : el === '土' ? '🌍' : el === '風' ? '💨' : '💧'}</div>
+      <div class="element-name">${el}象</div>
+      <div class="element-count">${count}</div>
+      <div class="element-bar"><div class="element-bar-fill" style="width:${(count/maxElement)*100}%;background:${elementColors[el]};"></div></div>
+    </div>
+  `).join('');
+  
+  // === 渲染幸運條件 ===
+  const luckyGrid = document.getElementById('luckyGrid');
+  const sun = positions.sun.sign;
+  const luckyIndex = getZodiacIndex(sun.deg + sun.deg) % 8;
+  const luckyItems = [
+    { icon: '🎨', label: '幸運色', values: ['紅','綠','黃','白','金','棕','粉','紫'], idx: luckyIndex },
+    { icon: '🔮', label: '幸運寶石', values: ['紅寶石','翡翠','瑪瑙','月光石','琥珀','藍寶石','粉紅碧璽','石榴石'], idx: luckyIndex },
+    { icon: '🌸', label: '幸運花', values: ['杜鵑花','牽牛花','茉莉花','百合花','向日葵','波斯菊','玫瑰花','扶桑花'], idx: luckyIndex },
+    { icon: '🍀', label: '守護星', values: [sun.ruler], idx: 0 },
+    { icon: '🌙', label: '吉日', values: ['一','二','三','四','五','六','日'], idx: getZodiacIndex(sun.deg) % 7 }
+  ];
+  luckyGrid.innerHTML = luckyItems.map(item => 
+    `<div class="lucky-item"><span>${item.icon}</span><span>${item.label}：${item.values[item.idx]}</span></div>`
+  ).join('');
+  
+  // 顯示結果
+  document.getElementById('resultSection').classList.add('active');
+}
+
+// === 渲染星盤圖 ===
+function renderChartWheel(positions, houses) {
+  const chartWheel = document.getElementById('chartWheel');
+  const centerX = 150, centerY = 150, radius = 120;
+  
+  let svg = `<svg viewBox="0 0 300 300" style="transform: rotate(-90deg);">`;
+  
+  // 外圈（星座）
+  svg += `<circle cx="${centerX}" cy="${centerY}" r="${radius + 20}" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>`;
+  
+  // 內圈（宮位）
+  svg += `<circle cx="${centerX}" cy="${centerY}" r="${radius - 10}" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="15"/>`;
+  
+  // 繪製行星位置
+  const planetEntries = Object.entries(positions);
+  planetEntries.forEach(([key, pos], i) => {
+    const totalDeg = pos.sign.deg + pos.degree;
+    const rad = (totalDeg * Math.PI) / 180;
+    const x = centerX + (radius + 5) * Math.cos(rad);
+    const y = centerY + (radius + 5) * Math.sin(rad);
+    const p = planets.find(pl => pl.key === key);
+    
+    svg += `<text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="middle" font-size="14">${p.icon}</text>`;
+  });
+  
+  // 宮位線
+  houses.forEach((h, i) => {
+    const rad1 = ((h.house - 1) * 30 * Math.PI) / 180;
+    const rad2 = (h.house * 30 * Math.PI) / 180;
+    const x1 = centerX + (radius - 10) * Math.cos(rad1);
+    const y1 = centerY + (radius - 10) * Math.sin(rad1);
+    const x2 = centerX + (radius + 15) * Math.cos(rad1);
+    const y2 = centerY + (radius + 15) * Math.sin(rad1);
+    
+    svg += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>`;
+    svg += `<text x="${x2}" y="${y2}" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="#888">${h.house}</text>`;
+  });
+  
+  // 星座符號
+  zodiacSigns.forEach((z, i) => {
+    const rad = (z.deg * Math.PI) / 180;
+    const x = centerX + (radius + 30) * Math.cos(rad);
+    const y = centerY + (radius + 30) * Math.sin(rad);
+    svg += `<text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="middle" font-size="16">${z.icon}</text>`;
+  });
+  
+  svg += `</svg>`;
+  
+  // 中心資訊
+  const sun = positions.sun;
+  chartWheel.innerHTML = svg + `
+    <div class="wheel-center" style="transform: translate(-50%, -50%) rotate(90deg);">
+      <div class="sun-icon">☀️</div>
+      <div class="sun-sign">${sun.sign.icon}</div>
+      <div class="sun-deg">${sun.sign.name}</div>
+    </div>
+  `;
+}
+
+// === 重置表單 === 
+function resetForm() {
+  document.getElementById('resultSection').classList.remove('active');
+  // 完整重置為預設值：1990/6/15/13:30/台北市/Placidus/自動偵測
+  document.getElementById('birthYear').value = 1990;
+  document.getElementById('birthMonth').value = 6;
+  document.getElementById('birthDay').value = 15;
+  document.getElementById('birthHour').value = '13:30';
+  document.getElementById('birthPlace').value = ' Taipei,25.05,121.52';
+  document.getElementById('houseSystem').value = 'P';
+  document.getElementById('dst').value = 'auto';
+}
+
+// === 更新日期選單天數 ===
+function updateDayDropdown() {
+  const year = parseInt(document.getElementById('birthYear').value) || new Date().getFullYear();
+  const month = parseInt(document.getElementById('birthMonth').value) || 1;
+  const maxDay = new Date(year, month, 0).getDate();
+  const daySelect = document.getElementById('birthDay');
+  const currentDay = parseInt(daySelect.value) || 1;
+  
+  // 清空並重建日期選項
+  daySelect.innerHTML = '';
+  for (let d = 1; d <= maxDay; d++) {
+    const opt = document.createElement('option');
+    opt.value = d;
+    opt.textContent = d;
+    if (d === Math.min(currentDay, maxDay)) opt.selected = true;
+    daySelect.appendChild(opt);
+  }
+}
+
+// === 初始化下拉選單 ===
+function initDropdowns() {
+  const yearSelect = document.getElementById('birthYear');
+  const currentYear = new Date().getFullYear();
+  for (let y = 1900; y <= currentYear; y++) {
+    const opt = document.createElement('option');
+    opt.value = y;
+    opt.textContent = y;
+    if (y === 1990) opt.selected = true;
+    yearSelect.appendChild(opt);
+  }
+  
+  // 初始化月份選項
+  const monthSelect = document.getElementById('birthMonth');
+  for (let m = 1; m <= 12; m++) {
+    const opt = document.createElement('option');
+    opt.value = m;
+    opt.textContent = m + ' 月';
+    if (m === 6) opt.selected = true;
+    monthSelect.appendChild(opt);
+  }
+  
+  // 初始化日期選項（預設最大值31）
+  const daySelect = document.getElementById('birthDay');
+  daySelect.innerHTML = '';
+  for (let d = 1; d <= 31; d++) {
+    const opt = document.createElement('option');
+    opt.value = d;
+    opt.textContent = d + ' 日';
+    if (d === 15) opt.selected = true;
+    daySelect.appendChild(opt);
+  }
+  
+  // 年月變更時更新日期選單
+  document.getElementById('birthYear').addEventListener('change', updateDayDropdown);
+  document.getElementById('birthMonth').addEventListener('change', updateDayDropdown);
+}
+
+createStarfield();
+initDropdowns();
+initLanguage();
+
+// 漢堡選單切換
+function toggleHamburger() {
+  const hamburger = document.getElementById('hamburgerBtn');
+  const navLinks = document.getElementById('navLinks');
+  hamburger.classList.toggle('active');
+  navLinks.classList.toggle('active');
+}
+
+// 關閉漢堡選單當點擊連結後
+document.addEventListener('click', function(e) {
+  if (e.target.tagName === 'A' && window.innerWidth <= 768) {
+    const hamburger = document.getElementById('hamburgerBtn');
+    const navLinks = document.getElementById('navLinks');
+    if (hamburger && hamburger.classList.contains('active')) {
+      hamburger.classList.remove('active');
+      navLinks.classList.remove('active');
+    }
+  }
+});
+
+// 隱私權橫幅關閉（事件委派 + 強健 selector）
+document.addEventListener('click', function(e) {
+  if (e.target.closest('[data-action="dismiss-privacy"]')) {
+    var banner = document.querySelector('.privacy-banner, .privacy-notice, #privacyBanner, [data-privacy-banner]');
+    if (banner) {
+      banner.style.display = 'none';
+      banner.classList.add('hidden');
+    }
+    try { localStorage.setItem('privacyDismissed', 'true'); } catch(err) {}
+  }
+});
+
+// 確保全域也可呼叫
+window.dismissPrivacyBanner = function() {
+  var banner = document.querySelector('.privacy-banner, .privacy-notice, #privacyBanner, [data-privacy-banner]');
+  if (banner) {
+    banner.style.display = 'none';
+    banner.classList.add('hidden');
+  }
+  try { localStorage.setItem('privacyDismissed', 'true'); } catch(err) {}
+};
+
+// 頁面載入時檢查是否已關閉過
+document.addEventListener('DOMContentLoaded', function() {
+  if (localStorage.getItem('privacyDismissed') === 'true') {
+    var banner = document.querySelector('.privacy-banner, .privacy-notice, #privacyBanner, [data-privacy-banner]');
+    if (banner) {
+      banner.style.display = 'none';
+      banner.classList.add('hidden');
+    }
+  }
+});
+
+// 監聽語言變化事件
+window.addEventListener('languageChanged', function(e) {
+  // 重新翻譯月份和日期選項文字
+  updateDropdownLabels();
+  // 重新翻譯結果中的星座和行星名稱
+  if (document.getElementById('resultSection').classList.contains('active')) {
+    // 如果結果可見，需要重新渲染（這裡不做複雜處理，頁面切換時自然更新）
+  }
+});
+
+function updateDropdownLabels() {
+  // 月份翻譯
+  const monthSelect = document.getElementById('birthMonth');
+  const monthLabels = currentLang === 'en'
+    ? ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    : ['1 月', '2 月', '3 月', '4 月', '5 月', '6 月', '7 月', '8 月', '9 月', '10 月', '11 月', '12 月'];
+  for (let m = 1; m <= 12; m++) {
+    const opt = monthSelect.querySelector(`option[value="${m}"]`);
+    if (opt) opt.textContent = monthLabels[m - 1];
+  }
+
+  // 日期翻譯（保持數字不變，僅在需要時調整）
+  const daySelect = document.getElementById('birthDay');
+  const dayLabel = currentLang === 'en' ? '' : ' 日';
+  daySelect.querySelectorAll('option').forEach(opt => {
+    const d = parseInt(opt.value);
+    opt.textContent = d + dayLabel;
+  });
+}
+
+// === Footer ===
+const footerStyle = 'text-align:center;padding:30px 0;color:#666;font-size:0.85rem;';
+const footerLinkStyle = 'color:#aaa;text-decoration:none;margin:0 8px;';
+document.write(`<div style="${footerStyle}"><p>© 2024 <span data-i18n="footer_copyright">星座命理平台</span> | <a href="index.html" style="${footerLinkStyle}" data-i18n="nav_home">返回首頁</a> | <a href="natal.html" style="${footerLinkStyle}">${currentLang==='en'?'Natal Chart':'命盤查詢'}</a></p></div>`);
+function sanitizeForHTML(str) {
+  if (str == null) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+</script>
+</body>
+</html>

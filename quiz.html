@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <!-- Security Headers -->
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self';">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a1a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>🎮 星座遊戲測驗 — 你是哪個遊戲角色？ | 星座命理平台</title>
+  <meta name="description" content="透過星座心理測驗與遊戲題目，找出你的星座角色、性格傾向與趣味結果，適合朋友分享與互動體驗。">
+  <meta name="keywords" content="星座測驗,星座遊戲,心理測驗,星座人格,星座小遊戲">
+  <meta name="robots" content="index, follow">
+  <meta name="geo.region" content="TW">
+  <meta name="geo.placename" content="Taiwan">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://zodiac-quiz-enhanced.pages.dev/quiz">
+  
+  <!-- hreflang tags -->
+  <link rel="alternate" hreflang="zh-TW" href="https://zodiac-quiz-enhanced.pages.dev/quiz">
+  <link rel="alternate" hreflang="zh-HK" href="https://zodiac-quiz-enhanced.pages.dev/quiz">
+  <link rel="alternate" hreflang="x-default" href="https://zodiac-quiz-enhanced.pages.dev/quiz">
+  <!-- Open Graph -->
+  <meta property="og:title" content="星座遊戲測驗 — 你是哪個遊戲角色？">
+  <meta property="og:description" content="透過星座心理測驗與遊戲題目，找出你的星座角色、性格傾向與趣味結果，適合朋友分享與互動體驗。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zodiac-quiz-enhanced.pages.dev/quiz">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:locale:alternate" content="zh_HK">
+  <meta property="og:site_name" content="星座命理平台">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="星座遊戲測驗 — 你是哪個遊戲角色？">
+  <meta name="twitter:description" content="透過星座心理測驗與遊戲題目，找出你的星座角色、性格傾向與趣味結果，適合朋友分享與互動體驗。">
+    <meta property="og:image" content="https://zodiac-quiz-enhanced.pages.dev/og-image.png">
+  <meta name="twitter:image" content="https://zodiac-quiz-enhanced.pages.dev/og-image.png">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "星座遊戲測驗 — 你是哪個遊戲角色？",
+  "description": "透過星座心理測驗與遊戲題目，找出你的星座角色、性格傾向與趣味結果，適合朋友分享與互動體驗。",
+  "url": "https://zodiac-quiz-enhanced.pages.dev/quiz",
+  "inLanguage": "zh-TW",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "星座命理平台",
+    "url": "https://zodiac-quiz-enhanced.pages.dev/"
+  }
+}
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: #0a0a1a;
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+      -webkit-text-size-adjust: 100%;
+      -webkit-tap-highlight-color: rgba(240,147,251,0.2);
+    }
+
+    .starfield {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .star {
+      position: absolute;
+      width: 2px; height: 2px;
+      background: #fff;
+      border-radius: 50%;
+      animation: twinkle 3s infinite;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.5); }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+      margin-bottom: 20px;
+    }
+    .logo {
+      font-size: 1.3rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #4facfe 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .lang-toggle {
+      display: flex;
+      gap: 5px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 4px;
+    }
+    .lang-btn {
+      padding: 5px 12px;
+      border: none;
+      background: transparent;
+      color: #888;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .lang-btn.active {
+      background: linear-gradient(135deg, #f093fb, #f5576c);
+      color: #fff;
+    }
+    .lang-btn:hover:not(.active) { color: #fff; }
+    .nav-links a {
+      color: #888;
+      text-decoration: none;
+      padding: 8px 15px;
+      font-size: 0.9rem;
+      border-radius: 20px;
+      transition: all 0.3s;
+    }
+    .nav-links a:hover { color: #fff; }
+
+    .header { text-align: center; margin-bottom: 30px; }
+    .header h1 {
+      font-size: 1.8rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #4facfe 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+    .header p { color: #888; font-size: 0.95rem; }
+
+    .card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 25px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+
+    .progress-container { margin-bottom: 25px; }
+    .progress-text {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 8px;
+    }
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #f093fb, #f5576c);
+      border-radius: 3px;
+      transition: width 0.5s ease;
+    }
+
+    .question-area { text-align: center; margin-bottom: 25px; }
+    .zodiac-icon { font-size: 3rem; margin-bottom: 15px; }
+    .question-text {
+      font-size: 1.2rem;
+      font-weight: 700;
+      line-height: 1.6;
+      color: #fff;
+    }
+
+    .options { display: flex; flex-direction: column; gap: 12px; }
+    .option {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 15px 20px;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .option:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.3);
+      transform: translateX(5px);
+    }
+    .option.selected {
+      background: linear-gradient(135deg, rgba(240,147,251,0.2), rgba(245,87,108,0.2));
+      border-color: #f093fb;
+    }
+    .option-letter {
+      width: 30px;
+      height: 30px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    .option.selected .option-letter {
+      background: linear-gradient(135deg, #f093fb, #f5576c);
+    }
+    .option-text { font-size: 1rem; line-height: 1.5; }
+
+    /* 結果頁面 */
+    #resultSection { display: none; text-align: center; }
+    #resultSection.active { display: block; }
+    .result-icon { font-size: 5rem; margin-bottom: 20px; }
+    .result-title {
+      font-size: 1.8rem;
+      font-weight: 900;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #f093fb, #f5576c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .result-subtitle { color: #aaa; margin-bottom: 20px; }
+    .result-desc {
+      color: #ccc;
+      line-height: 1.8;
+      margin-bottom: 25px;
+      text-align: left;
+    }
+    .match-items { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 25px; }
+    .match-item {
+      background: rgba(255,255,255,0.1);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+    }
+    .btn-group { display: flex; gap: 12px; justify-content: center; }
+    .btn {
+      padding: 12px 30px;
+      border-radius: 25px;
+      border: none;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #f093fb, #f5576c);
+      color: #fff;
+    }
+    .btn-secondary {
+      background: rgba(255,255,255,0.1);
+.lang-btn.active {
+      background: linear-gradient(135deg, #f093fb, #f5576c);
+      color: #fff;
+    }
+
+    /* CSS 變數 - 響應式斷點 */
+    :root {
+      --bp-xs: 480px;
+      --bp-sm: 768px;
+      --bp-md: 1024px;
+      --bp-lg: 1280px;
+    }
+
+    /* 隱私權橃幅 */
+    .privacy-banner {
+      position: fixed;
+      top: 0;
+      left: env(safe-area-inset-left);
+      right: env(safe-area-inset-right);
+      z-index: 1000;
+      background: linear-gradient(135deg, rgba(30,30,60,0.98), rgba(50,50,80,0.98));
+      border-bottom: 1px solid rgba(240,147,251,0.3);
+      padding: clamp(8px, 2vw, 12px) clamp(10px, 3vw, 20px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .privacy-banner.hidden { display: none; }
+    .privacy-content { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center; }
+    .privacy-icon { font-size: clamp(1.2rem, 3vw, 1.5rem); }
+    .privacy-text { font-size: clamp(0.8rem, 2vw, 0.9rem); color: #ccc; text-align: center; }
+    .privacy-dismiss {
+      padding: 8px 20px;
+      background: linear-gradient(135deg, #f093fb, #f5576c);
+      border: none;
+      border-radius: 20px;
+      color: #fff;
+      font-weight: 700;
+      font-size: clamp(0.8rem, 2vw, 0.85rem);
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: inherit;
+      white-space: nowrap;
+    }
+    .privacy-dismiss:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(240,147,251,0.4); }
+
+    /* 漢堡選單 */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+      padding: 10px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      transition: all 0.3s;
+    }
+    .hamburger:hover { background: rgba(255,255,255,0.1); }
+    .hamburger span { display: block; width: 100%; height: 2px; background: #fff; border-radius: 2px; transition: all 0.3s; }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    /* 響應式 */
+    @media (max-width: 1280px) {
+      .container { max-width: 95%; }
+    }
+
+    @media (max-width: 1024px) {
+      .header h1 { font-size: clamp(1.5rem, 3vw, 1.8rem); }
+      .nav-links { gap: 8px; }
+      .nav-links a { padding: 8px 12px; font-size: 0.85rem; }
+    }
+
+    @media (max-width: 768px) {
+      .privacy-banner { flex-direction: column; gap: 10px; padding: 12px 15px; }
+      .navbar { flex-wrap: wrap; gap: 10px; }
+      .hamburger { display: flex; }
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 5px;
+        padding: 10px 0;
+      }
+      .nav-links.active { display: flex; }
+      .nav-links a {
+        padding: 12px 15px;
+        font-size: 1rem;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        border-radius: 10px;
+      }
+      .lang-btn { min-height: 44px; min-width: 44px; padding: 10px 16px; font-size: 0.95rem; }
+      .header { margin-bottom: 20px; }
+      .option { padding: 12px 15px; }
+      .btn-group { flex-direction: column; }
+      .btn { width: 100%; }
+    }
+
+    @media (max-width: 480px) {
+      body { font-size: 14px; }
+      .container { padding: 10px; }
+      .header h1 { font-size: clamp(1.25rem, 5vw, 1.5rem); }
+      .card { padding: 20px 15px; }
+      .question-text { font-size: 1rem; }
+      .option-text { font-size: 0.9rem; }
+      .result-title { font-size: 1.5rem; }
+      .match-item { font-size: 0.8rem; padding: 6px 12px; }
+    }
+
+    a:focus-visible, button:focus-visible, .lucky-zodiac-btn:focus-visible, .zodiac-item:focus-visible {
+      outline: 2px solid #f093fb;
+      outline-offset: 3px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 隱私權宣告橫幅 -->
+  <div class="privacy-banner hidden" id="privacyBanner">
+    <div class="privacy-content">
+      <span class="privacy-icon">🔒</span>
+      <span class="privacy-text" data-i18n="privacy_notice_text">本網站為靜態星座命理平台，不會收集、儲存或傳輸任何個人資料。所有占卜計算皆在您的瀏覽器內完成，不會上傳至任何伺服器。</span>
+    </div>
+    <button class="privacy-dismiss" data-action="dismiss-privacy" data-i18n="privacy_dismiss">我知道了</button>
+  </div>
+
+  <div class="starfield" id="starfield"></div>
+
+  <div class="container">
+    <nav class="navbar">
+      <div class="logo" data-i18n="nav_logo">✨ 星座命理</div>
+      <div class="nav-links">
+        <div class="lang-toggle">
+          <button class="lang-btn active" data-lang="zh-TW">中文</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" data-i18n="nav_home">首頁</a>
+        <a href="quiz.html" class="active" data-i18n="nav_quiz">遊戲測驗</a>
+      </div>
+    </nav>
+
+    <div class="header">
+      <h1 data-i18n="quiz_title">🎮 星座遊戲測驗</h1>
+      <p data-i18n="quiz_subtitle">你是哪個遊戲角色？</p>
+    </div>
+
+    <div class="card">
+      <!-- 進度條 -->
+      <div class="progress-container" id="progressContainer">
+        <div class="progress-text">
+          <span data-i18n="quiz_progress" data-i18n-params='{"current":1,"total":8}'>題目 1 / 8</span>
+          <span id="progressPct">12%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill" style="width: 12%;"></div>
+        </div>
+      </div>
+
+      <!-- 問題區 -->
+      <div class="question-area" id="quizSection">
+        <div class="zodiac-icon" id="zodiacIcon">🎮</div>
+        <div class="question-text" id="questionText" data-i18n="quiz_loading">載入中...</div>
+      </div>
+
+      <div class="options" id="optionsContainer"></div>
+
+      <!-- 結果區 -->
+      <div id="resultSection">
+        <div class="result-icon" id="resultZodiac">♈</div>
+        <div class="result-title" id="resultTitle" data-i18n="zodiac_aries_title">牡羊座遊俠</div>
+        <div class="result-subtitle" id="resultSubtitle" data-i18n="zodiac_aries_subtitle">🔥 熱血衝鋒型的玩家！</div>
+        <div class="result-desc" id="resultDesc" data-i18n="zodiac_aries_desc">你是那種喜歡衝在最前面的人！</div>
+        <div class="match-items" id="matchItems"></div>
+        <div class="btn-group" id="startBtnGroup">
+          <button class="btn btn-primary" onclick="startQuiz()" data-i18n="quiz_start">開始測驗</button>
+        </div>
+        <div class="btn-group" id="restartBtnGroup" style="display:none;">
+          <button class="btn btn-primary" onclick="shareResult()" data-i18n="quiz_share">分享結果</button>
+          <button class="btn btn-secondary" onclick="restartQuiz()" data-i18n="quiz_restart">重新測驗</button>
+          <button class="btn btn-secondary" onclick="backToHome()" data-i18n="quiz_back">返回首頁</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+// === 翻譯資料 ===
+const translations = {
+  'zh-TW': {
+    nav_logo: '✨ 星座命理',
+    nav_home: '首頁',
+    nav_quiz: '遊戲測驗',
+    quiz_title: '🎮 星座遊戲測驗',
+    quiz_subtitle: '你是哪個遊戲角色？',
+    quiz_progress: '題目 {current} / {total}',
+    quiz_loading: '載入中...',
+    quiz_start: '開始測驗',
+    quiz_restart: '重新測驗',
+    quiz_share: '分享結果',
+    quiz_back: '返回首頁',
+    quiz_result_title: '測驗結果',
+    quiz_result_desc: '點擊上方按鈕開始你的星座遊戲測驗！',
+    result_share_text: '我在「星座遊戲測驗」中被測出來是「{result}」！\n\n🎮 你是哪個遊戲角色？\n👉 點連結測測看！',
+    copied_text: '已複製分享文字！',
+    zodiac_aries_title: '牡羊座遊俠',
+    zodiac_aries_subtitle: '🔥 熱血衝鋒型的玩家！',
+    zodiac_aries_desc: '你是那種喜歡衝在最前面的人！在遊戲中，你總是毫不猶豫地發起攻擊，享受速度快、刺激感強的戰鬥。你的領袖魅力讓隊友們願意跟隨你，但有時也要記得聽聽隊友的建議哦！',
+    zodiac_taurus_title: '金牛座培育師',
+    zodiac_taurus_subtitle: '💪 穩扎穩打的收藏達人！',
+    zodiac_taurus_desc: '你對遊戲有著極強的忠誠度，一旦開始就會堅持到底。你喜歡慢慢累積實力，享受收集與培養的過程。遇到強敵不會慌張，總是能找到最穩妥的取勝方式。',
+    zodiac_gemini_title: '雙子座百變王',
+    zodiac_gemini_subtitle: '🎭 靈活多變的游擊手！',
+    zodiac_gemini_desc: '你討厭單一玩法，總是喜歡嘗試不同的角色和風格。在遊戲中，你是那種很難被對手猜透的玩家，時而進攻時而撤退，讓敵人完全無法掌握你的節奏！',
+    zodiac_cancer_title: '巨蟹座守護者',
+    zodiac_cancer_subtitle: '🛡️ 默默守護的溫柔堡壘！',
+    zodiac_cancer_desc: '你玩遊戲時非常重視安全感，喜歡和熟悉的隊友一起組隊。你是那種會為了保護隊友而犧牲自己的玩家，在遊戲中總是扮演最可靠的後盾。',
+    zodiac_leo_title: '獅子座明星',
+    zodiac_leo_subtitle: '👑 天生的舞台焦點！',
+    zodiac_leo_desc: '你玩遊戲不只是為了自己，更是為了展現給大家看！你喜歡那些能讓你閃閃發光的遊戲，各種絢麗的效果和華麗的技能是你的最愛，當然也要搭配你的技術！',
+    zodiac_virgo_title: '處女座策略家',
+    zodiac_virgo_subtitle: '🧠 追求完美的計算大師！',
+    zodiac_virgo_desc: '你不喜歡浪費任何資源，遊戲中總是能找到最高效的路徑。你會認真研究每一個系統，計算每一次行動的效益，是那種能讓隊友感到安心的策略型玩家。',
+    zodiac_libra_title: '天秤座和諧者',
+    zodiac_libra_subtitle: '⚖️ 享受過程的優雅玩家！',
+    zodiac_libra_desc: '你玩遊戲是為了享受愉悅的時光，不喜歡太過激烈的競爭。你喜歡美觀的畫面和舒適的節奏，是那種會停下來欣賞遊戲風景的浪漫主義者。',
+    zodiac_scorpio_title: '天蠍座暗影刺客',
+    zodiac_scorpio_subtitle: '🗡️ 神秘莫測的隱蔽高手！',
+    zodiac_scorpio_desc: '你表面平靜，內心卻有著極強的好勝心。你喜歡那種能隱匿行蹤、突然出擊的角色，看到對手被你的華麗連招擊敗時，內心會有滿滿的成就感！',
+    zodiac_sagittarius_title: '射手座探險家',
+    zodiac_sagittarius_subtitle: '🏹 自由奔放的冒險玩家！',
+    zodiac_sagittarius_desc: '你永遠充滿好奇心，總是想去看看地圖的邊界在哪裡！開放世界和自由探索是你的最愛，你會為了一個藏寶圖跑遍整張地圖，享受不確定的旅程！',
+    zodiac_capricorn_title: '摩羯座征服者',
+    zodiac_capricorn_subtitle: '🏔️ 一步一腳印的實力派！',
+    zodiac_capricorn_desc: '你對遊戲有著明確的目標和規劃，不會被旁的事物分心。你是那種能夠長時間攻略同一款遊戲直到完全制霸的玩家，耐力和決心是你最大的武器。',
+    zodiac_aquarius_title: '水瓶座創新者',
+    zodiac_aquarius_subtitle: '💫 與眾不同的自由靈魂！',
+    zodiac_aquarius_desc: '你不喜歡跟隨主流，總是想嘗試別人還沒發現的玩法。你是那種會用創意方式通關的玩家，即使攻略已經足夠，你也要找出屬於自己的獨特路線。',
+    zodiac_pisces_title: '雙魚座夢想家',
+    zodiac_pisces_subtitle: '🌊 沉浸式體驗的幻想旅人！',
+    zodiac_pisces_desc: '你玩遊戲時非常容易被劇情打動，會真正融入遊戲世界中的情感。你是那種會為了悲傷的劇情而流淚的玩家，也是最會創造美好回憶的夥伴！',
+    games_action: '動作遊戲',
+    games_rpg: 'RPG',
+    games_strategy: '策略遊戲',
+    games_moba: 'MOBA',
+    games_farm: '農場遊戲',
+    games_simulation: '經營模擬',
+    games_card: '卡牌遊戲',
+    games_puzzle: '解謎遊戲',
+    games_party: '派對遊戲',
+    games_tower_defense: '塔防遊戲',
+    games_coop: '合作遊戲',
+    games_mmorpg: 'MMORPG',
+    games_rhythm: '音樂遊戲',
+    games_creative: '創意遊戲',
+    games_building: '建設遊戲',
+    games_strategy_rpg: '策略RPG',
+    games_puzzle_adv: '益智遊戲',
+    games_exploration: '探索遊戲',
+    games_visual_novel: '視覺小說',
+    games_stealth: '潛行遊戲',
+    games_action_adv: '動作冒險',
+    games_card_battle: '卡牌對戰',
+    games_psychological: '心理懸疑',
+    games_open_world: '開放世界',
+    games_survival: '荒野求生',
+    games_idle: '放置遊戲',
+    games_sandbox: '沙盒遊戲',
+    games_all_types: '所有類型',
+    games_all_small: '所有小眾類型',
+    games_music: '音樂遊戲',
+    games_psych_exp: '心理探索'
+  },
+  'en': {
+    nav_logo: '✨ Zodiac Fortune',
+    nav_home: 'Home',
+    nav_quiz: 'Quiz',
+    quiz_title: '🎮 Zodiac Game Quiz',
+    quiz_subtitle: 'Which game character are you?',
+    quiz_progress: 'Question {current} / {total}',
+    quiz_loading: 'Loading...',
+    quiz_start: 'Start Quiz',
+    quiz_restart: 'Restart',
+    quiz_share: 'Share Result',
+    quiz_back: 'Back to Home',
+    quiz_result_title: 'Quiz Result',
+    quiz_result_desc: 'Click the button above to start your Zodiac Game Quiz!',
+    result_share_text: 'I got "{result}" in the Zodiac Game Quiz!\n\n🎮 Which game character are you?\n👉 Try it now!',
+    copied_text: 'Share text copied!',
+    zodiac_aries_title: 'Aries Ranger',
+    zodiac_aries_subtitle: '🔥 The Hot-blooded Fighter!',
+    zodiac_aries_desc: 'You are the type who likes to rush to the front! In games, you never hesitate to launch an attack, enjoying fast-paced, thrilling combat. Your leadership charisma makes teammates willing to follow you, but remember to listen to your team sometimes!',
+    zodiac_taurus_title: 'Taurus Breeder',
+    zodiac_taurus_subtitle: '💪 The Steady Collector!',
+    zodiac_taurus_desc: 'You have strong loyalty to games — once you start, you see it through. You enjoy slowly building up strength and the process of collecting and nurturing. When facing tough enemies, you stay calm and always find the most reliable way to win.',
+    zodiac_gemini_title: 'Gemini Shapeshifter',
+    zodiac_gemini_subtitle: '🎭 The Adaptive Flanker!',
+    zodiac_gemini_desc: 'You hate single gameplay styles and always want to try different characters and approaches. In games, you are the type that opponents can never predict — sometimes attacking, sometimes retreating, keeping enemies completely off balance!',
+    zodiac_cancer_title: 'Cancer Guardian',
+    zodiac_cancer_subtitle: '🛡️ The Gentle Fortress!',
+    zodiac_cancer_desc: 'You value safety highly in games and prefer teaming up with familiar friends. You are the type who would sacrifice yourself to protect your teammates, always playing the most reliable backbone in the game.',
+    zodiac_leo_title: 'Leo Star',
+    zodiac_leo_subtitle: '👑 Born to Shine!',
+    zodiac_leo_desc: 'You play games not just for yourself, but to show off! You love games that make you stand out — gorgeous effects and flashy skills are your favorites, along with the skill to back them up!',
+    zodiac_virgo_title: 'Virgo Strategist',
+    zodiac_virgo_subtitle: '🧠 The Perfectionist Calculator!',
+    zodiac_virgo_desc: 'You hate wasting any resources and always find the most efficient path in games. You carefully study every system and calculate the benefit of every action — the type of strategic player that makes teammates feel secure.',
+    zodiac_libra_title: 'Libra Harmonizer',
+    zodiac_libra_subtitle: '⚖️ The Elegant Enjoyer!',
+    zodiac_libra_desc: 'You play games to enjoy pleasant moments and dislike overly fierce competition. You love beautiful graphics and comfortable pacing — the romantic type who stops to admire game scenery.',
+    zodiac_scorpio_title: 'Scorpio Shadow Assassin',
+    zodiac_scorpio_subtitle: '🗡️ The Mysterious Infiltrator!',
+    zodiac_scorpio_desc: 'You appear calm on the surface but have an extremely strong competitive spirit inside. You love characters that can hide their movements and strike suddenly. Seeing opponents defeated by your flashy combos fills you with satisfaction!',
+    zodiac_sagittarius_title: 'Sagittarius Explorer',
+    zodiac_sagittarius_subtitle: '🏹 The Free-spirited Adventurer!',
+    zodiac_sagittarius_desc: 'You are always full of curiosity, wanting to see what lies beyond the map boundaries! Open worlds and free exploration are your favorites. You will run across an entire map for a treasure map, enjoying the uncertain journey!',
+    zodiac_capricorn_title: 'Capricorn Conqueror',
+    zodiac_capricorn_subtitle: '🏔️ The Steady Achiever!',
+    zodiac_capricorn_desc: 'You have clear goals and plans for games and never get distracted by side matters. You are the type who can invest long hours into a single game until you fully conquer it. Stamina and determination are your greatest weapons.',
+    zodiac_aquarius_title: 'Aquarius Innovator',
+    zodiac_aquarius_subtitle: '💫 The Unique Free Spirit!',
+    zodiac_aquarius_desc: 'You dislike following the mainstream and always want to try undiscovered playstyles. You are the type who clears games in creative ways. Even when a guide is sufficient, you find your own unique route.',
+    zodiac_pisces_title: 'Pisces Dreamer',
+    zodiac_pisces_subtitle: '🌊 The Immersive Traveler!',
+    zodiac_pisces_desc: 'You are easily moved by storylines in games and truly immerse yourself in the emotions of the game world. The type who cries over sad stories and creates the most beautiful memories with friends!',
+    games_action: 'Action Games',
+    games_rpg: 'RPG',
+    games_strategy: 'Strategy Games',
+    games_moba: 'MOBA',
+    games_farm: 'Farming Games',
+    games_simulation: 'Simulation',
+    games_card: 'Card Games',
+    games_puzzle: 'Puzzle Games',
+    games_party: 'Party Games',
+    games_tower_defense: 'Tower Defense',
+    games_coop: 'Co-op Games',
+    games_mmorpg: 'MMORPG',
+    games_rhythm: 'Rhythm Games',
+    games_creative: 'Creative Games',
+    games_building: 'Building Games',
+    games_strategy_rpg: 'Strategy RPG',
+    games_puzzle_adv: 'Puzzle Adventure',
+    games_exploration: 'Exploration',
+    games_visual_novel: 'Visual Novel',
+    games_stealth: 'Stealth Games',
+    games_action_adv: 'Action Adventure',
+    games_card_battle: 'Card Battle',
+    games_psychological: 'Psychological',
+    games_open_world: 'Open World',
+    games_survival: 'Survival',
+    games_idle: 'Idle Games',
+    games_sandbox: 'Sandbox',
+    games_all_types: 'All Types',
+    games_all_small: 'Niche Genres',
+    games_music: 'Music Games',
+    games_psych_exp: 'Psychological'
+  }
+};
+
+// === 當前語言 ===
+let currentLang = 'zh-TW';
+
+// === 翻譯關鍵字 ===
+function t(key, params = {}) {
+  let text = translations[currentLang][key] || key;
+  Object.entries(params).forEach(([k, v]) => {
+    text = text.replace(`{${k}}`, v);
+  });
+  return text;
+}
+
+// === 初始化語言 ===
+function initLanguage() {
+  const savedLang = localStorage.getItem('quiz-lang') || 'zh-TW';
+  setLanguage(savedLang);
+}
+
+// === 設定語言 ===
+function setLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('quiz-lang', lang);
+  document.documentElement.lang = lang;
+
+  // 更新語言按鈕狀態
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+
+  // 更新所有可翻譯元素
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    const params = el.dataset.i18nParams ? JSON.parse(el.dataset.i18nParams) : {};
+    if (key !== 'quiz_progress' || el.id === 'progressLabel') {
+      el.textContent = t(key, params);
+    }
+  });
+
+  // 更新進度條文字
+  updateProgressText();
+
+  // 觸發 languageChanged 事件
+  window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang } }));
+}
+
+// === 語言切換監聽 ===
+window.addEventListener('languageChanged', () => {
+  // 重新渲染問答
+  if (typeof loadQuestion === 'function' && currentQuestion < quizData.length) {
+    loadQuestion();
+  }
+});
+
+// === 語言按鈕事件 ===
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+  });
+  initLanguage();
+});
+
+// === 星座遊戲測驗資料 ===
+const quizData = [
+  {
+    icon: '⚔️',
+    questionKey: 'q1_question',
+    options: [
+      { textKey: 'q1_opt1', scores: { aries: 3, leo: 2, scorpio: 1 } },
+      { textKey: 'q1_opt2', scores: { virgo: 3, aquarius: 2, capricorn: 1 } },
+      { textKey: 'q1_opt3', scores: { sagittarius: 3, gemini: 2, pisces: 1 } },
+      { textKey: 'q1_opt4', scores: { cancer: 3, libra: 2, taurus: 1 } }
+    ]
+  },
+  {
+    icon: '🎯',
+    questionKey: 'q2_question',
+    options: [
+      { textKey: 'q2_opt1', scores: { taurus: 3, virgo: 2, capricorn: 1 } },
+      { textKey: 'q2_opt2', scores: { gemini: 3, aquarius: 2, sagittarius: 1 } },
+      { textKey: 'q2_opt3', scores: { aries: 3, leo: 2, scorpio: 1 } },
+      { textKey: 'q2_opt4', scores: { cancer: 3, taurus: 2, pisces: 1 } }
+    ]
+  },
+  {
+    icon: '👥',
+    questionKey: 'q3_question',
+    options: [
+      { textKey: 'q3_opt1', scores: { leo: 3, aries: 2, scorpio: 1 } },
+      { textKey: 'q3_opt2', scores: { cancer: 3, taurus: 2, virgo: 1 } },
+      { textKey: 'q3_opt3', scores: { gemini: 3, sagittarius: 2, libra: 1 } },
+      { textKey: 'q3_opt4', scores: { pisces: 3, capricorn: 2, taurus: 1 } }
+    ]
+  },
+  {
+    icon: '💀',
+    questionKey: 'q4_question',
+    options: [
+      { textKey: 'q4_opt1', scores: { aries: 3, leo: 2, scorpio: 1 } },
+      { textKey: 'q4_opt2', scores: { virgo: 3, aquarius: 2, gemini: 1 } },
+      { textKey: 'q4_opt3', scores: { taurus: 3, capricorn: 2, cancer: 1 } },
+      { textKey: 'q4_opt4', scores: { cancer: 3, pisces: 2, libra: 1 } }
+    ]
+  },
+  {
+    icon: '🏆',
+    questionKey: 'q5_question',
+    options: [
+      { textKey: 'q5_opt1', scores: { cancer: 3, libra: 2, pisces: 1 } },
+      { textKey: 'q5_opt2', scores: { leo: 3, aries: 2, sagittarius: 1 } },
+      { textKey: 'q5_opt3', scores: { scorpio: 3, aquarius: 2, gemini: 1 } },
+      { textKey: 'q5_opt4', scores: { sagittarius: 3, aquarius: 2, pisces: 1 } }
+    ]
+  },
+  {
+    icon: '🎭',
+    questionKey: 'q6_question',
+    options: [
+      { textKey: 'q6_opt1', scores: { gemini: 3, aquarius: 2, sagittarius: 1 } },
+      { textKey: 'q6_opt2', scores: { taurus: 3, scorpio: 2, capricorn: 1 } },
+      { textKey: 'q6_opt3', scores: { virgo: 3, leo: 2, aries: 1 } },
+      { textKey: 'q6_opt4', scores: { cancer: 3, capricorn: 2, taurus: 1 } }
+    ]
+  },
+  {
+    icon: '⏰',
+    questionKey: 'q7_question',
+    options: [
+      { textKey: 'q7_opt1', scores: { aries: 3, scorpio: 2, sagittarius: 1 } },
+      { textKey: 'q7_opt2', scores: { virgo: 3, taurus: 2, capricorn: 1 } },
+      { textKey: 'q7_opt3', scores: { libra: 3, cancer: 2, pisces: 1 } },
+      { textKey: 'q7_opt4', scores: { gemini: 3, aquarius: 2, libra: 1 } }
+    ]
+  },
+  {
+    icon: '💬',
+    questionKey: 'q8_question',
+    options: [
+      { textKey: 'q8_opt1', scores: { leo: 3, gemini: 2, sagittarius: 1 } },
+      { textKey: 'q8_opt2', scores: { cancer: 3, taurus: 2, capricorn: 1 } },
+      { textKey: 'q8_opt3', scores: { scorpio: 3, virgo: 2, aquarius: 1 } },
+      { textKey: 'q8_opt4', scores: { pisces: 3, libra: 2, aries: 1 } }
+    ]
+  }
+];
+
+// === 問答翻譯 ===
+const questionTranslations = {
+  'zh-TW': {
+    q1_question: '在遊戲中，你最喜歡什麼類型的挑戰？',
+    q1_opt1: '緊張刺激的即時戰鬥',
+    q1_opt2: '需要深思熟慮的策略規劃',
+    q1_opt3: '自由探索與冒險解謎',
+    q1_opt4: '與隊友合作的團隊任務',
+    q2_question: '你對遊戲中的收集要素有什麼看法？',
+    q2_opt1: '一定要全部收集完成！',
+    q2_opt2: '有興趣的就收集，隨緣',
+    q2_opt3: '不太在意，專注主線',
+    q2_opt4: '收集是為了變強或交易',
+    q3_question: '和朋友一起玩遊戲時，你通常扮演什麼角色？',
+    q3_opt1: '領頭的指揮官，制定策略',
+    q3_opt2: '可靠的後勤支援',
+    q3_opt3: '氣氛製造者，帶動歡樂',
+    q3_opt4: '服從團隊決定，配合隊友',
+    q4_question: '遇到超強的BOSS或敵人，你會怎麼做？',
+    q4_opt1: '直接正面挑戰！',
+    q4_opt2: '研究弱點，制定戰術',
+    q4_opt3: '練等後再來挑戰',
+    q4_opt4: '找攻略或請教別人',
+    q5_question: '什麼樣的遊戲結局最吸引你？',
+    q5_opt1: '完美結局，全員生還',
+    q5_opt2: '史詩級的勝利與榮耀',
+    q5_opt3: '出乎意料的反轉',
+    q5_opt4: '開放式結局，讓人回味無窮',
+    q6_question: '你喜歡在遊戲中嘗試不同的遊玩方式嗎？',
+    q6_opt1: '會！每次玩都想試新角色',
+    q6_opt2: '專精一個角色比較好玩',
+    q6_opt3: '有時間會試試不同玩法',
+    q6_opt4: '專心玩一款遊戲就好',
+    q7_question: '你玩遊戲的時間分配通常是？',
+    q7_opt1: '有空就玩，玩到廢寢忘食',
+    q7_opt2: '每天玩固定的時間',
+    q7_opt3: '週末或空閒時好好玩',
+    q7_opt4: '偶爾玩玩休閒小遊戲',
+    q8_question: '你對遊戲中的社交互動態度是？',
+    q8_opt1: '熱衷認識新朋友/組公會',
+    q8_opt2: '只和認識的人一起玩',
+    q8_opt3: '偏好單機，不喜歡社交',
+    q8_opt4: '需要時才會互動'
+  },
+  'en': {
+    q1_question: 'What type of challenge do you enjoy most in games?',
+    q1_opt1: 'Intense real-time combat',
+    q1_opt2: 'Strategic planning that requires deep thought',
+    q1_opt3: 'Free exploration and adventure puzzles',
+    q1_opt4: 'Team missions cooperating with teammates',
+    q2_question: 'What do you think about collectibles in games?',
+    q2_opt1: 'Must collect everything!',
+    q2_opt2: 'Collect what interests me, take it easy',
+    q2_opt3: 'Don\'t care much, focus on main story',
+    q2_opt4: 'Collect to get stronger or trade',
+    q3_question: 'When playing games with friends, what role do you usually take?',
+    q3_opt1: 'Lead commander, set strategies',
+    q3_opt2: 'Reliable logistics support',
+    q3_opt3: 'Mood maker, bring fun',
+    q3_opt4: 'Follow team decisions, cooperate with teammates',
+    q4_question: 'When encountering a super strong BOSS or enemy, what do you do?',
+    q4_opt1: 'Challenge head-on directly!',
+    q4_opt2: 'Study weaknesses, develop tactics',
+    q4_opt3: 'Level up first, then challenge',
+    q4_opt4: 'Find guides or ask others',
+    q5_question: 'What kind of game ending attracts you most?',
+    q5_opt1: 'Perfect ending, everyone survives',
+    q5_opt2: 'Epic victory and glory',
+    q5_opt3: 'Unexpected twists',
+    q5_opt4: 'Open ending,回味無窮',
+    q6_question: 'Do you like trying different playstyles in games?',
+    q6_opt1: 'Yes! Want to try new characters every time',
+    q6_opt2: 'Mastering one character is more fun',
+    q6_opt3: 'Try different approaches when I have time',
+    q6_opt4: 'Just focus on one game',
+    q7_question: 'How do you usually manage your gaming time?',
+    q7_opt1: 'Play whenever I\'m free, forget to eat and sleep',
+    q7_opt2: 'Play fixed hours every day',
+    q7_opt3: 'Play well on weekends or free time',
+    q7_opt4: 'Occasionally play casual games',
+    q8_question: 'What\'s your attitude towards social interactions in games?',
+    q8_opt1: 'Eager to meet new friends/join guilds',
+    q8_opt2: 'Only play with people I know',
+    q8_opt3: 'Prefer single-player, don\'t like socializing',
+    q8_opt4: 'Only interact when needed'
+  }
+};
+
+// === 星座結果資料 ===
+const zodiacResults = {
+  aries: {
+    icon: '♈',
+    title: '牡羊座遊俠',
+    subtitle: '🔥 熱血衝鋒型的玩家！',
+    desc: '你是那種喜歡衝在最前面的人！在遊戲中，你總是毫不猶豫地發起攻擊，享受速度快、刺激感強的戰鬥。你的領袖魅力讓隊友們願意跟隨你，但有時也要記得聽聽隊友的建議哦！',
+    games: ['動作遊戲', '競技遊戲', 'MOBA', '格鬥遊戲'],
+    color: '#ff6b6b'
+  },
+  taurus: {
+    icon: '♉',
+    title: '金牛座培育師',
+    subtitle: '💪 穩扎穩打的收藏達人！',
+    desc: '你對遊戲有著極強的忠誠度，一旦開始就會堅持到底。你喜歡慢慢累積實力，享受收集與培養的過程。遇到強敵不會慌張，總是能找到最穩妥的取勝方式。',
+    games: ['RPG', '農場遊戲', '經營模擬', '卡牌遊戲'],
+    color: '#51cf66'
+  },
+  gemini: {
+    icon: '♊',
+    title: '雙子座百變王',
+    subtitle: '🎭 靈活多變的游擊手！',
+    desc: '你討厭單一玩法，總是喜歡嘗試不同的角色和風格。在遊戲中，你是那種很難被對手猜透的玩家，時而進攻時而撤退，讓敵人完全無法掌握你的節奏！',
+    games: ['策略遊戲', '解謎遊戲', '派對遊戲', '所有類型'],
+    color: '#ffd43b'
+  },
+  cancer: {
+    icon: '♋',
+    title: '巨蟹座守護者',
+    subtitle: '🛡️ 默默守護的溫柔堡壘！',
+    desc: '你玩遊戲時非常重視安全感，喜歡和熟悉的隊友一起組隊。你是那種會為了保護隊友而犧牲自己的玩家，在遊戲中總是扮演最可靠的後盾。',
+    games: ['塔防遊戲', 'RPG', '合作遊戲', '模擬經營'],
+    color: '#74c0fc'
+  },
+  leo: {
+    icon: '♌',
+    title: '獅子座明星',
+    subtitle: '👑 天生的舞台焦點！',
+    desc: '你玩遊戲不只是為了自己，更是為了展現給大家看！你喜歡那些能讓你閃閃發光的遊戲，各種絢麗的效果和華麗的技能是你的最愛，當然也要搭配你的技術！',
+    games: ['MMORPG', '音樂遊戲', '競技遊戲', '創意遊戲'],
+    color: '#ffd43b'
+  },
+  virgo: {
+    icon: '♍',
+    title: '處女座策略家',
+    subtitle: '🧠 追求完美的計算大師！',
+    desc: '你不喜歡浪費任何資源，遊戲中總是能找到最高效的路徑。你會認真研究每一個系統，計算每一次行動的效益，是那種能讓隊友感到安心的策略型玩家。',
+    games: ['策略模擬', '建設遊戲', '策略RPG', '益智遊戲'],
+    color: '#69db7c'
+  },
+  libra: {
+    icon: '♎',
+    title: '天秤座和諧者',
+    subtitle: '⚖️ 享受過程的優雅玩家！',
+    desc: '你玩遊戲是為了享受愉悅的時光，不喜歡太過激烈的競爭。你喜歡美觀的畫面和舒適的節奏，是那種會停下來欣賞遊戲風景的浪漫主義者。',
+    games: ['解謎遊戲', '探索遊戲', '節奏遊戲', '視覺小說'],
+    color: '#ff8787'
+  },
+  scorpio: {
+    icon: '♏',
+    title: '天蠍座暗影刺客',
+    subtitle: '🗡️ 神秘莫測的隱蔽高手！',
+    desc: '你表面平靜，內心卻有著極強的好勝心。你喜歡那種能隱匿行蹤、突然出擊的角色，看到對手被你的華麗連招擊敗時，內心會有滿滿的成就感！',
+    games: ['潛行遊戲', '動作冒險', '卡牌對戰', '心理懸疑'],
+    color: '#9775fa'
+  },
+  sagittarius: {
+    icon: '♐',
+    title: '射手座探險家',
+    subtitle: '🏹 自由奔放的冒險玩家！',
+    desc: '你永遠充滿好奇心，總是想去看看地圖的邊界在哪裡！開放世界和自由探索是你的最愛，你會為了一個藏寶圖跑遍整張地圖，享受不確定的旅程！',
+    games: ['開放世界', '動作冒險', 'RPG', '荒野求生'],
+    color: '#f06595'
+  },
+  capricorn: {
+    icon: '♑',
+    title: '摩羯座征服者',
+    subtitle: '🏔️ 一步一腳印的實力派！',
+    desc: '你對遊戲有著明確的目標和規劃，不會被旁的事物分心。你是那種能夠長時間攻略同一款遊戲直到完全制霸的玩家，耐力和決心是你最大的武器。',
+    games: ['MMORPG', '放置遊戲', '農場遊戲', '卡牌收集'],
+    color: '#748ffc'
+  },
+  aquarius: {
+    icon: '♒',
+    title: '水瓶座創新者',
+    subtitle: '💫 與眾不同的自由靈魂！',
+    desc: '你不喜歡跟隨主流，總是想嘗試別人還沒發現的玩法。你是那種會用創意方式通關的玩家，即使攻略已經足夠，你也要找出屬於自己的獨特路線。',
+    games: ['沙盒遊戲', '模擬遊戲', 'RPG', '所有小眾類型'],
+    color: '#22b8cf'
+  },
+  pisces: {
+    icon: '♓',
+    title: '雙魚座夢想家',
+    subtitle: '🌊 沉浸式體驗的幻想旅人！',
+    desc: '你玩遊戲時非常容易被劇情打動，會真正融入遊戲世界中的情感。你是那種會為了悲傷的劇情而流淚的玩家，也是最會創造美好回憶的夥伴！',
+    games: ['視覺小說', 'RPG', '音樂遊戲', '心理探索'],
+    color: '#748ffc'
+  }
+};
+
+// === 遊戲狀態 ===
+let currentQuestion = 0;
+let scores = {};
+let selectedOptions = [];
+
+// === 初始化 ===
+function init() {
+  createStarfield();
+  loadQuestion();
+  Object.keys(zodiacResults).forEach(z => scores[z] = 0);
+}
+
+// === 建立星空背景 ===
+function createStarfield() {
+  const container = document.getElementById('starfield');
+  for (let i = 0; i < 100; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.animationDelay = Math.random() * 3 + 's';
+    star.style.opacity = Math.random() * 0.5 + 0.3;
+    container.appendChild(star);
+  }
+}
+
+// === 翻譯 Helper ===
+function qt(key) {
+  return questionTranslations[currentLang][key] || key;
+}
+
+// === 更新進度文字 ===
+function updateProgressText() {
+  const el = document.querySelector('[data-i18n="quiz_progress"]');
+  if (el) {
+    el.textContent = t('quiz_progress', { current: currentQuestion + 1, total: quizData.length });
+  }
+}
+
+// === 載入問題 ===
+function loadQuestion() {
+  const q = quizData[currentQuestion];
+  const progress = ((currentQuestion + 1) / quizData.length) * 100;
+
+  document.getElementById('progressPct').textContent = Math.round(progress) + '%';
+  document.getElementById('progressFill').style.width = progress + '%';
+  document.getElementById('zodiacIcon').textContent = q.icon;
+  document.getElementById('questionText').textContent = qt(q.questionKey);
+
+  // 更新進度文字
+  updateProgressText();
+
+  const optionsContainer = document.getElementById('optionsContainer');
+  optionsContainer.innerHTML = '';
+
+  const letters = ['A', 'B', 'C', 'D'];
+  q.options.forEach((opt, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'option' + (selectedOptions[currentQuestion] === idx ? ' selected' : '');
+    btn.innerHTML = `<span class="option-letter">${letters[idx]}</span><span class="option-text">${qt(opt.textKey)}</span>`;
+    btn.onclick = () => selectOption(idx);
+    optionsContainer.appendChild(btn);
+  });
+
+  document.getElementById('quizSection').classList.add('fade-in');
+}
+
+// === 選擇選項 ===
+function selectOption(idx) {
+  selectedOptions[currentQuestion] = idx;
+
+  const q = quizData[currentQuestion];
+  const selectedScores = q.options[idx].scores;
+  Object.entries(selectedScores).forEach(([zodiac, score]) => {
+    scores[zodiac] = (scores[zodiac] || 0) + score;
+  });
+
+  const options = document.querySelectorAll('.option');
+  options.forEach((opt, i) => {
+    opt.classList.toggle('selected', i === idx);
+  });
+
+  setTimeout(() => {
+    if (currentQuestion < quizData.length - 1) {
+      currentQuestion++;
+      loadQuestion();
+    } else {
+      showResult();
+    }
+  }, 400);
+}
+
+// === 翻譯遊戲類型 ===
+function translateGameType(gameKey) {
+  const gameMap = {
+    '動作遊戲': 'games_action',
+    '競技遊戲': 'games_action',
+    'MOBA': 'games_moba',
+    '格鬥遊戲': 'games_action',
+    'RPG': 'games_rpg',
+    '農場遊戲': 'games_farm',
+    '經營模擬': 'games_simulation',
+    '卡牌遊戲': 'games_card',
+    '策略遊戲': 'games_strategy',
+    '解謎遊戲': 'games_puzzle',
+    '派對遊戲': 'games_party',
+    '所有類型': 'games_all_types',
+    '塔防遊戲': 'games_tower_defense',
+    '合作遊戲': 'games_coop',
+    'MMORPG': 'games_mmorpg',
+    '音樂遊戲': 'games_rhythm',
+    '創意遊戲': 'games_creative',
+    '策略模擬': 'games_strategy',
+    '建設遊戲': 'games_building',
+    '策略RPG': 'games_strategy_rpg',
+    '益智遊戲': 'games_puzzle_adv',
+    '探索遊戲': 'games_exploration',
+    '節奏遊戲': 'games_rhythm',
+    '視覺小說': 'games_visual_novel',
+    '潛行遊戲': 'games_stealth',
+    '動作冒險': 'games_action_adv',
+    '卡牌對戰': 'games_card_battle',
+    '心理懸疑': 'games_psychological',
+    '開放世界': 'games_open_world',
+    '荒野求生': 'games_survival',
+    '放置遊戲': 'games_idle',
+    '沙盒遊戲': 'games_sandbox',
+    '所有小眾類型': 'games_all_small',
+    '心理探索': 'games_psych_exp'
+  };
+  const transKey = gameMap[gameKey];
+  return transKey ? t(transKey) : gameKey;
+}
+
+// === 顯示結果 ===
+function showResult() {
+  let maxZodiac = 'aries';
+  let maxScore = 0;
+  Object.entries(scores).forEach(([zodiac, score]) => {
+    if (score > maxScore) {
+      maxScore = score;
+      maxZodiac = zodiac;
+    }
+  });
+
+  const result = zodiacResults[maxZodiac];
+
+  document.getElementById('quizSection').style.display = 'none';
+  document.getElementById('progressContainer').style.display = 'none';
+
+  const resultSection = document.getElementById('resultSection');
+  resultSection.classList.add('active');
+  resultSection.classList.add('fade-in');
+
+  document.getElementById('resultZodiac').textContent = result.icon;
+  document.getElementById('resultTitle').textContent = t(`zodiac_${maxZodiac}_title`);
+  document.getElementById('resultSubtitle').textContent = t(`zodiac_${maxZodiac}_subtitle`);
+  document.getElementById('resultDesc').textContent = t(`zodiac_${maxZodiac}_desc`);
+
+  const matchItems = document.getElementById('matchItems');
+  matchItems.innerHTML = result.games.map(g =>
+    `<span class="match-item">${translateGameType(g)}</span>`
+  ).join('');
+
+  // 顯示結果區的按鈕
+  document.getElementById('startBtnGroup').style.display = 'none';
+  document.getElementById('restartBtnGroup').style.display = 'flex';
+}
+
+// === 開始測驗 ===
+function startQuiz() {
+  document.getElementById('resultSection').classList.remove('active');
+  document.getElementById('quizSection').style.display = 'block';
+  document.getElementById('progressContainer').style.display = 'block';
+  currentQuestion = 0;
+  selectedOptions = [];
+  Object.keys(scores).forEach(z => scores[z] = 0);
+  loadQuestion();
+}
+
+// === 返回首頁 ===
+function backToHome() {
+  window.location.href = 'index.html';
+}
+
+// === 分享結果 ===
+function shareResult() {
+  const resultTitle = document.getElementById('resultTitle').textContent;
+  const text = t('result_share_text', { result: resultTitle });
+
+  if (navigator.share) {
+    navigator.share({
+      title: t('quiz_title'),
+      text: text,
+      url: window.location.href
+    });
+  } else {
+    navigator.clipboard.writeText(text + ' ' + window.location.href).then(() => {
+      alert(t('copied_text'));
+    });
+  }
+}
+
+// === 重新開始 ===
+function restartQuiz() {
+  currentQuestion = 0;
+  selectedOptions = [];
+  Object.keys(scores).forEach(z => scores[z] = 0);
+
+  document.getElementById('quizSection').style.display = 'block';
+  document.getElementById('progressContainer').style.display = 'block';
+  document.getElementById('resultSection').classList.remove('active');
+  document.getElementById('startBtnGroup').style.display = 'flex';
+  document.getElementById('restartBtnGroup').style.display = 'none';
+}
+
+init();
+
+// === Footer ===
+    const footerStyle = 'text-align:center;padding:30px 0;color:#666;font-size:0.85rem;';
+    const footerLinkStyle = 'color:#aaa;text-decoration:none;margin:0 8px;';
+    document.write(`<div style="${footerStyle}"><p>© 2024 <span data-i18n="footer_copyright">星座命理平台</span> | <a href="index.html" style="${footerLinkStyle}" data-i18n="nav_home">返回首頁</a> | <a href="quiz.html" style="${footerLinkStyle}">${currentLang==='en'?'Quiz':'心理測驗'}</a></p></div>`);
+
+    // 隱私權橫幅關閉（事件委派 + 強健 selector）
+document.addEventListener('click', function(e) {
+  if (e.target.closest('[data-action="dismiss-privacy"]')) {
+    var banner = document.querySelector('.privacy-banner, .privacy-notice, #privacyBanner, [data-privacy-banner]');
+    if (banner) {
+      banner.style.display = 'none';
+      banner.classList.add('hidden');
+    }
+    try { localStorage.setItem('privacyDismissed', 'true'); } catch(err) {}
+  }
+});
+
+// 確保全域也可呼叫
+window.dismissPrivacyBanner = function() {
+  var banner = document.querySelector('.privacy-banner, .privacy-notice, #privacyBanner, [data-privacy-banner]');
+  if (banner) {
+    banner.style.display = 'none';
+    banner.classList.add('hidden');
+  }
+  try { localStorage.setItem('privacyDismissed', 'true'); } catch(err) {}
+};
+
+// 頁面載入時檢查是否已關閉過
+document.addEventListener('DOMContentLoaded', function() {
+  if (localStorage.getItem('privacyDismissed') === 'true') {
+    var banner = document.querySelector('.privacy-banner, .privacy-notice, #privacyBanner, [data-privacy-banner]');
+    if (banner) {
+      banner.style.display = 'none';
+      banner.classList.add('hidden');
+    }
+  }
+});
+
+    function sanitizeForHTML(str) {
+  if (str == null) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+</script>
+</body>
+</html>

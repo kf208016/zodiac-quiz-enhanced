@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <!-- Security Headers -->
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self';">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a1a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>✨ Block Puzzle — 星座方塊遊戲</title>
+    <meta name="description" content="遊玩星座方塊遊戲，使用左、下、右與旋轉按鍵挑戰高分，結合星空視覺與俄羅斯方塊風格的休閒玩法。">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://zodiac-quiz-enhanced.pages.dev/blocks">
+
+  <link rel="alternate" hreflang="zh-TW" href="https://zodiac-quiz-enhanced.pages.dev/blocks">
+  <link rel="alternate" hreflang="zh-HK" href="https://zodiac-quiz-enhanced.pages.dev/blocks">
+  <link rel="alternate" hreflang="x-default" href="https://zodiac-quiz-enhanced.pages.dev/blocks">
+    <meta property="og:title" content="星座方塊遊戲 — Block Puzzle">
+  <meta property="og:description" content="遊玩星座方塊遊戲，使用左、下、右與旋轉按鍵挑戰高分，結合星空視覺與俄羅斯方塊風格的休閒玩法。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zodiac-quiz-enhanced.pages.dev/blocks">
+  <meta property="og:image" content="https://zodiac-quiz-enhanced.pages.dev/og-image.png">
+  <meta property="og:locale" content="zh_TW">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="星座方塊遊戲 — Block Puzzle">
+  <meta name="twitter:description" content="遊玩星座方塊遊戲，使用左、下、右與旋轉按鍵挑戰高分，結合星空視覺與俄羅斯方塊風格的休閒玩法。">
+  <meta name="twitter:image" content="https://zodiac-quiz-enhanced.pages.dev/og-image.png">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "星座方塊遊戲 — Block Puzzle",
+  "description": "遊玩星座方塊遊戲，使用左、下、右與旋轉按鍵挑戰高分，結合星空視覺與俄羅斯方塊風格的休閒玩法。",
+  "url": "https://zodiac-quiz-enhanced.pages.dev/blocks",
+  "inLanguage": "zh-TW",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "星座命理平台",
+    "url": "https://zodiac-quiz-enhanced.pages.dev/"
+  }
+}
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%);
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+      -webkit-text-size-adjust: 100%;
+      -webkit-tap-highlight-color: rgba(240,147,251,0.2);
+    }
+    .starfield { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+    .star { position: absolute; width: 2px; height: 2px; background: #fff; border-radius: 50%; animation: twinkle 3s infinite; }
+    @keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; transform: scale(1.5); } }
+
+    .container { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 15px; }
+
+    .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; margin-bottom: 20px; gap: 10px; flex-wrap: wrap; }
+    .logo { font-size: 1.3rem; font-weight: 900; background: linear-gradient(135deg, #f093fb, #f5576c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; white-space: nowrap; }
+    .nav-links { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .nav-links a { color: #888; text-decoration: none; padding: 8px 15px; font-size: 0.9rem; border-radius: 20px; transition: all 0.3s; }
+    .nav-links a:hover { color: #fff; }
+    .nav-links a.active { color: #fff; background: rgba(255,255,255,0.1); }
+
+    .hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 44px; height: 44px; cursor: pointer; padding: 10px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; transition: all 0.3s; }
+    .hamburger:hover { background: rgba(255,255,255,0.1); }
+    .hamburger span { display: block; width: 100%; height: 2px; background: #fff; border-radius: 2px; transition: all 0.3s; }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    .lang-toggle { display: flex; gap: 5px; margin-left: 15px; }
+    .lang-btn { padding: 5px 12px; border: 1px solid rgba(255,255,255,0.3); border-radius: 15px; background: transparent; color: #aaa; cursor: pointer; font-size: 0.85rem; font-family: inherit; transition: all 0.3s; }
+    .lang-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
+    .lang-btn.active { background: linear-gradient(135deg, #f093fb, #f5576c); color: #fff; border-color: transparent; }
+
+    .page-title { text-align: center; margin-bottom: 20px; }
+    .page-title h1 { font-size: 2rem; font-weight: 900; background: linear-gradient(135deg, #f093fb, #f5576c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+    .game-layout { display: flex; justify-content: center; align-items: center; width: 100%; flex-shrink: 0; }
+    .game-wrapper { display: flex; gap: 30px; justify-content: center; align-items: center; flex-wrap: wrap; }
+    .game-board-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: fit-content;
+      flex-shrink: 0;
+      background: rgba(255,255,255,0.05);
+      border: 2px solid rgba(240,147,251,0.3);
+      border-radius: 20px;
+      padding: 15px;
+    }
+    #gameCanvas { display: block; border-radius: 10px; background: #0a0a1a; max-width: min(calc(100vw - 40px), 360px); height: auto; }
+    .side-panel { display: flex; flex-direction: column; gap: 15px; min-width: 150px; }
+    .info-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 15px; text-align: center; }
+    .info-card h3 { font-size: 0.9rem; color: #aaa; margin-bottom: 8px; }
+    .info-card .value { font-size: 1.8rem; font-weight: 900; background: linear-gradient(135deg, #f093fb, #f5576c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .info-card .label { font-size: 0.8rem; color: #888; margin-top: 5px; }
+
+    .next-piece-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 15px; text-align: center; }
+    .next-piece-card h3 { font-size: 0.9rem; color: #aaa; margin-bottom: 10px; }
+    #nextCanvas { display: block; margin: 0 auto; border-radius: 8px; background: #0a0a1a; }
+
+    .control-buttons { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
+    .ctrl-btn { padding: 12px 20px; border: none; border-radius: 15px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: inherit; }
+    .ctrl-btn.primary { background: linear-gradient(135deg, #f093fb, #f5576c); color: #fff; }
+    .ctrl-btn.primary:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(240,147,251,0.3); }
+    .ctrl-btn.secondary { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); }
+    .ctrl-btn.secondary:hover { background: rgba(255,255,255,0.2); }
+
+    .touch-controls {
+      display: flex;
+      margin-top: 20px;
+      gap: 12px;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+    }
+    .touch-btn { flex-shrink: 0; 
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      border: 2px solid rgba(240,147,251,0.5);
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      background: linear-gradient(135deg, rgba(240,147,251,0.2), rgba(245,87,108,0.2));
+      color: #fff;
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      font-family: inherit;
+    }
+    .touch-btn .btn-icon { font-size: 1.8rem; }
+    .touch-btn .btn-label { font-size: 0.75rem; opacity: 0.8; }
+    .touch-btn:active { background: rgba(240,147,251,0.5); transform: scale(0.95); box-shadow: 0 0 20px rgba(240,147,251,0.5); }
+    .touch-btn.wide { width: 170px; }
+    .touch-btn.wide2 { width: 170px; }
+
+    .game-over-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10,10,26,0.95); z-index: 100; justify-content: center; align-items: center; }
+    .game-over-overlay.active { display: flex; }
+    .game-over-content { text-align: center; padding: 40px; background: rgba(255,255,255,0.05); border: 2px solid rgba(240,147,251,0.3); border-radius: 30px; max-width: 400px; }
+    .game-over-content h2 { font-size: 2.5rem; font-weight: 900; margin-bottom: 20px; background: linear-gradient(135deg, #ff6b6b, #ffd43b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .game-over-content .final-score { font-size: 1.2rem; color: #aaa; margin-bottom: 30px; }
+    .game-over-content .final-score span { font-size: 2rem; font-weight: 900; color: #ffd43b; }
+    .game-over-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+
+    .pause-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10,10,26,0.9); z-index: 99; justify-content: center; align-items: center; }
+    .pause-overlay.active { display: flex; }
+    .pause-content { text-align: center; }
+    .pause-content h2 { font-size: 2rem; font-weight: 900; color: #f093fb; margin-bottom: 20px; }
+    .pause-content p { color: #aaa; margin-bottom: 20px; }
+
+    .instructions { margin-top: 20px; text-align: center; color: #666; font-size: 0.85rem; }
+    .instructions kbd { background: rgba(255,255,255,0.1); padding: 3px 8px; border-radius: 5px; margin: 0 3px; }
+
+    @media (max-width: 700px) {
+      .game-layout { justify-content: center; align-items: center; }
+      .game-wrapper { flex-direction: column; justify-content: center; align-items: center; }
+      .game-board-container { width: min(calc(100vw - 40px), 360px); max-width: 100%; padding: 10px; }
+      #gameCanvas { width: 100%; max-width: 100%; height: auto; }
+      .side-panel { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+      .touch-controls { justify-content: center; }
+      .touch-btn { width: 70px; height: 70px; }
+      .touch-btn.wide { width: 150px; }
+      .touch-btn.wide2 { width: 150px; }
+      .instructions { display: none; }
+    }
+  
+    /* 隱私權橫幅 */
+    .privacy-banner {
+      position: fixed;
+      top: 0;
+      left: env(safe-area-inset-left);
+      right: env(safe-area-inset-right);
+      z-index: 9999;
+      background: linear-gradient(135deg, rgba(30,30,60,0.98), rgba(15,15,40,0.98));
+      border-bottom: 1px solid rgba(240,147,251,0.3);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-size: 0.85rem;
+      color: #ccc;
+      backdrop-filter: blur(10px);
+    }
+    .privacy-icon { font-size: 1.1rem; }
+    .privacy-text { flex: 1; max-width: 800px; line-height: 1.5; }
+    .privacy-dismiss {
+      background: linear-gradient(135deg, #f093fb, #f5576c);
+      border: none;
+      color: #fff;
+      padding: 8px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .privacy-dismiss:hover { transform: scale(1.05); box-shadow: 0 5px 20px rgba(240,147,251,0.4); }
+    .privacy-banner.hidden { display: none; }
+    @media (max-width: 768px) {
+      .privacy-banner { flex-wrap: wrap; gap: 8px; padding: 10px 15px; }
+      .privacy-text { font-size: 0.8rem; }
+      .lang-btn { min-height: 44px; min-width: 44px; padding: 10px 16px; font-size: 0.95rem; }
+      .navbar { flex-wrap: wrap; gap: 10px; }
+      .hamburger { display: flex; }
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 5px;
+        padding: 10px 0;
+        order: 3;
+      }
+      .nav-links.active { display: flex; }
+      .nav-links a {
+        padding: 12px 15px;
+        font-size: 1rem;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        border-radius: 10px;
+      }
+      .lang-toggle { margin-left: 0; margin-top: 10px; }
+    }
+
+    a:focus-visible, button:focus-visible, .lucky-zodiac-btn:focus-visible, .zodiac-item:focus-visible {
+      outline: 2px solid #f093fb;
+      outline-offset: 3px;
+      border-radius: 8px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="starfield" id="starfield"></div>
+
+  <!-- 隱私權宣告橫幅 -->
+  <div class="privacy-banner hidden" id="privacyBanner">
+    <span class="privacy-icon">🔒</span>
+    <span class="privacy-text" data-i18n="privacy_notice_text">本網站為靜態星座命理平台，不會收集、儲存或傳輸任何個人資料。所有占卜計算皆在您的瀏覽器內完成，不會上傳至任何伺服器。</span>
+    <button class="privacy-dismiss" data-action="dismiss-privacy" data-i18n="privacy_dismiss">我知道了</button>
+  </div>
+
+  <div class="container">
+    <nav class="navbar">
+      <div class="logo">✨ <span data-i18n="nav_home_brand">星座命理</span></div>
+      <button class="hamburger" id="hamburgerBtn" type="button" aria-label="開啟主選單" aria-expanded="false" aria-controls="navLinks">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html" data-i18n="nav_home">首頁</a>
+        <a href="natal.html" data-i18n="nav_natal">命盤查詢</a>
+        <a href="compatibility.html" data-i18n="nav_compat">星座配對</a>
+        <a href="horoscope.html" data-i18n="nav_horo">星座運勢</a>
+        <a href="quiz.html" data-i18n="nav_quiz">遊戲測驗</a>
+        <a href="blocks.html" class="active" data-i18n="nav_blocks">方塊遊戲</a>
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh-TW" onclick="setLanguage('zh-TW')">繁</button>
+          <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="page-title">
+      <h1 data-i18n="blocks_title">✨ 方塊遊戲</h1>
+    </div>
+
+    <div class="game-layout">
+    <div class="game-wrapper">
+      <div class="game-board-container">
+        <canvas id="gameCanvas" width="300" height="540"></canvas>
+        <div class="touch-controls">
+          <button class="touch-btn" id="touchLeft"><span class="btn-icon">◀</span><span class="btn-label" data-i18n="blocks_btn_left">左</span></button>
+          <button class="touch-btn" id="touchDown"><span class="btn-icon">▼</span><span class="btn-label" data-i18n="blocks_btn_down">下</span></button>
+          <button class="touch-btn" id="touchRight"><span class="btn-icon">▶</span><span class="btn-label" data-i18n="blocks_btn_right">右</span></button>
+          <button class="touch-btn" id="touchRotate"><span class="btn-icon">↻</span><span class="btn-label" data-i18n="blocks_btn_rotate">轉</span></button>
+        </div>
+      </div>
+
+      <div class="side-panel">
+        <div class="info-card">
+          <h3 data-i18n="blocks_score">分數</h3>
+          <div class="value" id="scoreDisplay">0</div>
+        </div>
+        <div class="info-card">
+          <h3 data-i18n="blocks_level">等級</h3>
+          <div class="value" id="levelDisplay">1</div>
+        </div>
+        <div class="info-card">
+          <h3 data-i18n="blocks_lines">消除</h3>
+          <div class="value" id="linesDisplay">0</div>
+        </div>
+        <div class="next-piece-card">
+          <h3 data-i18n="blocks_next">下一個</h3>
+          <canvas id="nextCanvas" width="100" height="100"></canvas>
+        </div>
+        <div class="control-buttons">
+          <button class="ctrl-btn primary" id="startBtn" data-i18n="blocks_start">開始遊戲</button>
+          <button class="ctrl-btn secondary" id="pauseBtn" data-i18n="blocks_pause" disabled>暫停</button>
+          <button class="ctrl-btn secondary" id="restartBtn" data-i18n="blocks_restart">重新開始</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="instructions">
+      <span data-i18n="blocks_keys">鍵盤操作：</span>
+      <kbd data-i18n="blocks_key_left">← →</kbd> <span data-i18n="blocks_key_move">移動</span>
+      <kbd data-i18n="blocks_key_rotate">↑</kbd> <span data-i18n="blocks_key_rotate_text">旋轉</span>
+      <kbd data-i18n="blocks_key_down">↓</kbd> <span data-i18n="blocks_key_soft">軟降</span>
+      <kbd data-i18n="blocks_key_drop">Space</kbd> <span data-i18n="blocks_key_hard">硬降</span>
+      <kbd data-i18n="blocks_key_pause">P</kbd> <span data-i18n="blocks_key_pause_text">暫停</span>
+    </div>
+  </div>
+
+  <div class="game-over-overlay" id="gameOverOverlay">
+    <div class="game-over-content">
+      <h2 data-i18n="blocks_gameover">遊戲結束</h2>
+      <p class="final-score" data-i18n="blocks_final">最終分數：<span id="finalScore">0</span></p>
+      <div class="game-over-buttons">
+        <button class="ctrl-btn primary" onclick="restartGame()" data-i18n="blocks_retry">再玩一次</button>
+        <button class="ctrl-btn secondary" onclick="goHome()" data-i18n="blocks_home">返回首頁</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="pause-overlay" id="pauseOverlay">
+    <div class="pause-content">
+      <h2 data-i18n="blocks_paused">遊戲暫停</h2>
+      <p data-i18n="blocks_resume">按下 P 或點擊按鈕繼續</p>
+      <button class="ctrl-btn primary" onclick="togglePause()" data-i18n="blocks_resume_btn">繼續遊戲</button>
+    </div>
+  </div>
+
+  <script src="translation.js"></script>
+  <script>
+    function sanitizeForHTML(str) {
+  if (str == null) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+</script>
+  <script>
+    // === Game Constants ===
+    const COLS = 10;
+    const ROWS = 18;
+    const BLOCK_SIZE = 30;
+    const PREVIEW_BLOCK = 25;
+
+    // Original block shapes (not Tetris brand)
+    const SHAPES = [
+      // I-piece (cyan)
+      { shape: [[1,1,1,1]], color: '#00f5ff' },
+      // O-piece (yellow)
+      { shape: [[1,1],[1,1]], color: '#ffd43b' },
+      // T-piece (purple)
+      { shape: [[0,1,0],[1,1,1]], color: '#a855f7' },
+      // S-piece (green)
+      { shape: [[0,1,1],[1,1,0]], color: '#51cf66' },
+      // Z-piece (red)
+      { shape: [[1,1,0],[0,1,1]], color: '#ff6b6b' },
+      // J-piece (blue)
+      { shape: [[1,0,0],[1,1,1]], color: '#748ffc' },
+      // L-piece (orange)
+      { shape: [[0,0,1],[1,1,1]], color: '#f97316' }
+    ];
+
+    // === Game State ===
+    let board = [];
+    let currentPiece = null;
+    let nextPiece = null;
+    let score = 0;
+    let level = 1;
+    let lines = 0;
+    let gameRunning = false;
+    let gamePaused = false;
+    let gameLoop = null;
+    let dropInterval = 1000;
+
+    // === DOM Elements ===
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    const nextCanvas = document.getElementById('nextCanvas');
+    const nextCtx = nextCanvas.getContext('2d');
+    const scoreDisplay = document.getElementById('scoreDisplay');
+    const levelDisplay = document.getElementById('levelDisplay');
+    const linesDisplay = document.getElementById('linesDisplay');
+    const startBtn = document.getElementById('startBtn');
+    const pauseBtn = document.getElementById('pauseBtn');
+    const restartBtn = document.getElementById('restartBtn');
+    const gameOverOverlay = document.getElementById('gameOverOverlay');
+    const pauseOverlay = document.getElementById('pauseOverlay');
+
+    // === Initialize ===
+    function initBoard() {
+      board = [];
+      for (let r = 0; r < ROWS; r++) {
+        board[r] = [];
+        for (let c = 0; c < COLS; c++) {
+          board[r][c] = null;
+        }
+      }
+    }
+
+    function createStarfield() {
+      const container = document.getElementById('starfield');
+      for (let i = 0; i < 80; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.animationDelay = Math.random() * 3 + 's';
+        container.appendChild(star);
+      }
+    }
+
+    function getRandomPiece() {
+      const idx = Math.floor(Math.random() * SHAPES.length);
+      const shape = SHAPES[idx];
+      return {
+        shape: shape.shape.map(row => [...row]),
+        color: shape.color,
+        x: Math.floor((COLS - shape.shape[0].length) / 2),
+        y: 0
+      };
+    }
+
+    function rotatePiece(piece) {
+      const rows = piece.shape.length;
+      const cols = piece.shape[0].length;
+      const rotated = [];
+      for (let c = 0; c < cols; c++) {
+        rotated[c] = [];
+        for (let r = rows - 1; r >= 0; r--) {
+          rotated[c][rows - 1 - r] = piece.shape[r][c];
+        }
+      }
+      return rotated;
+    }
+
+    function validMove(piece, offsetX, offsetY, newShape) {
+      const shape = newShape || piece.shape;
+      for (let r = 0; r < shape.length; r++) {
+        for (let c = 0; c < shape[r].length; c++) {
+          if (shape[r][c]) {
+            const newX = piece.x + c + offsetX;
+            const newY = piece.y + r + offsetY;
+            if (newX < 0 || newX >= COLS || newY >= ROWS) return false;
+            if (newY >= 0 && board[newY][newX]) return false;
+          }
+        }
+      }
+      return true;
+    }
+
+    function lockPiece() {
+      for (let r = 0; r < currentPiece.shape.length; r++) {
+        for (let c = 0; c < currentPiece.shape[r].length; c++) {
+          if (currentPiece.shape[r][c]) {
+            const y = currentPiece.y + r;
+            if (y < 0) {
+              gameOver();
+              return;
+            }
+            board[y][currentPiece.x + c] = currentPiece.color;
+          }
+        }
+      }
+      clearLines();
+      spawnPiece();
+    }
+
+    function clearLines() {
+      let cleared = 0;
+      for (let r = ROWS - 1; r >= 0; r--) {
+        if (board[r].every(cell => cell !== null)) {
+          board.splice(r, 1);
+          board.unshift(new Array(COLS).fill(null));
+          cleared++;
+          r++;
+        }
+      }
+      if (cleared > 0) {
+        const points = [0, 100, 300, 500, 800];
+        score += points[cleared] || 1200;
+        lines += cleared;
+        level = Math.floor(lines / 10) + 1;
+        dropInterval = Math.max(100, 1000 - (level - 1) * 100);
+        updateDisplay();
+      }
+    }
+
+    function spawnPiece() {
+      currentPiece = nextPiece || getRandomPiece();
+      nextPiece = getRandomPiece();
+      if (!validMove(currentPiece, 0, 0)) {
+        gameOver();
+      }
+      drawNextPiece();
+    }
+
+    function moveLeft() {
+      if (gamePaused || !gameRunning) return;
+      if (validMove(currentPiece, -1, 0)) {
+        currentPiece.x--;
+        draw();
+      }
+    }
+
+    function moveRight() {
+      if (gamePaused || !gameRunning) return;
+      if (validMove(currentPiece, 1, 0)) {
+        currentPiece.x++;
+        draw();
+      }
+    }
+
+    function moveDown() {
+      if (gamePaused || !gameRunning) return;
+      if (validMove(currentPiece, 0, 1)) {
+        currentPiece.y++;
+        draw();
+        return true;
+      }
+      lockPiece();
+      return false;
+    }
+
+    function hardDrop() {
+      if (gamePaused || !gameRunning) return;
+      while (validMove(currentPiece, 0, 1)) {
+        currentPiece.y++;
+        score += 2;
+      }
+      updateDisplay();
+      lockPiece();
+    }
+
+    function rotateCW() {
+      if (gamePaused || !gameRunning) return;
+      const rotated = rotatePiece(currentPiece);
+      if (validMove(currentPiece, 0, 0, rotated)) {
+        currentPiece.shape = rotated;
+        draw();
+      } else if (validMove(currentPiece, 1, 0, rotated)) {
+        currentPiece.shape = rotated;
+        currentPiece.x++;
+        draw();
+      } else if (validMove(currentPiece, -1, 0, rotated)) {
+        currentPiece.shape = rotated;
+        currentPiece.x--;
+        draw();
+      }
+    }
+
+    function draw() {
+      // Clear canvas
+      ctx.fillStyle = '#0a0a1a';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Draw grid
+      ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+      ctx.lineWidth = 1;
+      for (let r = 0; r <= ROWS; r++) {
+        ctx.beginPath();
+        ctx.moveTo(0, r * BLOCK_SIZE);
+        ctx.lineTo(canvas.width, r * BLOCK_SIZE);
+        ctx.stroke();
+      }
+      for (let c = 0; c <= COLS; c++) {
+        ctx.beginPath();
+        ctx.moveTo(c * BLOCK_SIZE, 0);
+        ctx.lineTo(c * BLOCK_SIZE, canvas.height);
+        ctx.stroke();
+      }
+
+      // Draw board
+      for (let r = 0; r < ROWS; r++) {
+        for (let c = 0; c < COLS; c++) {
+          if (board[r][c]) {
+            drawBlock(ctx, c, r, board[r][c], BLOCK_SIZE);
+          }
+        }
+      }
+
+      // Draw current piece (with bounds check)
+      if (currentPiece) {
+        for (let r = 0; r < currentPiece.shape.length; r++) {
+          for (let c = 0; c < currentPiece.shape[r].length; c++) {
+            if (currentPiece.shape[r][c]) {
+              const y = currentPiece.y + r;
+              if (y >= 0 && y < ROWS) {
+                drawBlock(ctx, currentPiece.x + c, y, currentPiece.color, BLOCK_SIZE);
+              }
+            }
+          }
+        }
+      }
+
+      // Ghost piece - drawn as outline only (disabled for clarity, uncomment to enable)
+      /* if (currentPiece && gameRunning && !gamePaused) {
+        let ghostY = currentPiece.y;
+        while (validMove(currentPiece, 0, ghostY - currentPiece.y + 1) && ghostY < ROWS - 1) {
+          ghostY++;
+        }
+        ctx.globalAlpha = 0.4;
+        ctx.strokeStyle = currentPiece.color;
+        ctx.lineWidth = 2;
+        for (let r = 0; r < currentPiece.shape.length; r++) {
+          for (let c = 0; c < currentPiece.shape[r].length; c++) {
+            if (currentPiece.shape[r][c]) {
+              const y = ghostY + r;
+              if (y >= 0 && y < ROWS) {
+                const px = (currentPiece.x + c) * BLOCK_SIZE + 2;
+                const py = y * BLOCK_SIZE + 2;
+                ctx.strokeRect(px, py, BLOCK_SIZE - 4, BLOCK_SIZE - 4);
+              }
+            }
+          }
+        }
+        ctx.globalAlpha = 1;
+        ctx.lineWidth = 1;
+      } */
+    }
+
+    function drawBlock(context, x, y, color, size) {
+      const padding = 2;
+      context.fillStyle = color;
+      context.fillRect(x * size + padding, y * size + padding, size - padding * 2, size - padding * 2);
+      // Glow effect
+      context.shadowColor = color;
+      context.shadowBlur = 8;
+      context.fillRect(x * size + padding, y * size + padding, size - padding * 2, size - padding * 2);
+      context.shadowBlur = 0;
+      // Inner highlight
+      context.fillStyle = 'rgba(255,255,255,0.3)';
+      context.fillRect(x * size + padding + 2, y * size + padding + 2, size - padding * 2 - 4, 3);
+    }
+
+    function drawNextPiece() {
+      nextCtx.fillStyle = '#0a0a1a';
+      nextCtx.fillRect(0, 0, nextCanvas.width, nextCanvas.height);
+      if (!nextPiece) return;
+
+      const shape = nextPiece.shape;
+      const offsetX = (nextCanvas.width - shape[0].length * PREVIEW_BLOCK) / 2;
+      const offsetY = (nextCanvas.height - shape.length * PREVIEW_BLOCK) / 2;
+
+      for (let r = 0; r < shape.length; r++) {
+        for (let c = 0; c < shape[r].length; c++) {
+          if (shape[r][c]) {
+            const x = offsetX + c * PREVIEW_BLOCK;
+            const y = offsetY + r * PREVIEW_BLOCK;
+            nextCtx.fillStyle = nextPiece.color;
+            nextCtx.fillRect(x + 2, y + 2, PREVIEW_BLOCK - 4, PREVIEW_BLOCK - 4);
+            nextCtx.shadowColor = nextPiece.color;
+            nextCtx.shadowBlur = 5;
+            nextCtx.fillRect(x + 2, y + 2, PREVIEW_BLOCK - 4, PREVIEW_BLOCK - 4);
+            nextCtx.shadowBlur = 0;
+          }
+        }
+      }
+    }
+
+    function updateDisplay() {
+      scoreDisplay.textContent = score;
+      levelDisplay.textContent = level;
+      linesDisplay.textContent = lines;
+    }
+
+    function startGame() {
+      initBoard();
+      score = 0;
+      level = 1;
+      lines = 0;
+      dropInterval = 1000;
+      gameRunning = true;
+      gamePaused = false;
+      updateDisplay();
+      spawnPiece();
+      draw();
+
+      startBtn.textContent = t('blocks_running');
+      startBtn.disabled = true;
+      pauseBtn.disabled = false;
+      pauseBtn.textContent = t('blocks_pause');
+
+      if (gameLoop) clearInterval(gameLoop);
+      gameLoop = setInterval(gameTick, dropInterval);
+    }
+
+    function gameTick() {
+      if (!gameRunning || gamePaused) return;
+      if (!moveDown()) {
+        // Piece locked
+      }
+      draw();
+    }
+
+    function togglePause() {
+      if (!gameRunning) return;
+      gamePaused = !gamePaused;
+      if (gamePaused) {
+        pauseOverlay.classList.add('active');
+        pauseBtn.textContent = t('blocks_resume');
+      } else {
+        pauseOverlay.classList.remove('active');
+        pauseBtn.textContent = t('blocks_pause');
+      }
+    }
+
+    function restartGame() {
+      gameOverOverlay.classList.remove('active');
+      startBtn.textContent = t('blocks_start');
+      startBtn.disabled = false;
+      pauseBtn.disabled = true;
+      initBoard();
+      draw();
+      if (gameLoop) clearInterval(gameLoop);
+    }
+
+    function gameOver() {
+      gameRunning = false;
+      if (gameLoop) clearInterval(gameLoop);
+      document.getElementById('finalScore').textContent = score;
+      gameOverOverlay.classList.add('active');
+      startBtn.textContent = t('blocks_start');
+      startBtn.disabled = false;
+      pauseBtn.disabled = true;
+    }
+
+    function goHome() {
+      window.location.href = 'index.html';
+    }
+
+    // === Touch Controls (use click for both mobile touch and desktop click) ===
+    document.getElementById('touchLeft').addEventListener('click', (e) => { e.preventDefault(); moveLeft(); });
+    document.getElementById('touchRight').addEventListener('click', (e) => { e.preventDefault(); moveRight(); });
+    document.getElementById('touchRotate').addEventListener('click', (e) => { e.preventDefault(); rotateCW(); });
+    document.getElementById('touchDown').addEventListener('click', (e) => { e.preventDefault(); if (moveDown()) draw(); });
+
+    // === Keyboard Controls ===
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); moveLeft(); }
+      else if (e.key === 'ArrowRight') { e.preventDefault(); moveRight(); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); rotateCW(); }
+      else if (e.key === 'ArrowDown') { e.preventDefault(); moveDown(); draw(); }
+      else if (e.key === ' ') { e.preventDefault(); hardDrop(); draw(); }
+      else if (e.key === 'p' || e.key === 'P') { e.preventDefault(); togglePause(); }
+    });
+
+    // === Button Events ===
+    startBtn.addEventListener('click', () => { if (!gameRunning) startGame(); });
+    pauseBtn.addEventListener('click', () => { togglePause(); });
+    restartBtn.addEventListener('click', () => { restartGame(); gameRunning = false; });
+
+    // === Language Support ===
+    function updateBlockTexts() {
+      if (typeof setLanguage === 'function') {
+        // Buttons will be updated via data-i18n
+      }
+    }
+
+    // Listen for language changes
+    window.addEventListener('languageChanged', function(e) {
+      // Update dynamic button text
+      if (gameRunning && !gamePaused) {
+        pauseBtn.textContent = t('blocks_pause');
+      } else if (gamePaused) {
+        pauseBtn.textContent = t('blocks_resume');
+      }
+      if (!gameRunning) {
+        startBtn.textContent = t('blocks_start');
+      }
+    });
+
+    // === Start ===
+    createStarfield();
+    initBoard();
+    draw();
+    drawNextPiece();
+    initLanguage();
+
+    // 隱私權橫幅關閉（事件委派 + 強健 selector）
+document.addEventListener('click', function(e) {
+  if (e.target.closest('[data-action="dismiss-privacy"]')) {
+    var banner = document.querySelector('.privacy-banner, .privacy-notice, #privacyBanner, [data-privacy-banner]');
+    if (banner) {
+      banner.style.display = 'none';
+      banner.classList.add('hidden');
+    }
+    try { localStorage.setItem('privacyDismissed', 'true'); } catch(err) {}
+  }
+});
+
+// 確保全域也可呼叫
+window.dismissPrivacyBanner = function() {
+  var banner = document.querySelector('.privacy-banner, .privacy-notice, #privacyBanner, [data-privacy-banner]');
+  if (banner) {
+    banner.style.display = 'none';
+    banner.classList.add('hidden');
+  }
+  try { localStorage.setItem('privacyDismissed', 'true'); } catch(err) {}
+};
+
+// 頁面載入時檢查是否已關閉過
+document.addEventListener('DOMContentLoaded', function() {
+  if (localStorage.getItem('privacyDismissed') === 'true') {
+    var banner = document.querySelector('.privacy-banner, .privacy-notice, #privacyBanner, [data-privacy-banner]');
+    if (banner) {
+      banner.style.display = 'none';
+      banner.classList.add('hidden');
+    }
+  }
+
+  var hamburgerBtn = document.getElementById('hamburgerBtn');
+  var navLinks = document.getElementById('navLinks');
+  if (hamburgerBtn && navLinks) {
+    hamburgerBtn.addEventListener('click', function() {
+      var isOpen = hamburgerBtn.classList.toggle('active');
+      navLinks.classList.toggle('active', isOpen);
+      hamburgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    navLinks.addEventListener('click', function(e) {
+      if (e.target.tagName === 'A' && window.innerWidth <= 768) {
+        hamburgerBtn.classList.remove('active');
+        navLinks.classList.remove('active');
+        hamburgerBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+});
+
+    function sanitizeForHTML(str) {
+      if (str == null) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+  </script>
+</body>
+</html>
