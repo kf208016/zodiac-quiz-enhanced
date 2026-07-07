@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
+  <meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✨</text></svg>">
   <!-- Security Headers -->
   <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -8,7 +13,6 @@
   <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self';">
 
-  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#0a0a1a">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -71,8 +75,6 @@
     <meta property="og:image" content="https://zodiac-quiz-enhanced.pages.dev/og-image.png">
   <meta name="twitter:image" content="https://zodiac-quiz-enhanced.pages.dev/og-image.png">
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
-    
     * { margin: 0; padding: 0; box-sizing: border-box; }
     
     body {
@@ -941,6 +943,8 @@
         <a href="compatibility.html" data-i18n="nav_compat">星座配對</a>
         <a href="horoscope.html" data-i18n="nav_horo">星座運勢</a>
         <a href="quiz.html" data-i18n="nav_quiz">遊戲測驗</a>
+        <a href="games.html">🎮 遊戲中心</a>
+        <a href="wheel.html">🎡 幸運轉盤</a>
         <a href="knowledge.html" data-i18n="nav_knowledge">星座知識</a>
         <a href="blocks.html" data-i18n="nav_blocks">方塊遊戲</a>
         <a href="#subscribe" class="cta-btn" data-i18n="nav_subscribe">訂閱通知</a>
@@ -1014,7 +1018,14 @@
         <p data-i18n="feature_quiz_desc">透過有趣的心理測驗，找出你內心的星座本質。發現你的遊戲人格！</p>
       </div>
       
-      <div class="feature-card" onclick="location.href='quiz.html'">
+      <div class="feature-card" onclick="location.href='games.html'">
+        <div class="feature-icon">🎮</div>
+        <h3>遊戲中心</h3>
+        <p>集合星座記憶翻牌、心理測驗與知識搶答，輕鬆挑戰你的星座直覺與知識力。</p>
+        <span class="tag new" data-i18n="tag_new">new</span>
+      </div>
+      
+      <div class="feature-card" onclick="location.href='wheel.html'">
         <div class="feature-icon">🎡</div>
         <h3 data-i18n="feature_wheel_title">星座幸運轉盤</h3>
         <p data-i18n="feature_wheel_desc">旋轉命運之輪，根據你的星座得到今日幸運提示！</p>

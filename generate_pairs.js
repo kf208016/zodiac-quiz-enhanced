@@ -130,8 +130,8 @@ const luckyFactors = generateLuckyFactors(i, j);
   
   const metaDesc = `詳細分析${sign1.zh}與${sign2.zh}的愛情、事業、溝通契合度，包含行星相位與運勢建議。${sign1.element}象星座與${sign2.element}象星座的完美搭配。`;
   
-  const canonicalUrl = `https://YOUR_DOMAIN/pairs/${sign1.zh}-${sign2.zh}.html`;
-  const selfUrl = `https://YOUR_DOMAIN/pairs/${sign1.zh}-${sign2.zh}.html`;
+  const canonicalUrl = `https://zodiac-quiz-enhanced.pages.dev/pairs/${sign1.zh}-${sign2.zh}`;
+  const selfUrl = `https://zodiac-quiz-enhanced.pages.dev/pairs/${sign1.zh}-${sign2.zh}`;
   
   const faqSchema = {
     "@context": "https://schema.org",
@@ -154,13 +154,13 @@ const luckyFactors = generateLuckyFactors(i, j);
         "@type": "ListItem",
         "position": 1,
         "name": "首頁",
-        "item": "https://YOUR_DOMAIN/index.html"
+        "item": "https://zodiac-quiz-enhanced.pages.dev/index.html"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "星座配對",
-        "item": "https://YOUR_DOMAIN/compatibility.html"
+        "item": "https://zodiac-quiz-enhanced.pages.dev/compatibility.html"
       },
       {
         "@type": "ListItem",
@@ -309,19 +309,19 @@ ${JSON.stringify(articleSchema, null, 2)}
     <nav class="navbar">
       <div class="logo">✨ 星座命理</div>
       <div class="nav-links">
-        <a href="https://YOUR_DOMAIN/index.html">首頁</a>
-        <a href="https://YOUR_DOMAIN/natal.html">命盤查詢</a>
-        <a href="https://YOUR_DOMAIN/compatibility.html" class="active">星座配對</a>
-        <a href="https://YOUR_DOMAIN/horoscope.html">星座運勢</a>
-        <a href="https://YOUR_DOMAIN/knowledge.html">星座知識</a>
+        <a href="https://zodiac-quiz-enhanced.pages.dev/index.html">首頁</a>
+        <a href="https://zodiac-quiz-enhanced.pages.dev/natal.html">命盤查詢</a>
+        <a href="https://zodiac-quiz-enhanced.pages.dev/compatibility.html" class="active">星座配對</a>
+        <a href="https://zodiac-quiz-enhanced.pages.dev/horoscope.html">星座運勢</a>
+        <a href="https://zodiac-quiz-enhanced.pages.dev/knowledge.html">星座知識</a>
       </div>
     </nav>
     
     <div class="page-title">
       <div class="breadcrumb">
-        <a href="https://YOUR_DOMAIN/index.html">首頁</a>
+        <a href="https://zodiac-quiz-enhanced.pages.dev/index.html">首頁</a>
         <span>›</span>
-        <a href="https://YOUR_DOMAIN/compatibility.html">星座配對</a>
+        <a href="https://zodiac-quiz-enhanced.pages.dev/compatibility.html">星座配對</a>
         <span>›</span>
         <span>${sign1.zh}與${sign2.zh}</span>
       </div>
@@ -444,11 +444,11 @@ ${JSON.stringify(articleSchema, null, 2)}
     </div>
     
     <div class="cta-section">
-      <a href="https://YOUR_DOMAIN/natal.html" class="btn btn-primary">🪐 查看完整命盤</a>
+      <a href="https://zodiac-quiz-enhanced.pages.dev/natal.html" class="btn btn-primary">🪐 查看完整命盤</a>
     </div>
     
     <footer>
-      <p>© 2024 星座命理平台 | <a href="https://YOUR_DOMAIN/index.html">首頁</a> | <a href="https://YOUR_DOMAIN/compatibility.html">星座配對</a></p>
+      <p>© 2024 星座命理平台 | <a href="https://zodiac-quiz-enhanced.pages.dev/index.html">首頁</a> | <a href="https://zodiac-quiz-enhanced.pages.dev/compatibility.html">星座配對</a></p>
     </footer>
   </div>
   
@@ -511,55 +511,55 @@ let sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <!-- Main Pages -->
   <url>
-    <loc>https://YOUR_DOMAIN/index.html</loc>
+    <loc>https://zodiac-quiz-enhanced.pages.dev/index.html</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://YOUR_DOMAIN/natal.html</loc>
+    <loc>https://zodiac-quiz-enhanced.pages.dev/natal.html</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://YOUR_DOMAIN/compatibility.html</loc>
+    <loc>https://zodiac-quiz-enhanced.pages.dev/compatibility.html</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://YOUR_DOMAIN/horoscope.html</loc>
+    <loc>https://zodiac-quiz-enhanced.pages.dev/horoscope.html</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://YOUR_DOMAIN/quiz.html</loc>
+    <loc>https://zodiac-quiz-enhanced.pages.dev/quiz.html</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://YOUR_DOMAIN/knowledge.html</loc>
+    <loc>https://zodiac-quiz-enhanced.pages.dev/knowledge.html</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://YOUR_DOMAIN/games.html</loc>
+    <loc>https://zodiac-quiz-enhanced.pages.dev/games.html</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://YOUR_DOMAIN/wheel.html</loc>
+    <loc>https://zodiac-quiz-enhanced.pages.dev/wheel.html</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://YOUR_DOMAIN/blocks.html</loc>
+    <loc>https://zodiac-quiz-enhanced.pages.dev/blocks.html</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -572,7 +572,7 @@ for (let i = 0; i < 12; i++) {
     const sign1 = zodiacSigns[i];
     const sign2 = zodiacSigns[j];
     sitemapContent += `  <url>
-    <loc>https://YOUR_DOMAIN/pairs/${sign1.zh}-${sign2.zh}.html</loc>
+    <loc>https://zodiac-quiz-enhanced.pages.dev/pairs/${sign1.zh}-${sign2.zh}.html</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>

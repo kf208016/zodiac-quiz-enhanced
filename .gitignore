@@ -1,7 +1,7 @@
 node_modules/
 *.png
+!og-image.png
 *.jpg
 .git/
 .wrangler/
-pairs/
 screenshot*.js
